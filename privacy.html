@@ -49,7 +49,7 @@ a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-ra
     <a class="back" href="index.html">← Ana sayfa</a>
   </header>
   <h1>Gizlilik Politikası</h1>
-  <div class="updated">Son güncelleme: 19 Temmuz 2026</div>
+  <div class="updated">Son güncelleme: 27 Temmuz 2026</div>
   <div class="card">
 <p>Bu politika, Makara uygulamasını kullandığında hangi kişisel verilerini
     işlediğimizi, neden işlediğimizi ve haklarının neler olduğunu açıklar.
@@ -83,11 +83,42 @@ a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-ra
       <li>Uygulama ayarların</li>
     </ul>
 
+    <h3>Konum bilgisi</h3>
+    <ul>
+      <li>Yaklaşık konumun (yalnızca izin verirsen): Yakınındaki eşleşmeleri
+      gösterebilmek ve mesafe hesaplamak için kullanılır. Konum paylaşımı isteğe
+      bağlıdır; cihaz ayarlarından ya da uygulama içinden istediğin zaman
+      kapatabilirsin. Kapattığında yakınlık temelli öneriler çalışmaz, ama
+      uygulamayı kullanmaya devam edebilirsin.</li>
+    </ul>
+
+    <h3>Cihaz ve bildirim bilgileri</h3>
+    <ul>
+      <li>Bildirim kimliği (cihaz token'ı): Sana mesaj, eşleşme ve oyun
+      bildirimleri gönderebilmek için cihazına ait bir bildirim kimliği saklanır.
+      Bildirimleri cihaz ayarlarından kapatabilirsin.</li>
+      <li>Çökme ve hata kayıtları: Uygulama beklenmedik şekilde kapanırsa, sorunu
+      giderebilmek için cihaz modeli, işletim sistemi sürümü ve hata kaydı gibi
+      teknik bilgiler otomatik olarak toplanır. Bu kayıtlar kimliğini ortaya
+      çıkarmaz.</li>
+    </ul>
+
+    <h3>Telefon numarası (doğrulama için)</h3>
+    <ul>
+      <li>Telefon numaran: Hesabını doğrulamak ve sahte hesapları önlemek için
+      telefon numaranı isteriz. Numarana SMS ile bir doğrulama kodu gönderilir.
+      Numaran yalnızca doğrulama amacıyla işlenir.</li>
+    </ul>
+
     <h2>2. Verileri neden işliyoruz</h2>
     <ul>
       <li>Hesabını oluşturmak ve seni tanımak</li>
       <li>Film ve dizi zevkine göre sana uygun kişileri önermek</li>
       <li>Eşleştiğin kişilerle mesajlaşmanı sağlamak</li>
+      <li>Yakınındaki kişileri önerebilmek (konum iznin varsa)</li>
+      <li>Sana bildirim gönderebilmek (mesaj, eşleşme, oyun daveti)</li>
+      <li>Uygulama hatalarını tespit edip gidermek</li>
+      <li>Telefon numaranı doğrulayarak hesap güvenliğini sağlamak</li>
       <li>Uygulamayı güvenli tutmak: taciz, sahte hesap ve kötüye kullanımı önlemek</li>
       <li>Şikayetleri incelemek</li>
       <li>Yasal yükümlülüklerimizi yerine getirmek</li>
@@ -103,6 +134,10 @@ a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-ra
     Almanya, Avrupa Birliği Genel Veri Koruma Tüzüğü (GDPR) kapsamındadır ve
     yeterli koruma sağlar. Hesap oluştururken bu aktarıma açık rıza vermiş
     olursun.</p>
+    <p>Bildirim ve çökme raporlama hizmetleri için bazı teknik veriler Google
+    (Firebase) altyapısında; telefon doğrulama sırasında telefon numaran ise
+    İleti Merkezi altyapısında işlenebilir. Bu aktarımlar yalnızca ilgili
+    hizmetin çalışması için gereken ölçüdedir.</p>
 
     <h2>4. Verileri kimlerle paylaşıyoruz</h2>
     <p>Verilerini <strong>satmıyoruz</strong>, pazarlama amacıyla üçüncü
@@ -112,8 +147,16 @@ a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-ra
       cinsiyet, fotoğraflar, bio, film listelerin, ilgi alanların, burcun)
       keşfet ekranında diğer kullanıcılara görünür. "Keşfette görün" ayarını
       kapatarak bunu durdurabilirsin.</li>
-      <li><strong>Altyapı sağlayıcımız:</strong> Supabase Inc. (veritabanı, dosya
-      depolama, kimlik doğrulama)</li>
+      <li><strong>Supabase Inc.</strong> — veritabanı, dosya depolama, kimlik
+      doğrulama (sunucular Frankfurt, Almanya)</li>
+      <li><strong>Google (Firebase)</strong> — bildirim gönderimi ve çökme
+      raporlama. Bu amaçla cihaz bildirim kimliğin ve teknik hata kayıtların
+      Google sunucularında işlenir.</li>
+      <li><strong>İleti Merkezi</strong> — telefon doğrulama SMS'lerini iletmek
+      için. Yalnızca doğrulama sırasında telefon numaran iletilir.</li>
+      <li><strong>TMDB (The Movie Database)</strong> — film ve dizi bilgilerini
+      getirmek için. Bu servise kişisel verin gönderilmez; yalnızca film/dizi
+      araması yapılır.</li>
       <li><strong>Yetkili merciler:</strong> Yasal bir talep geldiğinde,
       mevzuatın gerektirdiği ölçüde</li>
     </ul>
@@ -162,7 +205,10 @@ a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-ra
     <h2>8. Yaş sınırı</h2>
     <p>Makara <strong>18 yaş ve üzeri</strong> içindir. 18 yaşından küçük
     olduğunu öğrendiğimiz hesapları bildirim yapmaksızın kapatır ve verilerini
-    sileriz.</p>
+    sileriz. 18 yaşından küçük kullanıcılardan bilerek kişisel veri toplamayız.
+    Bir çocuğun bize veri sağladığını fark edersen
+    <a href="mailto:destek@makara.social">destek@makara.social</a> adresine
+    bildirmen hâlinde ilgili verileri sileriz.</p>
 
     <h2>9. Değişiklikler</h2>
     <p>Bu politikayı güncelleyebiliriz. Önemli bir değişiklik olursa uygulama
