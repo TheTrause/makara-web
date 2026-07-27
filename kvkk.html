@@ -61,7 +61,7 @@ a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-ra
     <a class="back" href="index.html">← Ana sayfa</a>
   </header>
   <h1>KVKK Aydınlatma Metni</h1>
-  <div class="updated">Son güncelleme: 27 Temmuz 2026</div>
+  <div class="updated">Son güncelleme: 25 Temmuz 2026</div>
   <div class="card">
     <p class="intro">6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca, MAKARA uygulamasını kullandığında kişisel verilerinin hangi amaçlarla işlendiğini, kimlere aktarılabileceğini ve haklarını bu metinle açıklıyoruz.</p>
     <h2>1. Veri Sorumlusu</h2>
@@ -71,15 +71,12 @@ a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-ra
     <ul>
       <li>Takma adın, yaşın, cinsiyetin</li>
       <li>Hakkında yazdığın kısa tanıtım (bio)</li>
-      <li>Doğum günün ve ayın (yalnızca burcunu hesaplamak için; doğum yılını sormuyoruz)</li>
+      <li>Doğum tarihin (gün, ay, yıl): 18 yaş şartını doğrulamak ve yaşını hesaplamak için kayıtta alınır. Doğum yılını profilinde göstermez ve saklamayız; yalnızca gün ve ayını (burcun için) ve hesaplanan yaşını saklarız</li>
       <li>Yüklediğin profil fotoğrafları</li>
       <li>Favori film ve dizilerin, izleme listen, kategori tercihlerin, ilgi alanların, favori sinema salonun</li>
     </ul>
     <h3>İletişim</h3>
-    <ul>
-      <li>E-posta adresin (şifren şifrelenmiş olarak saklanır, tarafımızca görülmez)</li>
-      <li>Telefon numaran — hesabını doğrulamak ve sahte hesapları önlemek için; SMS ile doğrulama kodu gönderilir ve yalnızca doğrulama amacıyla işlenir</li>
-    </ul>
+    <ul><li>E-posta adresin (şifren şifrelenmiş olarak saklanır, tarafımızca görülmez)</li></ul>
     <h3>Konum</h3>
     <ul><li>Yaklaşık konum bilgin — yalnızca sana yakındaki kişileri gösterebilmek ve mesafe hesaplamak için</li></ul>
     <h3>Kullanım ve işlem</h3>
@@ -90,10 +87,7 @@ a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-ra
       <li>Uygulama ayarların ve bildirim tercihlerin</li>
     </ul>
     <h3>İşlem güvenliği</h3>
-    <ul>
-      <li>Bildirim gönderebilmek için cihaz bildirim kimliğin (push token) ve güvenlik amaçlı teknik kayıtlar</li>
-      <li>Çökme ve hata kayıtları — uygulama beklenmedik şekilde kapanırsa sorunu giderebilmek için cihaz modeli, işletim sistemi sürümü ve hata kaydı gibi teknik bilgiler; bu kayıtlar kimliğini ortaya çıkarmaz</li>
-    </ul>
+    <ul><li>Bildirim gönderebilmek için cihaz bildirim kimliğin (push token) ve güvenlik amaçlı teknik kayıtlar</li></ul>
     <h2>3. Kişisel Verilerinin İşlenme Amaçları</h2>
     <ul>
       <li>Hesabını oluşturmak ve seni tanımak</li>
@@ -101,8 +95,6 @@ a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-ra
       <li>Eşleştiğin kişilerle mesajlaşmanı sağlamak</li>
       <li>Uygulamayı güvenli tutmak: taciz, sahte hesap ve kötüye kullanımı önlemek, şikayetleri incelemek</li>
       <li>Sana bildirim gönderebilmek</li>
-      <li>Telefon numaranı doğrulayarak hesap güvenliğini sağlamak</li>
-      <li>Uygulama hatalarını tespit edip gidermek</li>
       <li>Yasal yükümlülüklerimizi yerine getirmek</li>
     </ul>
     <h2>4. Toplama Yöntemi ve Hukuki Sebepler</h2>
@@ -119,7 +111,6 @@ a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-ra
       <li><strong>Diğer kullanıcılar:</strong> Profil bilgilerin (takma ad, yaş, cinsiyet, fotoğraflar, bio, film listelerin, ilgi alanların, burcun) keşfet ekranında görünür. “Keşfette görün” ayarını kapatarak bunu durdurabilirsin.</li>
       <li><strong>Altyapı sağlayıcımız:</strong> Verilerin, <strong>Supabase Inc.</strong> tarafından işletilen sunucularda <strong>Almanya (Frankfurt)</strong> bölgesinde saklanır. Bu, verilerinin <strong>yurt dışına aktarıldığı</strong> anlamına gelir; Almanya, GDPR kapsamında yeterli koruma sağlar.</li>
       <li><strong>Bildirim hizmeti:</strong> Push bildirimi için Google/Firebase (FCM) altyapısı</li>
-      <li><strong>Telefon doğrulama:</strong> SMS doğrulama kodlarını iletmek için İleti Merkezi altyapısı; yalnızca doğrulama sırasında telefon numaran iletilir</li>
       <li><strong>Yetkili merciler:</strong> Yasal bir talep geldiğinde, mevzuatın gerektirdiği ölçüde</li>
     </ul>
     <p>Film ve dizi bilgileri TMDB servisinden çekilir; bu sırada kişisel verin TMDB’ye aktarılmaz.</p>
@@ -129,7 +120,6 @@ a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-ra
       <li>Hesabını sildiğinde profilin, fotoğrafların, beğenilerin, eşleşmelerin ve mesajların kalıcı olarak silinir. Bu işlem geri alınamaz.</li>
       <li>Şikayet ve güvenlik kayıtları, yasal yükümlülük gereği daha uzun süre saklanabilir.</li>
     </ul>
-    <p>Makara 18 yaş ve üzeri içindir. 18 yaşından küçük kullanıcılardan bilerek kişisel veri toplamayız; böyle bir durumu fark edersen <a href="mailto:destek@makara.social">destek@makara.social</a> adresine bildirmen hâlinde ilgili verileri sileriz.</p>
     <h2>7. Hakların (KVKK md. 11)</h2>
     <ul>
       <li>Kişisel verinin işlenip işlenmediğini öğrenme</li>
