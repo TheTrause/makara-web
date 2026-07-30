@@ -51,9 +51,96 @@ footer{ padding:30px 0 50px; border-top:1px solid var(--border); }
 .fine{ color:var(--gold-dim); font-size:12.5px; line-height:1.7; }
 .fine a{ color:var(--gold-dim); }
 a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-radius:6px; }
+.langtoggle{display:inline-flex;border:1px solid rgba(201,162,75,.3);border-radius:999px;overflow:hidden;vertical-align:middle}
+.langtoggle button{background:transparent;color:#8FA89E;border:none;font:inherit;font-size:12px;letter-spacing:.06em;padding:6px 11px;cursor:pointer}
+.langtoggle button.on{background:rgba(201,162,75,.14);color:#C9A24B}
+[data-lang-block]{display:none}
+.not-ceviri{background:rgba(201,162,75,.08);border:1px solid rgba(201,162,75,.2);border-radius:10px;padding:12px 16px;margin:16px 0;font-size:13px;color:#8FA89E}
 </style>
 </head>
 <body>
+<div class="perf"></div>
+<div class="wrap">
+  <header>
+    <a class="brand" href="index.html"><span class="reel" aria-hidden="true"></span>MAKARA</a>
+    <span style="display:inline-flex;gap:12px;align-items:center">
+      <span class="langtoggle" role="group" aria-label="Dil / Language"><button type="button" data-lang="tr">TR</button><button type="button" data-lang="en">EN</button></span>
+      <a class="back" href="index.html" data-tr="← Ana sayfa" data-en="← Home">← Ana sayfa</a>
+    </span>
+  </header>
+<div data-lang-block="tr">
+  <h1>KVKK Aydınlatma Metni</h1>
+  <div class="card">
+   <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca, MAKARA uygulamasını kullandığında kişisel verilerinin hangi amaçlarla işlendiğini, kimlere aktarılabileceğini ve haklarını açıklar.</p>
+   <h2>1. Veri Sorumlusu</h2>
+   <p>Veri sorumlusu, MAKARA uygulamasını geliştiren <strong>Repress Studio</strong>’dur. KVKK kapsamındaki taleplerin için <a href="mailto:kvkk@makara.social">kvkk@makara.social</a> adresine yazabilirsin.</p>
+   <h2>2. İşlenen Kişisel Veriler</h2>
+   <h3>Kimlik ve profil</h3>
+   <ul><li>Takma adın, yaşın, cinsiyetin</li><li>Hakkında yazdığın kısa tanıtım (bio)</li><li>Doğum tarihin (gün, ay, yıl): 18 yaş şartını doğrulamak ve yaşını hesaplamak için kayıtta alınır. Doğum yılını profilinde göstermez ve saklamayız; yalnızca gün ve ayını (burcun için) ve hesaplanan yaşını saklarız</li><li>Yüklediğin profil fotoğrafları</li><li>Favori film ve dizilerin, izleme listen, kategori tercihlerin, ilgi alanların, favori sinema salonun</li></ul>
+   <h3>İletişim</h3>
+   <ul><li>E-posta adresin (şifren şifrelenmiş olarak saklanır, tarafımızca görülmez)</li></ul>
+   <h3>Konum</h3>
+   <ul><li>Yaklaşık konum bilgin — yalnızca sana yakındaki kişileri gösterebilmek ve mesafe hesaplamak için</li></ul>
+   <h3>Kullanım ve işlem</h3>
+   <ul><li>Beğendiğin ve geçtiğin profiller, eşleşmelerin</li><li>Mesajların, sesli mesajların ve sohbette paylaştığın fotoğraflar</li><li>Engellediğin kişiler ve gönderdiğin şikayetler</li><li>Uygulama ayarların ve bildirim tercihlerin</li></ul>
+   <h3>İşlem güvenliği</h3>
+   <ul><li>Bildirim gönderebilmek için cihaz bildirim kimliğin (push token) ve güvenlik amaçlı teknik kayıtlar</li></ul>
+   <h2>3. Kişisel Verilerinin İşlenme Amaçları</h2>
+   <ul><li>Hesabını oluşturmak ve seni tanımak</li><li>Film ve dizi zevkine göre sana uygun kişileri önermek</li><li>Eşleştiğin kişilerle mesajlaşmanı sağlamak</li><li>Uygulamayı güvenli tutmak: taciz, sahte hesap ve kötüye kullanımı önlemek, şikayetleri incelemek</li><li>Sana bildirim gönderebilmek</li><li>Yasal yükümlülüklerimizi yerine getirmek</li></ul>
+   <h2>4. Toplama Yöntemi ve Hukuki Sebepler</h2>
+   <p>Verilerin, uygulamayı kullandığın sırada elektronik ortamda otomatik ve kısmen otomatik yollarla toplanır. İşlemenin hukuki sebepleri:</p>
+   <ul><li>Sözleşmenin kurulması ve ifası (KVKK md. 5/2-c)</li><li>Açık rıza: profil bilgilerin, konum verin ve yurt dışına aktarım</li><li>Meşru menfaat: platform güvenliği (KVKK md. 5/2-f)</li><li>Yasal yükümlülük (KVKK md. 5/2-ç)</li></ul>
+   <h2>5. Kişisel Verilerinin Aktarımı</h2>
+   <p>Verilerini satmıyoruz ve pazarlama amacıyla üçüncü taraflara vermiyoruz. Sınırlı hâllerde şu alıcılara aktarılabilir:</p>
+   <ul><li><strong>Diğer kullanıcılar:</strong> Profil bilgilerin keşfet ekranında görünür. “Keşfette görün” ayarını kapatarak durdurabilirsin.</li><li><strong>Altyapı sağlayıcımız:</strong> Verilerin, Supabase Inc. tarafından işletilen sunucularda Almanya (Frankfurt) bölgesinde saklanır. Bu, yurt dışına aktarım anlamına gelir; Almanya GDPR kapsamındadır.</li><li><strong>Bildirim hizmeti:</strong> Push bildirimi için Google/Firebase (FCM) altyapısı</li><li><strong>Yetkili merciler:</strong> Yasal bir talep geldiğinde, mevzuatın gerektirdiği ölçüde</li></ul>
+   <p>Film ve dizi bilgileri TMDB servisinden çekilir; bu sırada kişisel verin TMDB’ye aktarılmaz.</p>
+   <h2>6. Saklama Süresi</h2>
+   <ul><li>Hesabın aktif olduğu sürece verilerin saklanır.</li><li>Hesabını sildiğinde profilin, fotoğrafların, beğenilerin, eşleşmelerin ve mesajların kalıcı olarak silinir. Bu işlem geri alınamaz.</li><li>Şikayet ve güvenlik kayıtları, yasal yükümlülük gereği daha uzun süre saklanabilir.</li></ul>
+   <h2>7. Hakların (KVKK md. 11)</h2>
+   <ul><li>Kişisel verinin işlenip işlenmediğini öğrenme</li><li>İşlenmişse buna ilişkin bilgi talep etme</li><li>İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme</li><li>Yurt içinde/yurt dışında aktarıldığı üçüncü kişileri bilme</li><li>Eksik veya yanlış işlenmişse düzeltilmesini isteme</li><li>Silinmesini veya yok edilmesini isteme</li><li>Düzeltme/silme işlemlerinin aktarıldığı üçüncü kişilere bildirilmesini isteme</li><li>Otomatik sistemlerle analiz sonucu aleyhine sonuç çıkmasına itiraz etme</li><li>Kanuna aykırı işleme nedeniyle zarara uğraman hâlinde zararın giderilmesini talep etme</li></ul>
+   <h2>8. Başvuru</h2>
+   <p>Profil bilgilerini uygulama içinden düzenleyebilir, hesabını <strong>Ayarlar → Hesabı sil</strong> bölümünden tamamen silebilirsin. Diğer talepler için <a href="mailto:kvkk@makara.social">kvkk@makara.social</a> adresine yazabilirsin.</p>
+   <div class="not-ceviri">Bu sayfanın İngilizce sürümü yalnızca bilgilendirme amaçlıdır. Herhangi bir uyuşmazlıkta <strong>Türkçe metin esas alınır ve bağlayıcıdır</strong>.</div>
+  </div>
+  </div>
+<div data-lang-block="en">
+  <h1>KVKK Disclosure Notice</h1>
+  <div class="card">
+   <p>Under Law No. 6698 on the Protection of Personal Data (“KVKK”), this notice explains for which purposes your personal data is processed when you use the MAKARA app, to whom it may be transferred, and what your rights are.</p>
+   <h2>1. Data Controller</h2>
+   <p>The data controller is <strong>Repress Studio</strong>, the developer of the MAKARA app. For your KVKK requests, you can write to <a href="mailto:kvkk@makara.social">kvkk@makara.social</a>.</p>
+   <h2>2. Personal Data Processed</h2>
+   <h3>Identity and profile</h3>
+   <ul><li>Your nickname, age, gender</li><li>The short bio you write about yourself</li><li>Your date of birth (day, month, year): collected at sign-up to verify the 18+ requirement and calculate your age. We do not display or store your birth year on your profile; we only keep your day and month (for your zodiac sign) and your calculated age</li><li>Profile photos you upload</li><li>Your favorite films and shows, watchlist, category preferences, interests, favorite cinema</li></ul>
+   <h3>Contact</h3>
+   <ul><li>Your email address (your password is stored encrypted and cannot be seen by us)</li></ul>
+   <h3>Location</h3>
+   <ul><li>Your approximate location — only to show you nearby people and calculate distance</li></ul>
+   <h3>Usage and transaction</h3>
+   <ul><li>Profiles you like and pass, your matches</li><li>Your messages, voice messages and photos shared in chat</li><li>People you block and reports you submit</li><li>Your app settings and notification preferences</li></ul>
+   <h3>Transaction security</h3>
+   <ul><li>Your device notification identifier (push token) to send notifications, and technical records for security purposes</li></ul>
+   <h2>3. Purposes of Processing</h2>
+   <ul><li>To create your account and recognize you</li><li>To suggest suitable people based on your film and TV taste</li><li>To let you message people you match with</li><li>To keep the app safe: preventing harassment, fake accounts and abuse, and reviewing reports</li><li>To send you notifications</li><li>To fulfill our legal obligations</li></ul>
+   <h2>4. Method of Collection and Legal Grounds</h2>
+   <p>Your data is collected electronically, by automated and partly automated means, while you use the app. The legal grounds for processing are:</p>
+   <ul><li>Formation and performance of the contract (KVKK Art. 5/2-c)</li><li>Explicit consent: your profile information, location data and transfer abroad</li><li>Legitimate interest: platform security (KVKK Art. 5/2-f)</li><li>Legal obligation (KVKK Art. 5/2-ç)</li></ul>
+   <h2>5. Transfer of Personal Data</h2>
+   <p>We do not sell your data and do not provide it to third parties for marketing. In limited cases it may be transferred to the following recipients:</p>
+   <ul><li><strong>Other users:</strong> Your profile information is visible on the discover screen. You can stop this by turning off the “Show me in Discover” setting.</li><li><strong>Our infrastructure provider:</strong> Your data is stored on servers operated by Supabase Inc. in the Germany (Frankfurt) region. This means transfer abroad; Germany falls under the GDPR.</li><li><strong>Notification service:</strong> Google/Firebase (FCM) infrastructure for push notifications</li><li><strong>Competent authorities:</strong> Upon a lawful request, to the extent required by legislation</li></ul>
+   <p>Film and show information is fetched from the TMDB service; your personal data is not transferred to TMDB in the process.</p>
+   <h2>6. Retention Period</h2>
+   <ul><li>Your data is kept for as long as your account is active.</li><li>When you delete your account, your profile, photos, likes, matches and messages are permanently deleted. This action cannot be undone.</li><li>Report and security records may be kept longer due to legal obligations.</li></ul>
+   <h2>7. Your Rights (KVKK Art. 11)</h2>
+   <ul><li>Learn whether your personal data is processed</li><li>Request information if it has been processed</li><li>Learn the purpose of processing and whether it is used accordingly</li><li>Know the third parties to whom it is transferred domestically/abroad</li><li>Request correction if incomplete or inaccurate</li><li>Request its deletion or destruction</li><li>Request that corrections/deletions be notified to third parties to whom the data was transferred</li><li>Object to a result against you arising from automated analysis</li><li>Claim compensation if you suffer damage due to unlawful processing</li></ul>
+   <h2>8. Application</h2>
+   <p>You can edit your profile information within the app and delete your account entirely from <strong>Settings → Delete account</strong>. For other requests, write to <a href="mailto:kvkk@makara.social">kvkk@makara.social</a>.</p>
+   <div class="not-ceviri">This English version is provided for information only. In case of any dispute, the <strong>Turkish text prevails and is binding</strong>.</div>
+  </div>
+  </div>
+  <footer><p class="fine"><span data-tr="© 2026 MAKARA · Repress Studio. Tüm hakları saklıdır." data-en="© 2026 MAKARA · Repress Studio. All rights reserved.">© 2026 MAKARA · Repress Studio. Tüm hakları saklıdır.</span><br>
+   <a href="privacy.html" data-tr="Gizlilik Politikası" data-en="Privacy Policy">Gizlilik Politikası</a> · <a href="index.html" data-tr="Ana sayfa" data-en="Home">Ana sayfa</a></p></footer>
+</div>
 <div class="perf"></div>
 <div class="wrap">
   <header>
@@ -142,5 +229,16 @@ a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-ra
   </footer>
 </div>
 <div class="perf"></div>
+<script>
+function setLang(l){document.documentElement.lang=l;
+ document.querySelectorAll('[data-lang-block]').forEach(function(b){b.style.display=(b.getAttribute('data-lang-block')===l)?'':'none';});
+ document.querySelectorAll('[data-tr]').forEach(function(el){var v=el.getAttribute(l==='en'?'data-en':'data-tr');if(v!=null)el.textContent=v;});
+ document.title=(l==='en')?'KVKK Disclosure | MAKARA':'KVKK Aydınlatma Metni | MAKARA';
+ document.querySelectorAll('.langtoggle button').forEach(function(b){b.classList.toggle('on',b.dataset.lang===l);});
+ try{localStorage.setItem('makara_lang',l);}catch(e){}}
+(function(){var l='tr';try{l=localStorage.getItem('makara_lang')||'tr';}catch(e){}
+ document.querySelectorAll('.langtoggle button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang);});});
+ setLang(l);})();
+</script>
 </body>
 </html>
