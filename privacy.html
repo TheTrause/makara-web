@@ -39,9 +39,200 @@ footer{ padding:30px 0 50px; border-top:1px solid var(--border); }
 .fine{ color:var(--gold-dim); font-size:12.5px; line-height:1.7; }
 .fine a{ color:var(--gold-dim); }
 a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-radius:6px; }
+.langtoggle{display:inline-flex;border:1px solid rgba(201,162,75,.3);border-radius:999px;overflow:hidden;vertical-align:middle}
+.langtoggle button{background:transparent;color:#8FA89E;border:none;font:inherit;font-size:12px;letter-spacing:.06em;padding:6px 11px;cursor:pointer}
+.langtoggle button.on{background:rgba(201,162,75,.14);color:#C9A24B}
+[data-lang-block]{display:none}
+.not-ceviri{background:rgba(201,162,75,.08);border:1px solid rgba(201,162,75,.2);border-radius:10px;padding:12px 16px;margin:16px 0;font-size:13px;color:#8FA89E}
 </style>
 </head>
 <body>
+<div class="perf"></div>
+<div class="wrap">
+  <header>
+    <a class="brand" href="index.html"><span class="reel" aria-hidden="true"></span>MAKARA</a>
+    <span style="display:inline-flex;gap:12px;align-items:center">
+      <span class="langtoggle" role="group" aria-label="Dil / Language">
+        <button type="button" data-lang="tr">TR</button>
+        <button type="button" data-lang="en">EN</button>
+      </span>
+      <a class="back" href="index.html" data-tr="← Ana sayfa" data-en="← Home">← Ana sayfa</a>
+    </span>
+  </header>
+
+  <!-- ===== TR ===== -->
+  <div data-lang-block="tr">
+  <h1>Gizlilik Politikası</h1>
+  <div class="updated">Son güncelleme: 27 Temmuz 2026</div>
+  <div class="card">
+    <p>Bu politika, Makara uygulamasını kullandığında hangi kişisel verilerini işlediğimizi, neden işlediğimizi ve haklarının neler olduğunu açıklar. 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında veri sorumlusu <strong>Repress Studio</strong>'dur.</p>
+    <h2>1. Hangi verileri topluyoruz</h2>
+    <h3>Hesap bilgileri</h3>
+    <ul><li>E-posta adresin ve şifren (şifre şifrelenmiş olarak saklanır, biz göremeyiz)</li></ul>
+    <h3>Profil bilgileri</h3>
+    <ul>
+      <li>Takma adın, yaşın, cinsiyetin</li>
+      <li>Hakkında yazdığın kısa tanıtım</li>
+      <li>Doğum tarihin (gün, ay, yıl): 18 yaş şartını doğrulamak ve yaşını hesaplamak için kayıtta alınır. Doğum yılını profilinde göstermez ve saklamayız; yalnızca gün ve ayını (burcun için) ve hesaplanan yaşını saklarız</li>
+      <li>Yüklediğin fotoğraflar</li>
+      <li>Favori film ve dizilerin, izleme listen, kategori tercihlerin</li>
+      <li>Seçtiğin ilgi alanları</li>
+      <li>Favori sinema salonun</li>
+    </ul>
+    <h3>Kullanım verileri</h3>
+    <ul>
+      <li>Beğendiğin ve geçtiğin profiller</li>
+      <li>Eşleşmelerin</li>
+      <li>Mesajların, sesli mesajların ve sohbette paylaştığın fotoğraflar</li>
+      <li>Engellediğin kişiler ve gönderdiğin şikayetler</li>
+      <li>Uygulama ayarların</li>
+    </ul>
+    <h2>2. Verileri neden işliyoruz</h2>
+    <ul>
+      <li>Hesabını oluşturmak ve seni tanımak</li>
+      <li>Film ve dizi zevkine göre sana uygun kişileri önermek</li>
+      <li>Eşleştiğin kişilerle mesajlaşmanı sağlamak</li>
+      <li>Uygulamayı güvenli tutmak: taciz, sahte hesap ve kötüye kullanımı önlemek</li>
+      <li>Şikayetleri incelemek</li>
+      <li>Yasal yükümlülüklerimizi yerine getirmek</li>
+    </ul>
+    <p><strong>Hukuki dayanak:</strong> Sözleşmenin kurulması ve ifası, açık rızan (hassas veriler ve profil bilgilerin), meşru menfaat (güvenlik) ve yasal yükümlülük.</p>
+    <h2>3. Veriler nerede saklanıyor</h2>
+    <p>Verilerin, altyapı hizmeti aldığımız <strong>Supabase Inc.</strong> tarafından işletilen sunucularda, <strong>Almanya'nın Frankfurt</strong> şehrinde saklanır. Bu, verilerinin yurt dışına aktarıldığı anlamına gelir. Almanya, GDPR kapsamındadır ve yeterli koruma sağlar. Hesap oluştururken bu aktarıma açık rıza vermiş olursun.</p>
+    <h2>4. Verileri kimlerle paylaşıyoruz</h2>
+    <p>Verilerini <strong>satmıyoruz</strong>, pazarlama amacıyla üçüncü taraflara vermiyoruz.</p>
+    <ul>
+      <li><strong>Diğer kullanıcılar:</strong> Profil bilgilerin keşfet ekranında diğer kullanıcılara görünür. "Keşfette görün" ayarını kapatarak bunu durdurabilirsin.</li>
+      <li><strong>Altyapı sağlayıcımız:</strong> Supabase Inc. (veritabanı, dosya depolama, kimlik doğrulama)</li>
+      <li><strong>Yetkili merciler:</strong> Yasal bir talep geldiğinde, mevzuatın gerektirdiği ölçüde</li>
+    </ul>
+    <h2>5. Ne kadar saklıyoruz</h2>
+    <ul>
+      <li>Hesabın aktif olduğu sürece verilerin saklanır.</li>
+      <li>Hesabını sildiğinde: profilin, fotoğrafların, beğenilerin, eşleşmelerin ve mesajların kalıcı olarak silinir. Bu işlem geri alınamaz.</li>
+      <li>Şikayet kayıtları, güvenlik ve yasal yükümlülük gereği daha uzun süre saklanabilir.</li>
+    </ul>
+    <h2>6. Hakların</h2>
+    <p>KVKK madde 11 uyarınca:</p>
+    <ul>
+      <li>Kişisel verinin işlenip işlenmediğini öğrenme</li>
+      <li>İşlenmişse bilgi talep etme</li>
+      <li>İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+      <li>Yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme</li>
+      <li>Eksik veya yanlış işlenmişse düzeltilmesini isteme</li>
+      <li>Silinmesini veya yok edilmesini isteme</li>
+      <li>Düzeltme/silme işlemlerinin aktarıldığı üçüncü kişilere bildirilmesini isteme</li>
+      <li>Otomatik sistemlerle analiz sonucu aleyhine bir sonuç çıkmasına itiraz etme</li>
+      <li>Kanuna aykırı işleme sebebiyle zarara uğraman hâlinde zararın giderilmesini talep etme</li>
+    </ul>
+    <p>Profil bilgilerini uygulama içinden düzenleyebilir, hesabını <strong>Ayarlar → Hesabı sil</strong> bölümünden tamamen silebilirsin. Diğer talepler için <a href="mailto:kvkk@makara.social">kvkk@makara.social</a> adresine yazabilirsin.</p>
+    <h2>7. Güvenlik</h2>
+    <ul>
+      <li>Tüm iletişim şifreli bağlantı (HTTPS) üzerinden yapılır.</li>
+      <li>Şifren geri döndürülemez şekilde şifrelenmiş olarak saklanır.</li>
+      <li>Veritabanında satır düzeyinde güvenlik (RLS) uygulanır.</li>
+      <li>Mesajlarını yalnızca sen ve konuştuğun kişi görebilir.</li>
+    </ul>
+    <p>Hiçbir sistem %100 güvenli değildir. Bir güvenlik sorunu fark edersen <a href="mailto:destek@makara.social">destek@makara.social</a> adresine bildirmen bize yardımcı olur.</p>
+    <h2>8. Yaş sınırı</h2>
+    <p>Makara <strong>18 yaş ve üzeri</strong> içindir. 18 yaşından küçük olduğunu öğrendiğimiz hesapları bildirim yapmaksızın kapatır ve verilerini sileriz.</p>
+    <h2>9. Değişiklikler</h2>
+    <p>Bu politikayı güncelleyebiliriz. Önemli bir değişiklik olursa uygulama içinden bilgilendiririz. Güncel sürüm her zaman bu sayfada yer alır.</p>
+    <h2>10. İletişim</h2>
+    <p class="contact">Sorularınız için: <a href="mailto:destek@makara.social">destek@makara.social</a><br>KVKK talepleriniz için: <a href="mailto:kvkk@makara.social">kvkk@makara.social</a><br>Repress Studio · İstanbul, Türkiye</p>
+    <div class="not-ceviri">Bu sayfanın İngilizce sürümü yalnızca bilgilendirme amaçlıdır. Herhangi bir uyuşmazlıkta <strong>Türkçe metin esas alınır ve bağlayıcıdır</strong>.</div>
+  </div>
+  </div>
+
+  <!-- ===== EN ===== -->
+  <div data-lang-block="en">
+  <h1>Privacy Policy</h1>
+  <div class="updated">Last updated: 27 July 2026</div>
+  <div class="card">
+    <p>This policy explains which personal data we process when you use Makara, why we process it, and what your rights are. Under Law No. 6698 on the Protection of Personal Data (KVKK), the data controller is <strong>Repress Studio</strong>.</p>
+    <h2>1. What data we collect</h2>
+    <h3>Account information</h3>
+    <ul><li>Your email address and password (the password is stored encrypted; we cannot see it)</li></ul>
+    <h3>Profile information</h3>
+    <ul>
+      <li>Your nickname, age and gender</li>
+      <li>The short bio you write about yourself</li>
+      <li>Your date of birth (day, month, year): collected at sign-up to verify the 18+ requirement and calculate your age. We do not display or store your birth year on your profile; we only keep your day and month (for your zodiac sign) and your calculated age</li>
+      <li>Photos you upload</li>
+      <li>Your favorite films and shows, watchlist, category preferences</li>
+      <li>The interests you select</li>
+      <li>Your favorite cinema</li>
+    </ul>
+    <h3>Usage data</h3>
+    <ul>
+      <li>Profiles you like and pass</li>
+      <li>Your matches</li>
+      <li>Your messages, voice messages and photos shared in chat</li>
+      <li>People you block and reports you submit</li>
+      <li>Your app settings</li>
+    </ul>
+    <h2>2. Why we process data</h2>
+    <ul>
+      <li>To create your account and recognize you</li>
+      <li>To suggest suitable people based on your film and TV taste</li>
+      <li>To let you message people you match with</li>
+      <li>To keep the app safe: preventing harassment, fake accounts and abuse</li>
+      <li>To review reports</li>
+      <li>To fulfill our legal obligations</li>
+    </ul>
+    <p><strong>Legal basis:</strong> Formation and performance of the contract, your explicit consent (sensitive data and profile information), legitimate interest (security) and legal obligation.</p>
+    <h2>3. Where data is stored</h2>
+    <p>Your data is stored on servers operated by <strong>Supabase Inc.</strong>, our infrastructure provider, in <strong>Frankfurt, Germany</strong>. This means your data is transferred abroad. Germany falls under the EU General Data Protection Regulation (GDPR) and provides adequate protection. You give explicit consent to this transfer when you create an account.</p>
+    <h2>4. Who we share data with</h2>
+    <p>We <strong>do not sell</strong> your data and do not provide it to third parties for marketing.</p>
+    <ul>
+      <li><strong>Other users:</strong> Your profile information is visible to other users on the discover screen. You can stop this by turning off the "Show me in Discover" setting.</li>
+      <li><strong>Our infrastructure provider:</strong> Supabase Inc. (database, file storage, authentication)</li>
+      <li><strong>Competent authorities:</strong> Upon a lawful request, to the extent required by legislation</li>
+    </ul>
+    <h2>5. How long we keep data</h2>
+    <ul>
+      <li>Your data is kept for as long as your account is active.</li>
+      <li>When you delete your account: your profile, photos, likes, matches and messages are permanently deleted. This action cannot be undone.</li>
+      <li>Report records may be kept longer for security and legal-obligation purposes.</li>
+    </ul>
+    <h2>6. Your rights</h2>
+    <p>Under Article 11 of the KVKK, you have the right to:</p>
+    <ul>
+      <li>Learn whether your personal data is processed</li>
+      <li>Request information if it has been processed</li>
+      <li>Learn the purpose of processing and whether it is used accordingly</li>
+      <li>Know the third parties to whom it is transferred domestically or abroad</li>
+      <li>Request correction if it is incomplete or inaccurate</li>
+      <li>Request its deletion or destruction</li>
+      <li>Request that corrections/deletions be notified to third parties to whom the data was transferred</li>
+      <li>Object to a result against you arising solely from automated analysis</li>
+      <li>Claim compensation if you suffer damage due to unlawful processing</li>
+    </ul>
+    <p>You can edit your profile information within the app and delete your account entirely from <strong>Settings → Delete account</strong>. For other requests, write to <a href="mailto:kvkk@makara.social">kvkk@makara.social</a>.</p>
+    <h2>7. Security</h2>
+    <ul>
+      <li>All communication is over an encrypted connection (HTTPS).</li>
+      <li>Your password is stored irreversibly encrypted.</li>
+      <li>Row-level security (RLS) is applied in the database: you can access only your own data and data made available to you.</li>
+      <li>Only you and the person you talk to can see your messages.</li>
+    </ul>
+    <p>No system is 100% secure. If you notice a security issue, reporting it to <a href="mailto:destek@makara.social">destek@makara.social</a> helps us.</p>
+    <h2>8. Age limit</h2>
+    <p>Makara is for those <strong>18 and over</strong>. We close accounts we learn belong to someone under 18, without notice, and delete their data.</p>
+    <h2>9. Changes</h2>
+    <p>We may update this policy. If there is a significant change, we will inform you within the app. The current version is always available on this page.</p>
+    <h2>10. Contact</h2>
+    <p class="contact">For questions: <a href="mailto:destek@makara.social">destek@makara.social</a><br>For KVKK requests: <a href="mailto:kvkk@makara.social">kvkk@makara.social</a><br>Repress Studio · Istanbul, Türkiye</p>
+    <div class="not-ceviri">This English version is provided for information only. In case of any dispute, the <strong>Turkish text prevails and is binding</strong>.</div>
+  </div>
+  </div>
+
+  <footer>
+    <p class="fine"><span data-tr="© 2026 MAKARA · Repress Studio. Tüm hakları saklıdır." data-en="© 2026 MAKARA · Repress Studio. All rights reserved.">© 2026 MAKARA · Repress Studio. Tüm hakları saklıdır.</span><br>
+      <a href="terms.html" data-tr="Kullanım Koşulları" data-en="Terms of Use">Kullanım Koşulları</a> · <a href="kvkk.html" data-tr="KVKK" data-en="KVKK">KVKK</a> · <a href="index.html" data-tr="Ana sayfa" data-en="Home">Ana sayfa</a></p>
+  </footer>
+</div>
 <div class="perf"></div>
 <div class="wrap">
   <header>
@@ -181,5 +372,18 @@ a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-ra
   </footer>
 </div>
 <div class="perf"></div>
+<script>
+function setLang(l){
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-lang-block]').forEach(function(b){ b.style.display=(b.getAttribute('data-lang-block')===l)?'':'none'; });
+  document.querySelectorAll('[data-tr]').forEach(function(el){ var v=el.getAttribute(l==='en'?'data-en':'data-tr'); if(v!=null) el.textContent=v; });
+  document.title=(l==='en')?'Privacy Policy | MAKARA':'Gizlilik Politikası | MAKARA';
+  document.querySelectorAll('.langtoggle button').forEach(function(b){ b.classList.toggle('on', b.dataset.lang===l); });
+  try{ localStorage.setItem('makara_lang',l); }catch(e){}
+}
+(function(){ var l='tr'; try{ l=localStorage.getItem('makara_lang')||'tr'; }catch(e){}
+  document.querySelectorAll('.langtoggle button').forEach(function(b){ b.addEventListener('click',function(){ setLang(b.dataset.lang); }); });
+  setLang(l); })();
+</script>
 </body>
 </html>
