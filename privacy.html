@@ -375,7 +375,7 @@ a:focus-visible{ outline:2px solid var(--emerald); outline-offset:3px; border-ra
 <script>
 function setLang(l){
   document.documentElement.lang=l;
-  document.querySelectorAll('[data-lang-block]').forEach(function(b){ b.style.display=(b.getAttribute('data-lang-block')===l)?'':'none'; });
+  document.querySelectorAll('[data-lang-block]').forEach(function(b){ b.style.display=(b.getAttribute('data-lang-block')===l)?'block':'none'; });
   document.querySelectorAll('[data-tr]').forEach(function(el){ var v=el.getAttribute(l==='en'?'data-en':'data-tr'); if(v!=null) el.textContent=v; });
   document.title=(l==='en')?'Privacy Policy | MAKARA':'Gizlilik Politikası | MAKARA';
   document.querySelectorAll('.langtoggle button').forEach(function(b){ b.classList.toggle('on', b.dataset.lang===l); });

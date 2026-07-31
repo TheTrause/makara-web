@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Topluluk Etkinlikleri — Katılım Koşulları ve Güvenlik | MAKARA</title>
-<meta name="description" content="MAKARA topluluk (sosyalleşme) etkinliklerine katılım koşulları, risk bildirimi, davranış kuralları ve onay beyanı." />
+<title data-i18n-title>Topluluk Etkinlikleri | MAKARA</title>
+<meta name="description" content="MAKARA topluluk etkinliklerine katılım koşulları, risk bildirimi, davranış kuralları ve onay beyanı." />
 <style>
   :root{
     --bg:#071613; --card:#0A1C18; --card2:#0C211B;
@@ -13,220 +13,248 @@
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{
-    margin:0; background:var(--bg); color:var(--cream);
-    font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    line-height:1.7; font-size:16px;
-  }
+  body{margin:0; background:var(--bg); color:var(--cream);
+    font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif; line-height:1.7; font-size:16px;}
   .wrap{max-width:820px; margin:0 auto; padding:0 22px 80px;}
-
-  header{text-align:center; padding:48px 20px 30px;}
+  header{text-align:center; padding:40px 20px 24px;}
+  .topbar{max-width:820px; margin:0 auto; display:flex; justify-content:flex-end; padding:16px 22px 0;}
+  .langtoggle{display:flex; border:1px solid var(--line); border-radius:999px; overflow:hidden;}
+  .langtoggle button{background:transparent; color:var(--goldDim); border:none; font:inherit;
+    font-size:12px; letter-spacing:.06em; padding:7px 12px; cursor:pointer; transition:.18s;}
+  .langtoggle button.on{background:rgba(201,162,75,.14); color:var(--gold);}
   .marka{font-family:Georgia,serif; font-size:30px; letter-spacing:6px; color:var(--gold);}
-  .marka .cark{
-    display:inline-block; width:24px; height:24px; border:2px solid var(--gold);
-    border-radius:50%; position:relative; vertical-align:middle; margin:0 6px;
-  }
-  .marka .cark::before{
-    content:""; position:absolute; width:7px; height:7px; background:var(--maroon);
-    border:1px solid var(--gold); border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%);
-  }
+  .marka .cark{display:inline-block; width:24px; height:24px; border:2px solid var(--gold);
+    border-radius:50%; position:relative; vertical-align:middle; margin:0 6px;}
+  .marka .cark::before{content:""; position:absolute; width:7px; height:7px; background:var(--maroon);
+    border:1px solid var(--gold); border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%);}
   .slogan{color:var(--goldDim); letter-spacing:4px; font-size:11px; margin-top:8px;}
-  h1{font-size:23px; color:var(--cream); margin:26px 0 6px; font-weight:600;}
+  h1{font-size:23px; color:var(--cream); margin:24px 0 6px; font-weight:600;}
   .ust-bilgi{color:var(--goldDim); font-size:13px;}
-
-  .altin-cizgi{height:1px; background:linear-gradient(90deg,transparent,var(--line),transparent); margin:26px 0;}
-
-  section{
-    background:var(--card); border:1px solid rgba(201,162,75,.14);
-    border-radius:14px; padding:22px 24px; margin:18px 0;
-  }
-  section h2{
-    color:var(--gold); font-size:15px; letter-spacing:1.5px; text-transform:uppercase;
-    margin:0 0 14px; padding-bottom:10px; border-bottom:1px solid rgba(201,162,75,.15);
-  }
-  section h3{color:var(--cream); font-size:15.5px; margin:18px 0 6px;}
-  p{margin:10px 0;}
-  ul{margin:10px 0; padding-left:22px;}
-  li{margin:7px 0;}
-  strong{color:#fff;}
-  .vurgu{color:var(--gold);}
-
-  .kutu-dikkat{
-    background:rgba(110,32,32,.18); border-left:3px solid var(--maroon);
-    border-radius:8px; padding:14px 16px; margin:14px 0; font-size:15px;
-  }
-  .kutu-onay{
-    background:var(--card2); border:1px solid var(--gold);
-    border-radius:12px; padding:20px 22px; margin:22px 0;
-  }
-  .kutu-onay h2{color:var(--gold);}
-  .madde-no{color:var(--gold); font-weight:700;}
-
-  a{color:var(--gold);}
-  footer{
-    text-align:center; color:var(--goldDim); font-size:12.5px;
-    margin-top:40px; padding-top:24px; border-top:1px solid rgba(201,162,75,.15);
-  }
-  @media print{
-    body{background:#fff; color:#111; font-size:12pt;}
-    section{background:#fafafa; border-color:#ccc;}
-    .marka,.marka .cark,h2{color:#111!important; border-color:#999;}
-  }
+  section{background:var(--card); border:1px solid rgba(201,162,75,.14); border-radius:14px;
+    padding:22px 24px; margin:18px 0;}
+  section h2{color:var(--gold); font-size:15px; letter-spacing:1.5px; text-transform:uppercase;
+    margin:0 0 14px; padding-bottom:10px; border-bottom:1px solid rgba(201,162,75,.15);}
+  p{margin:10px 0;} ul{margin:10px 0; padding-left:22px;} li{margin:7px 0;}
+  strong{color:#fff;} .vurgu{color:var(--gold);} a{color:var(--gold);}
+  .kutu-dikkat{background:rgba(110,32,32,.18); border-left:3px solid var(--maroon);
+    border-radius:8px; padding:14px 16px; margin:14px 0; font-size:15px;}
+  .kutu-onay{background:var(--card2); border:1px solid var(--gold); border-radius:12px; padding:20px 22px; margin:22px 0;}
+  .not-ceviri{background:rgba(201,162,75,.08); border:1px solid rgba(201,162,75,.2); border-radius:10px;
+    padding:12px 16px; margin:16px 0; font-size:13px; color:var(--goldDim);}
+  footer{text-align:center; color:var(--goldDim); font-size:12.5px; margin-top:40px; padding-top:24px;
+    border-top:1px solid rgba(201,162,75,.15);}
+  [data-lang-block]{display:none;}
+[data-lang-block]{display:none}
 </style>
 </head>
 <body>
 
+<div class="topbar">
+  <div class="langtoggle" role="group" aria-label="Dil / Language">
+    <button type="button" data-lang="tr">TR</button>
+    <button type="button" data-lang="en">EN</button>
+  </div>
+</div>
 
 <header>
   <div class="marka">MAK<span class="cark"></span>RA</div>
-  <div class="slogan">FİLM ZEVKİNLE EŞLEŞ</div>
-  <div class="wrap">
-    <h1>Topluluk Etkinlikleri — Katılım Koşulları, Risk Bildirimi ve Onay Beyanı</h1>
-    <div class="ust-bilgi">
-      Düzenleyen: <strong>Repress Studio</strong> · Yürürlük tarihi: [gg.aa.yyyy] · Sürüm: 1.0
-    </div>
-  </div>
+  <div class="slogan" data-tr="FİLM ZEVKİNLE EŞLEŞ" data-en="MATCH BY YOUR FILM TASTE">FİLM ZEVKİNLE EŞLEŞ</div>
 </header>
 
 <div class="wrap">
 
-  <section>
-    <h2>1. Kapsam ve Tanım</h2>
-    <p>
-      MAKARA <span class="vurgu">Topluluk Etkinlikleri</span> (bundan sonra “<strong>Etkinlik</strong>”),
-      Repress Studio tarafından kafe, bar ve benzeri umuma açık mekânlarda düzenlenen,
-      yüz yüze sosyalleşmeye yönelik buluşmalardır.
-    </p>
-    <p>
-      Etkinlikler yalnızca MAKARA <strong>“Yönetmen” üyelik seviyesindeki</strong> ve
-      <strong>18 yaşını doldurmuş</strong> kullanıcıların katılımına açıktır.
-    </p>
-    <p>
-      Etkinliğe kaydolarak veya katılarak, bu belgede yer alan tüm koşulları,
-      risk bildirimini ve davranış kurallarını <strong>okuduğunuzu, anladığınızı ve
-      kabul ettiğinizi</strong> beyan etmiş olursunuz.
-    </p>
-  </section>
+  <!-- ==================== TÜRKÇE ==================== -->
+  <div data-lang-block="tr">
+    <h1>Topluluk Etkinlikleri — Katılım Koşulları, Risk Bildirimi ve Onay Beyanı</h1>
+    <div class="ust-bilgi">Düzenleyen: <strong>Repress Studio</strong> · Yürürlük tarihi: [gg.aa.yyyy] · Sürüm: 1.0</div>
 
-  <section>
-    <h2>2. Katılım Uygunluğu</h2>
-    <ul>
-      <li>18 yaşını doldurmuş olmak.</li>
-      <li>Geçerli ve askıya alınmamış bir MAKARA hesabına ve “Yönetmen” üyeliğine sahip olmak.</li>
-      <li>Bu koşulları ve davranış kurallarını kabul etmek.</li>
-      <li>Etkinlik anında kimlik ibrazı talep edilebilir; yaş/kimlik doğrulaması yapılamayan katılımcı etkinliğe alınmayabilir.</li>
-    </ul>
-    <p>Repress Studio, gerekçe göstermeksizin bir kişinin etkinliğe katılımını reddetme veya sonlandırma hakkını saklı tutar.</p>
-  </section>
+    <section><h2>1. Kapsam ve Tanım</h2>
+      <p>MAKARA <span class="vurgu">Topluluk Etkinlikleri</span> (“Etkinlik”), Repress Studio tarafından kafe, bar ve benzeri umuma açık mekânlarda düzenlenen, yüz yüze sosyalleşmeye yönelik buluşmalardır.</p>
+      <p>Etkinlikler yalnızca <strong>“Yönetmen” üyelik seviyesindeki</strong> ve <strong>18 yaşını doldurmuş</strong> kullanıcıların katılımına açıktır.</p>
+      <p>Etkinliğe kaydolarak veya katılarak bu belgedeki tüm koşulları, risk bildirimini ve davranış kurallarını <strong>okuduğunuzu, anladığınızı ve kabul ettiğinizi</strong> beyan etmiş olursunuz.</p>
+    </section>
 
-  <section>
-    <h2>3. Risk Bildirimi (Aydınlatma)</h2>
-    <p>Etkinlikler, tanımadığınız kişilerle <strong>gerçek hayatta, yüz yüze</strong> bir araya gelmeyi içerir. Katılmadan önce aşağıdaki riskleri bildiğinizi kabul edersiniz:</p>
-    <ul>
-      <li>Etkinlik mekânlarında <strong>alkollü içecek</strong> bulunabilir/servis edilebilir; alkol tüketimi tamamen kişisel tercih ve sorumluluğunuzdadır.</li>
-      <li>Diğer katılımcılar hakkında MAKARA’nın kapsamlı bir geçmiş/sabıka araştırması <strong>yapmadığını</strong>; profil bilgilerinin katılımcıların kendi beyanına dayandığını.</li>
-      <li>Kendi <strong>güvenliğiniz, sağlığınız, eşyalarınız ve ulaşımınızdan</strong> bizzat sorumlu olduğunuzu.</li>
-      <li>Tanımadığınız kişilerle iletişimin taciz, dolandırıcılık, hırsızlık, sağlık sorunu veya yaralanma gibi riskler barındırabileceğini.</li>
-      <li>Etkinliğe katılımınızın tamamen <strong>gönüllü</strong> olduğunu ve kendi iradenizle karar verdiğinizi.</li>
-    </ul>
-    <div class="kutu-dikkat">
-      <strong>Güvenlik önerileri:</strong> Nereye gittiğinizi güvendiğiniz birine bildirin ·
-      İçeceğinizi gözünüzden ayırmayın · Kişisel/finansal bilgilerinizi paylaşmayın ·
-      Rahatsız hissettiğinizde etkinlikten ayrılın · Acil durumda <strong>112</strong>’yi arayın.
+    <section><h2>2. Katılım Uygunluğu</h2>
+      <ul>
+        <li>18 yaşını doldurmuş olmak.</li>
+        <li>Geçerli, askıya alınmamış bir MAKARA hesabına ve “Yönetmen” üyeliğine sahip olmak.</li>
+        <li>Bu koşulları ve davranış kurallarını kabul etmek.</li>
+        <li>Etkinlik anında kimlik ibrazı talep edilebilir; doğrulanamayan katılımcı etkinliğe alınmayabilir.</li>
+      </ul>
+      <p>Repress Studio bir kişinin katılımını reddetme veya sonlandırma hakkını saklı tutar.</p>
+    </section>
+
+    <section><h2>3. Risk Bildirimi (Aydınlatma)</h2>
+      <p>Etkinlikler, tanımadığınız kişilerle <strong>gerçek hayatta, yüz yüze</strong> bir araya gelmeyi içerir. Katılmadan önce aşağıdaki riskleri bildiğinizi kabul edersiniz:</p>
+      <ul>
+        <li>Mekânlarda <strong>alkollü içecek</strong> bulunabilir/servis edilebilir; alkol tüketimi kişisel tercih ve sorumluluğunuzdadır.</li>
+        <li>MAKARA, katılımcılar hakkında kapsamlı geçmiş/sabıka araştırması <strong>yapmaz</strong>; profil bilgileri kendi beyanlarına dayanır.</li>
+        <li>Kendi <strong>güvenliğiniz, sağlığınız, eşyalarınız ve ulaşımınızdan</strong> bizzat sorumlusunuz.</li>
+        <li>Tanımadığınız kişilerle iletişim; taciz, dolandırıcılık, hırsızlık, sağlık sorunu veya yaralanma gibi riskler barındırabilir.</li>
+        <li>Katılımınız tamamen <strong>gönüllüdür</strong>.</li>
+      </ul>
+      <div class="kutu-dikkat"><strong>Güvenlik önerileri:</strong> Nereye gittiğinizi güvendiğiniz birine bildirin · İçeceğinizi gözünüzden ayırmayın · Kişisel/finansal bilgilerinizi paylaşmayın · Rahatsız hissettiğinizde ayrılın · Acil durumda <strong>112</strong>’yi arayın.</div>
+    </section>
+
+    <section><h2>4. Davranış Kuralları</h2>
+      <p>Aşağıdakiler <strong>kesinlikle yasaktır</strong>:</p>
+      <ul>
+        <li>Her türlü <strong>taciz</strong> (sözlü, fiziksel, cinsel, dijital), ısrarlı rahatsız etme, takip.</li>
+        <li><strong>Şiddet</strong>, tehdit, kavga veya kavgaya teşvik.</li>
+        <li>Rıza dışı <strong>fiziksel temas</strong>.</li>
+        <li>Cinsiyet, cinsel yönelim, din, etnik köken, engellilik vb. temelli <strong>ayrımcılık</strong> ve nefret söylemi.</li>
+        <li>Yasa dışı madde kullanımı/temini.</li>
+        <li>İzinsiz fotoğraf/video çekimi ve paylaşımı.</li>
+      </ul>
+      <div class="kutu-dikkat">Kurallara aykırı davranan katılımcı <strong>uyarısız etkinlikten çıkarılabilir</strong>, MAKARA hesabı <strong>askıya alınabilir veya kalıcı kapatılabilir</strong>; olayın niteliğine göre <strong>yasal işlem başlatılabilir</strong> ve/veya <strong>kolluk kuvvetlerine bildirilebilir</strong>.</div>
+    </section>
+
+    <section><h2>5. Katılımcı Sorumlulukları</h2>
+      <ul>
+        <li>Kendi güvenliğinizi ve iyi halinizi gözetmek.</li>
+        <li>Doğru ve yanıltıcı olmayan bilgi vermek.</li>
+        <li>Mekân kurallarına ve yasalara uymak.</li>
+        <li>Diğer katılımcıların haklarına ve özel hayatına saygı göstermek.</li>
+        <li>Bir sorun/ihlal gördüğünüzde etkinlik sorumlusuna veya <a href="mailto:destek@makara.social">destek@makara.social</a> adresine bildirmek.</li>
+      </ul>
+    </section>
+
+    <section><h2>6. Organizatörün Rolü ve Sorumluluğun Kapsamı</h2>
+      <p>Repress Studio etkinliğin zamanını, yerini ve genel çerçevesini organize eder; ancak katılımcıların birbirleriyle olan davranışlarını tek tek denetleme veya garanti etme imkânına sahip değildir.</p>
+      <p>Yürürlükteki mevzuatın izin verdiği azami ölçüde Repress Studio; katılımcıların birbirlerine yönelik fiil ve ihmallerinden, üçüncü kişilerin eylemlerinden, mekân işletmesinden kaynaklanan durumlardan ve katılımcının kendi tercihlerinden (ör. alkol) doğan zararlardan sorumlu tutulamaz.</p>
+    </section>
+
+    <section><h2>7. Kişisel Verilerin Korunması (KVKK)</h2>
+      <p>Veri sorumlusu <strong>Repress Studio</strong>’dur. Etkinlik kapsamında katılım kaydınız, onay beyanınız ve (varsa) etkinlik görselleri işlenebilir. Katılım ve onay kayıtları ispat amacıyla saklanır. Etkinlik fotoğraf/videolarının tanıtımda kullanımı <strong>ayrı ve açık rızanıza</strong> tabidir. Talepleriniz için: <a href="mailto:kvkk@makara.social">kvkk@makara.social</a></p>
+      <p>Ayrıntılar için <a href="privacy.html">Gizlilik Politikası</a> geçerlidir.</p>
+    </section>
+
+    <section><h2>8. Acil Durum ve İletişim</h2>
+      <ul>
+        <li><strong>Acil durum:</strong> 112</li>
+        <li><strong>Etkinlik sorumlusu:</strong> Etkinlik anında bildirilen yetkili.</li>
+        <li><strong>Bildirim/şikâyet:</strong> <a href="mailto:destek@makara.social">destek@makara.social</a></li>
+        <li><strong>Veri talepleri:</strong> <a href="mailto:kvkk@makara.social">kvkk@makara.social</a></li>
+      </ul>
+    </section>
+
+    <div class="kutu-onay"><h2>9. Onay Beyanı</h2>
+      <p style="font-style:italic; color:var(--cream);">“18 yaşından büyük olduğumu; bu Topluluk Etkinlikleri Katılım Koşulları, Risk Bildirimi ve Davranış Kuralları belgesini okuduğumu, anladığımı ve kabul ettiğimi; etkinliğe kendi özgür irademle ve kendi sorumluluğumda katıldığımı; kendi güvenliğimden bizzat sorumlu olduğumu beyan ederim.”</p>
+      <p style="font-size:13.5px; color:var(--goldDim);">Bu onay, MAKARA uygulamasında <strong>zaman damgasıyla</strong> kaydedilir.</p>
     </div>
-  </section>
 
-  <section>
-    <h2>4. Davranış Kuralları</h2>
-    <p>Tüm katılımcılar birbirine saygılı, güvenli ve rızaya dayalı bir ortam sağlamakla yükümlüdür. Aşağıdakiler <strong>kesinlikle yasaktır</strong>:</p>
-    <ul>
-      <li>Her türlü <strong>taciz</strong> (sözlü, fiziksel, cinsel, dijital), ısrarlı rahatsız etme veya takip.</li>
-      <li><strong>Şiddet</strong>, tehdit, kavga veya kavgaya teşvik.</li>
-      <li>Rıza dışı <strong>fiziksel temas</strong>.</li>
-      <li>Cinsiyet, cinsel yönelim, din, etnik köken, engellilik vb. temelli <strong>ayrımcılık</strong> ve nefret söylemi.</li>
-      <li>Yasa dışı madde kullanımı/temini; başkalarını tehlikeye atacak düzeyde alkol.</li>
-      <li>İzinsiz fotoğraf/video çekimi ve paylaşımı.</li>
-    </ul>
-    <div class="kutu-dikkat">
-      Kurallara aykırı davranan katılımcı <strong>uyarısız olarak etkinlikten çıkarılabilir</strong>,
-      MAKARA hesabı <strong>askıya alınabilir veya kalıcı olarak kapatılabilir</strong> ve olayın niteliğine göre
-      <strong>yasal işlem başlatılabilir</strong> ve/veya <strong>kolluk kuvvetlerine bildirilebilir</strong>.
+    <div class="not-ceviri">Bu sayfanın İngilizce sürümü yalnızca bilgilendirme amaçlıdır. Herhangi bir uyuşmazlıkta <strong>Türkçe metin esas alınır ve bağlayıcıdır</strong>.</div>
+  </div>
+
+  <!-- ==================== ENGLISH ==================== -->
+  <div data-lang-block="en">
+    <h1>Community Events — Participation Terms, Risk Disclosure and Consent</h1>
+    <div class="ust-bilgi">Organized by: <strong>Repress Studio</strong> · Effective date: [dd.mm.yyyy] · Version: 1.0</div>
+
+    <section><h2>1. Scope and Definition</h2>
+      <p>MAKARA <span class="vurgu">Community Events</span> (“Event”) are in-person social gatherings organized by Repress Studio at cafés, bars and similar public venues.</p>
+      <p>Events are open only to users with a <strong>“Director” (Yönetmen) membership</strong> who are <strong>at least 18 years old</strong>.</p>
+      <p>By registering for or attending an Event, you declare that you have <strong>read, understood and accepted</strong> all terms, the risk disclosure and the code of conduct in this document.</p>
+    </section>
+
+    <section><h2>2. Eligibility</h2>
+      <ul>
+        <li>Be at least 18 years old.</li>
+        <li>Have a valid, non-suspended MAKARA account and a “Director” membership.</li>
+        <li>Accept these terms and the code of conduct.</li>
+        <li>Identification may be requested at the Event; participants who cannot be verified may be denied entry.</li>
+      </ul>
+      <p>Repress Studio reserves the right to refuse or terminate any person’s participation.</p>
+    </section>
+
+    <section><h2>3. Risk Disclosure</h2>
+      <p>Events involve meeting people you do not know <strong>in real life, face to face</strong>. Before attending, you acknowledge the following risks:</p>
+      <ul>
+        <li><strong>Alcohol</strong> may be present/served at venues; consuming it is your personal choice and responsibility.</li>
+        <li>MAKARA <strong>does not</strong> conduct comprehensive background/criminal-record checks on participants; profile information is self-declared.</li>
+        <li>You are personally responsible for your own <strong>safety, health, belongings and transport</strong>.</li>
+        <li>Contact with strangers may involve risks such as harassment, fraud, theft, health issues or injury.</li>
+        <li>Your participation is entirely <strong>voluntary</strong>.</li>
+      </ul>
+      <div class="kutu-dikkat"><strong>Safety tips:</strong> Tell someone you trust where you are going · Keep an eye on your drink · Do not share personal/financial information · Leave if you feel uncomfortable · In an emergency call <strong>112</strong>.</div>
+    </section>
+
+    <section><h2>4. Code of Conduct</h2>
+      <p>The following are <strong>strictly prohibited</strong>:</p>
+      <ul>
+        <li>Any form of <strong>harassment</strong> (verbal, physical, sexual, digital), persistent bothering or stalking.</li>
+        <li><strong>Violence</strong>, threats, fighting or incitement to fight.</li>
+        <li>Non-consensual <strong>physical contact</strong>.</li>
+        <li><strong>Discrimination</strong> and hate speech based on gender, sexual orientation, religion, ethnicity, disability, etc.</li>
+        <li>Use/supply of illegal substances.</li>
+        <li>Taking or sharing photos/videos without consent.</li>
+      </ul>
+      <div class="kutu-dikkat">A participant who breaches the rules may be <strong>removed from the Event without warning</strong>, may have their MAKARA account <strong>suspended or permanently closed</strong>, and depending on the nature of the incident may face <strong>legal action</strong> and/or be <strong>reported to law enforcement</strong>.</div>
+    </section>
+
+    <section><h2>5. Participant Responsibilities</h2>
+      <ul>
+        <li>Look after your own safety and well-being.</li>
+        <li>Provide accurate and non-misleading information.</li>
+        <li>Comply with venue rules and applicable laws.</li>
+        <li>Respect other participants’ rights and privacy.</li>
+        <li>Report any problem/violation to the event lead or to <a href="mailto:destek@makara.social">destek@makara.social</a>.</li>
+      </ul>
+    </section>
+
+    <section><h2>6. Organizer’s Role and Scope of Liability</h2>
+      <p>Repress Studio organizes the time, place and general framework of the Event; however, it cannot individually monitor or guarantee participants’ conduct toward one another.</p>
+      <p>To the maximum extent permitted by applicable law, Repress Studio cannot be held liable for participants’ acts and omissions toward one another, for the acts of third parties, for situations arising from the venue operator, or for damages arising from a participant’s own choices (e.g. alcohol).</p>
+    </section>
+
+    <section><h2>7. Protection of Personal Data (KVKK)</h2>
+      <p>The data controller is <strong>Repress Studio</strong>. Within the scope of the Event, your participation record, consent statement and (if any) event imagery may be processed. Participation and consent records are retained for evidentiary purposes. Use of event photos/videos for promotion is subject to your <strong>separate, explicit consent</strong>. For requests: <a href="mailto:kvkk@makara.social">kvkk@makara.social</a></p>
+      <p>For details, the <a href="privacy.html">Privacy Policy</a> applies.</p>
+    </section>
+
+    <section><h2>8. Emergency and Contact</h2>
+      <ul>
+        <li><strong>Emergency:</strong> 112</li>
+        <li><strong>Event lead:</strong> The authorized person announced at the Event.</li>
+        <li><strong>Reports/complaints:</strong> <a href="mailto:destek@makara.social">destek@makara.social</a></li>
+        <li><strong>Data requests:</strong> <a href="mailto:kvkk@makara.social">kvkk@makara.social</a></li>
+      </ul>
+    </section>
+
+    <div class="kutu-onay"><h2>9. Consent Statement</h2>
+      <p style="font-style:italic; color:var(--cream);">“I declare that I am over 18; that I have read, understood and accepted this Community Events Participation Terms, Risk Disclosure and Code of Conduct; that I attend the Event of my own free will and at my own responsibility; and that I am personally responsible for my own safety.”</p>
+      <p style="font-size:13.5px; color:var(--goldDim);">This consent is recorded with a <strong>timestamp</strong> in the MAKARA app.</p>
     </div>
-  </section>
 
-  <section>
-    <h2>5. Katılımcı Sorumlulukları</h2>
-    <ul>
-      <li>Kendi güvenliğinizi ve iyi halinizi gözetmek.</li>
-      <li>Doğru ve yanıltıcı olmayan bilgi vermek.</li>
-      <li>Mekân kurallarına ve yürürlükteki yasalara uymak.</li>
-      <li>Diğer katılımcıların haklarına ve özel hayatına saygı göstermek.</li>
-      <li>Bir sorun, rahatsızlık veya kural ihlali gördüğünüzde etkinlik sorumlusuna veya <a href="mailto:destek@makara.social">destek@makara.social</a> adresine bildirmek.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>6. Organizatörün Rolü ve Sorumluluğun Kapsamı</h2>
-    <p>
-      Repress Studio etkinliğin buluşma zamanını, yerini ve genel çerçevesini organize eder;
-      ancak katılımcıların <strong>birbirleriyle olan davranışlarını, sözlerini ve eylemlerini
-      tek tek denetleme veya garanti etme imkânına sahip değildir</strong>.
-    </p>
-    <p>
-      Yürürlükteki mevzuatın izin verdiği azami ölçüde, Repress Studio;
-      katılımcıların birbirlerine yönelik fiil ve ihmallerinden, üçüncü kişilerin
-      eylemlerinden, mekân işletmesinden kaynaklanan durumlardan ve katılımcının kendi
-      tercihlerinden (ör. alkol tüketimi) doğan zararlardan sorumlu tutulamaz.
-    </p>
-  </section>
-
-  <section>
-    <h2>7. Kişisel Verilerin Korunması (KVKK)</h2>
-    <p>
-      Veri sorumlusu <strong>Repress Studio</strong>’dur. Etkinlik kapsamında; katılım kaydınız,
-      onay beyanınız ve (varsa) etkinlik sırasında çekilen görseller işlenebilir.
-    </p>
-    <ul>
-      <li>Katılım ve onay kayıtları, hukuki yükümlülüklerin yerine getirilmesi ve olası uyuşmazlıklarda ispat amacıyla saklanır.</li>
-      <li>Etkinlik fotoğraf/videolarının tanıtım amacıyla kullanımı <strong>ayrı ve açık rızanıza</strong> tabidir; rıza vermeyebilir, sonradan geri çekebilirsiniz.</li>
-      <li>KVKK’dan doğan haklarınız ve talepleriniz için: <a href="mailto:kvkk@makara.social">kvkk@makara.social</a></li>
-    </ul>
-    <p>Ayrıntılar için <a href="privacy.html">Gizlilik Politikası</a> geçerlidir.</p>
-  </section>
-
-  <section>
-    <h2>8. Acil Durum ve İletişim</h2>
-    <ul>
-      <li><strong>Acil durum (sağlık/güvenlik):</strong> 112</li>
-      <li><strong>Etkinlik sorumlusu:</strong> Etkinlik anında size bildirilen yetkili kişi.</li>
-      <li><strong>Bildirim / şikâyet:</strong> <a href="mailto:destek@makara.social">destek@makara.social</a></li>
-      <li><strong>Veri talepleri:</strong> <a href="mailto:kvkk@makara.social">kvkk@makara.social</a></li>
-    </ul>
-  </section>
-
-  <div class="kutu-onay">
-    <h2>9. Onay Beyanı</h2>
-    <p>Etkinliğe kaydolurken/katılırken aşağıdaki beyanı onaylarsınız:</p>
-    <p style="font-style:italic; color:var(--cream);">
-      “18 yaşından büyük olduğumu; bu <strong>Topluluk Etkinlikleri Katılım Koşulları,
-      Risk Bildirimi ve Davranış Kuralları</strong> belgesini okuduğumu, anladığımı ve
-      kabul ettiğimi; etkinliğe kendi özgür irademle ve kendi sorumluluğumda katıldığımı;
-      kendi güvenliğimden bizzat sorumlu olduğumu beyan ederim.”
-    </p>
-    <p style="font-size:13.5px; color:var(--goldDim);">
-      Bu onay, MAKARA uygulamasında <strong>zaman damgasıyla (tarih-saat)</strong> kaydedilir ve
-      olası bir uyuşmazlıkta ispat amacıyla saklanır.
-    </p>
+    <div class="not-ceviri">This English version is provided for information only. In case of any dispute, the <strong>Turkish text prevails and is binding</strong>.</div>
   </div>
 
   <footer>
-    © [yıl] Repress Studio · Tüm hakları saklıdır.<br/>
-    Veri sorumlusu: Repress Studio · [Ticari unvan] · [Adres] · [KEP/E-posta]<br/>
-    <a href="privacy.html">Gizlilik Politikası</a> ·
-    <a href="terms.html">Kullanım Koşulları</a> ·
-    <a href="index.html">Ana Sayfa</a>
+    © 2026 Repress Studio · <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span><br/>
+    <a href="privacy.html" data-tr="Gizlilik Politikası" data-en="Privacy Policy">Gizlilik Politikası</a> ·
+    <a href="terms.html" data-tr="Kullanım Koşulları" data-en="Terms of Use">Kullanım Koşulları</a> ·
+    <a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a>
   </footer>
-
 </div>
+
+<script>
+function setLang(l){
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-lang-block]').forEach(function(b){
+    b.style.display=(b.getAttribute('data-lang-block')===l)?'block':'none';
+  });
+  document.querySelectorAll('[data-tr]').forEach(function(el){
+    var v=el.getAttribute(l==='en'?'data-en':'data-tr'); if(v!=null) el.textContent=v;
+  });
+  document.title = (l==='en') ? 'Community Events | MAKARA' : 'Topluluk Etkinlikleri | MAKARA';
+  document.querySelectorAll('.langtoggle button').forEach(function(b){ b.classList.toggle('on', b.dataset.lang===l); });
+  try{ localStorage.setItem('makara_lang',l); }catch(e){}
+}
+(function(){
+  var l='tr'; try{ l=localStorage.getItem('makara_lang')||'tr'; }catch(e){}
+  document.querySelectorAll('.langtoggle button').forEach(function(b){ b.addEventListener('click',function(){ setLang(b.dataset.lang); }); });
+  setLang(l);
+})();
+</script>
 </body>
 </html>
