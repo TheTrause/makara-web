@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>E-postan doğrulandı · MAKARA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #071613;
+    --card: #0D241F;
+    --card-edge: #0A1C18;
+    --border: #17362F;
+    --gold: #C9A24B;
+    --gold-dim: #9c7c3a;
+    --emerald: #2AA17E;
+    --cream: #F3EAD9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #0c241d 0%, var(--bg) 60%),
+      var(--bg);
+    color: var(--cream);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* --- Film şeridi kenar --- */
+  .reel {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    background: linear-gradient(180deg, var(--card) 0%, var(--card-edge) 100%);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 14px;
+    box-shadow:
+      0 30px 80px -30px rgba(0,0,0,0.7),
+      inset 0 1px 0 rgba(243,234,217,0.04);
+  }
+
+  /* perforasyon: üst ve alt film delikleri */
+  .perf {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 6px;
+    height: 16px;
+    align-items: center;
+  }
+  .perf span {
+    width: 14px;
+    height: 9px;
+    border-radius: 2px;
+    background: #05100d;
+    box-shadow: inset 0 0 0 1px rgba(23,54,47,0.7);
+  }
+
+  .inner {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px 28px 34px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ince altın üst çizgi */
+  .inner::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 60px; height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
+  /* --- Mühür: çark amblemi + tik --- */
+  .seal {
+    width: 96px;
+    height: 96px;
+    margin: 6px auto 22px;
+    position: relative;
+  }
+
+  .seal svg { width: 100%; height: 100%; display: block; }
+
+  .ring {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 2;
+    opacity: 0.5;
+  }
+
+  .spoke { stroke: var(--gold-dim); stroke-width: 2; opacity: 0.45; }
+  .hub { fill: var(--card); stroke: var(--gold); stroke-width: 2; }
+
+  /* tik dairesi */
+  .tick-ring {
+    fill: none;
+    stroke: var(--emerald);
+    stroke-width: 3;
+    stroke-dasharray: 150;
+    stroke-dashoffset: 150;
+    animation: draw 0.7s ease-out 0.15s forwards;
+  }
+  .tick {
+    fill: none;
+    stroke: var(--emerald);
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 40;
+    stroke-dashoffset: 40;
+    animation: draw 0.4s ease-out 0.7s forwards;
+  }
+
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+
+  .eyebrow {
+    font-family: "Cinzel", serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-family: "Cinzel", serif;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 1.25;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+
+  p.lead {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(243,234,217,0.72);
+    max-width: 320px;
+    margin: 0 auto 26px;
+  }
+
+  .btn {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: #04231b;
+    background: var(--gold);
+    padding: 13px 30px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    box-shadow: 0 10px 26px -10px rgba(201,162,75,0.6);
+  }
+  .btn:hover { transform: translateY(-1px); background: #d8b25c; }
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 3px solid var(--emerald); outline-offset: 3px; }
+
+  .hint {
+    margin-top: 20px;
+    font-size: 12.5px;
+    color: rgba(243,234,217,0.42);
+    line-height: 1.5;
+  }
+
+  .wordmark {
+    margin-top: 26px;
+    font-family: "Cinzel", serif;
+    font-size: 14px;
+    letter-spacing: 6px;
+    color: var(--gold-dim);
+  }
+  .wordmark .dot { color: var(--emerald); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tick-ring, .tick { animation: none; stroke-dashoffset: 0; }
+  }
+
+  @media (max-width: 380px) {
+    .inner { padding: 34px 20px 28px; }
+    h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+  <main class="reel" role="main">
+    <div class="perf" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+
+    <div class="inner">
+      <div class="seal" aria-hidden="true">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- film makarası çarkı -->
+          <circle class="ring" cx="50" cy="50" r="44" />
+          <circle class="ring" cx="50" cy="50" r="34" />
+          <g class="spoke">
+            <line x1="50" y1="16" x2="50" y2="30" />
+            <line x1="50" y1="70" x2="50" y2="84" />
+            <line x1="16" y1="50" x2="30" y2="50" />
+            <line x1="70" y1="50" x2="84" y2="50" />
+            <line x1="26" y1="26" x2="36" y2="36" />
+            <line x1="64" y1="64" x2="74" y2="74" />
+            <line x1="74" y1="26" x2="64" y2="36" />
+            <line x1="36" y1="64" x2="26" y2="74" />
+          </g>
+          <circle class="hub" cx="50" cy="50" r="26" />
+          <!-- onay tiki -->
+          <circle class="tick-ring" cx="50" cy="50" r="22" />
+          <path class="tick" d="M40 51 l7 7 l14 -15" />
+        </svg>
+      </div>
+
+      <div class="eyebrow">DOĞRULANDI</div>
+      <h1>E-postan doğrulandı</h1>
+      <p class="lead">Hesabın hazır. Şimdi MAKARA uygulamasına dönüp giriş yapabilirsin.</p>
+
+      <a class="btn" href="https://makara.social">Ana sayfaya dön</a>
+
+      <p class="hint">Uygulamayı zaten açtıysan bu sekmeyi kapatıp giriş ekranından devam edebilirsin.</p>
+
+      <div class="wordmark">MAKARA<span class="dot"> ⊙</span></div>
+    </div>
+
+    <div class="perf" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+  </main>
+</body>
+</html>
