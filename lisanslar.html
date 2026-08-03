@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Açık Kaynak Lisansları · MAKARA</title>
+<meta name="description" content="MAKARA uygulamasında kullanılan açık kaynak yazılım kütüphaneleri ve lisansları." />
+<!-- Favicon (sekme logosu) -->
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #071613;
+    --card: #0D241F;
+    --card-alt: #0A1C18;
+    --border: #17362F;
+    --gold: #C9A24B;
+    --gold-dim: #8FA89E;
+    --emerald: #2AA17E;
+    --cream: #F3EAD9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #0c241d 0%, var(--bg) 60%),
+      var(--bg);
+    color: var(--cream);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100dvh;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 22px 80px;
+  }
+
+  /* --- Üst bar --- */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 0 0;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .brand .mark {
+    width: 26px; height: 26px;
+  }
+  .brand .name {
+    font-family: "Cinzel", serif;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 2px;
+    color: var(--cream);
+  }
+  .back {
+    font-size: 13px;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .back:hover { border-color: var(--gold); }
+
+  /* --- Başlık --- */
+  header {
+    text-align: center;
+    padding: 48px 20px 30px;
+  }
+  .eyebrow {
+    font-family: "Cinzel", serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: "Cinzel", serif;
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--cream);
+    margin-bottom: 14px;
+  }
+  .lead {
+    font-size: 15px;
+    color: rgba(243,234,217,0.72);
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .gold-line {
+    width: 48px; height: 2px;
+    background: var(--gold);
+    margin: 20px auto 0;
+    border-radius: 2px;
+  }
+
+  /* --- Giriş kartı --- */
+  .intro {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 26px;
+    font-size: 14.5px;
+    color: rgba(243,234,217,0.82);
+  }
+  .intro strong { color: var(--cream); }
+
+  /* --- Lisans listesi --- */
+  .lic {
+    background: var(--card-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .lic .pkg {
+    font-size: 15px;
+    color: var(--cream);
+    font-weight: 500;
+  }
+  .lic .desc {
+    display: block;
+    font-size: 12.5px;
+    color: var(--gold-dim);
+    margin-top: 3px;
+    font-weight: 400;
+  }
+  .lic .badge {
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    color: var(--gold);
+    border: 1px solid rgba(201,162,75,0.35);
+    border-radius: 999px;
+    padding: 4px 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: "Cinzel", serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin: 30px 0 14px;
+    text-transform: uppercase;
+  }
+
+  /* --- Lisans metni açıklaması --- */
+  .note {
+    margin-top: 30px;
+    padding: 20px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 13.5px;
+    color: rgba(243,234,217,0.7);
+  }
+  .note a { color: var(--gold); text-decoration: none; }
+  .note a:hover { text-decoration: underline; }
+
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 12px;
+    color: rgba(243,234,217,0.4);
+  }
+  .wordmark {
+    font-family: "Cinzel", serif;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: var(--gold-dim);
+    margin-bottom: 6px;
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 24px; }
+    .lic { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="https://makara.social">
+        <svg class="mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="50" cy="50" r="46.5" fill="none" stroke="#C9A24B" stroke-width="7"/>
+          <circle cx="50" cy="22" r="10" fill="#000"/>
+          <circle cx="74.25" cy="64" r="10" fill="#000"/>
+          <circle cx="25.75" cy="64" r="10" fill="#000"/>
+          <circle cx="50" cy="50" r="10" fill="#6E2020" stroke="#C9A24B" stroke-width="4"/>
+        </svg>
+        <span class="name">MAKARA</span>
+      </a>
+      <a class="back" href="https://makara.social">← Ana sayfa</a>
+    </div>
+
+    <header>
+      <div class="eyebrow">TEŞEKKÜRLER</div>
+      <h1>Açık Kaynak Lisansları</h1>
+      <p class="lead">MAKARA, harika açık kaynak yazılımların üzerine kuruldu. Aşağıdaki kütüphaneleri geliştiren topluluklara minnettarız.</p>
+      <div class="gold-line"></div>
+    </header>
+
+    <div class="intro">
+      MAKARA uygulaması, aşağıda listelenen açık kaynak yazılım kütüphanelerini kullanır. Her biri kendi lisansı altında dağıtılmaktadır. Bu kütüphaneler telif haklarını koruyan sahiplerine aittir ve <strong>MAKARA ile ilişkili değildir</strong>.
+    </div>
+
+    <div class="section-title">Çatı ve Arayüz</div>
+
+    <div class="lic">
+      <span class="pkg">Flutter<span class="desc">Google'ın açık kaynak UI araç seti</span></span>
+      <span class="badge">BSD-3-Clause</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">Dart<span class="desc">Programlama dili ve çalışma zamanı</span></span>
+      <span class="badge">BSD-3-Clause</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">google_fonts<span class="desc">Google Fonts entegrasyonu</span></span>
+      <span class="badge">Apache-2.0</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">cupertino_icons<span class="desc">iOS tarzı ikon seti</span></span>
+      <span class="badge">MIT</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">animations<span class="desc">Hazır geçiş animasyonları</span></span>
+      <span class="badge">BSD-3-Clause</span>
+    </div>
+
+    <div class="section-title">Medya ve İçerik</div>
+
+    <div class="lic">
+      <span class="pkg">image_picker<span class="desc">Galeri ve kamera erişimi</span></span>
+      <span class="badge">Apache-2.0</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">record<span class="desc">Ses kaydı</span></span>
+      <span class="badge">BSD-3-Clause</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">record_linux<span class="desc">Ses kaydı (Linux desteği)</span></span>
+      <span class="badge">BSD-3-Clause</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">just_audio<span class="desc">Ses oynatma</span></span>
+      <span class="badge">MIT</span>
+    </div>
+
+    <div class="section-title">Ağ ve Konum</div>
+
+    <div class="lic">
+      <span class="pkg">http<span class="desc">HTTP istekleri</span></span>
+      <span class="badge">BSD-3-Clause</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">url_launcher<span class="desc">Harici bağlantı açma</span></span>
+      <span class="badge">BSD-3-Clause</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">geolocator<span class="desc">Konum servisleri</span></span>
+      <span class="badge">MIT</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">geocoding<span class="desc">Adres ↔ koordinat dönüşümü</span></span>
+      <span class="badge">MIT</span>
+    </div>
+
+    <div class="section-title">Altyapı ve Depolama</div>
+
+    <div class="lic">
+      <span class="pkg">firebase_core<span class="desc">Firebase temel entegrasyonu</span></span>
+      <span class="badge">BSD-3-Clause</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">firebase_messaging<span class="desc">Anlık bildirimler (FCM)</span></span>
+      <span class="badge">BSD-3-Clause</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">firebase_crashlytics<span class="desc">Çökme raporlama</span></span>
+      <span class="badge">BSD-3-Clause</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">flutter_local_notifications<span class="desc">Yerel bildirimler</span></span>
+      <span class="badge">BSD-3-Clause</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">shared_preferences<span class="desc">Yerel ayar depolama</span></span>
+      <span class="badge">BSD-3-Clause</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">path_provider<span class="desc">Dosya sistemi yolları</span></span>
+      <span class="badge">BSD-3-Clause</span>
+    </div>
+    <div class="lic">
+      <span class="pkg">path<span class="desc">Dosya yolu işlemleri</span></span>
+      <span class="badge">BSD-3-Clause</span>
+    </div>
+
+    <div class="note">
+      Yukarıdaki lisansların tam metinlerine ilgili paketlerin <a href="https://pub.dev" target="_blank" rel="noopener">pub.dev</a> sayfalarından ulaşabilirsiniz. Ayrıca film ve dizi verileri <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB</a> tarafından sağlanır; TMDB bu ürünü onaylamamış veya sertifikalandırmamıştır.
+    </div>
+
+    <footer>
+      <div class="wordmark">MAKARA</div>
+      <div>Film ve dizi zevkine göre tanışma</div>
+    </footer>
+  </div>
+</body>
+</html>
