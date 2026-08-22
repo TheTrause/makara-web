@@ -23,15 +23,22 @@
 /* ===============================================================
    MAKARA — tek dosya, dis bagimlilik yok (yalniz Cinzel).
 
-   TASARIM KARARI: HER SEY SUREKLI
-   Onceki surumde bolumler birbirini "kesiyordu": film seridi
-   fotograflari art arda diziyordu, vitrin adimlari sinif degistirerek
-   ZIPLIYORDU. Katilik oradan geliyordu.
+   TASARIM KARARI 1 — HER SEY SUREKLI
+   Tek bir kaydirma degeri var, o da yumusatiliyor (lerp) ve
+   sahnedeki her sey ondan turetiliyor. Ayrik adim, sinif ziplamasi
+   yok: iki kare arasinda her an bir ara deger var.
 
-   Simdi tek bir kaydirma degeri var, o da yumusatiliyor (lerp) ve
-   sahnedeki her sey ondan turetiliyor — capraz gecis, telefonun
-   suzulmesi, metnin girip cikmasi. Ayrik adim yok; iki kare arasinda
-   her an bir ara deger var.
+   TASARIM KARARI 2 — KISA SAYFA, TEK PERDE
+   Onceki surumde acilis ekrani ile sahne AYRI iki bolumdu; ikisi
+   birlikte 4,4 ekran boyu kaydirma yiyor, ustelik ilk ekranda urun
+   hic gorunmuyordu. Simdi ikisi TEK PERDE: baslik telefonun onunde
+   duruyor, kaydirinca baslik cozunup gidiyor ve telefon one geliyor.
+   Sayfa ucte bir kisaldi.
+
+   TASARIM KARARI 3 — KAYDIRMAYANI DA DUSUN
+   Indirme dugmesi ust cubukta, her an gorunur. Perdenin alt
+   cizgisi UC PARCA: "kac bolum var, kacindayim" bir bakista belli
+   olsun ki insan sonu gorunmeyen bir seye girdigini sanmasin.
    =============================================================== */
 :root{
   --bg:#050D0B;
@@ -64,7 +71,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:11;
 
 /* ---------------- ust cubuk ---------------- */
 .bar{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:18px;
-  padding:14px var(--kenar);background:rgba(5,13,11,.66);backdrop-filter:blur(18px);
+  padding:13px var(--kenar);background:rgba(5,13,11,.66);backdrop-filter:blur(18px);
   border-bottom:1px solid transparent;transition:border-color .5s,background .5s}
 .bar.kaydi{border-bottom-color:var(--line)}
 .marka{display:flex;align-items:center;gap:10px;font-family:var(--serif);
@@ -76,74 +83,49 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:11;
   background:var(--gold);transition:right .45s cubic-bezier(.22,.8,.24,1)}
 .bar nav a:hover{color:var(--cream)}
 .bar nav a:hover::after{right:0}
-.dil{display:flex;gap:6px;font-size:12px;color:var(--muted)}
+/* Indirme dugmesi her zaman gorunur: sayfayi sonuna kadar
+   kaydirmayan da uygulamaya ulasabilsin. */
+.bar .indir{margin-left:22px;padding:7px 17px;border:1px solid var(--gold-soft);border-radius:999px;
+  font-family:var(--serif);font-size:12.5px;letter-spacing:.14em;color:var(--gold);
+  transition:background .45s,border-color .45s,color .45s}
+.bar .indir:hover{background:var(--gold);border-color:var(--gold);color:#0A1C18}
+.dil{margin-left:20px;display:flex;gap:6px;font-size:12px;color:var(--muted)}
 .dil button{background:none;border:0;color:inherit;font:inherit;cursor:pointer;padding:2px 4px;letter-spacing:.08em;transition:color .4s}
 .dil button.acik{color:var(--gold)}
-@media(max-width:860px){.bar nav{display:none}}
+@media(max-width:820px){.bar nav{display:none}.bar .indir{margin-left:auto}}
 
-/* ince ilerleme cizgisi — sayfanin neresindesin */
 #ilerleme{position:fixed;top:0;left:0;height:2px;width:0;z-index:21;
   background:linear-gradient(90deg,transparent,var(--gold));opacity:.75}
 
-/* ---------------- hero ---------------- */
-.hero{min-height:100svh;display:grid;place-items:center;text-align:center;
-  padding:120px var(--kenar) 96px;position:relative}
-.hero::before{content:"";position:absolute;top:-32%;left:50%;transform:translateX(-50%);
-  width:min(1250px,145vw);height:125%;pointer-events:none;
-  background:radial-gradient(ellipse 55% 45% at 50% 30%,rgba(201,162,75,.17),transparent 70%);
-  animation:yanma 6.5s ease-in-out infinite}
-@keyframes yanma{0%,100%{opacity:1}44%{opacity:.88}48%{opacity:1}72%{opacity:.94}}
-.hero-ic{position:relative;will-change:transform,opacity}
-.reel{width:clamp(78px,10.5vw,120px);margin:0 auto 32px;animation:don 52s linear infinite}
-@keyframes don{to{transform:rotate(360deg)}}
-.hero h1{font-family:var(--serif);font-weight:700;
-  font-size:clamp(38px,8.6vw,100px);line-height:1.03;letter-spacing:.04em}
-.hero h1 .altin{color:var(--gold)}
-.hero .slogan{margin-top:24px;font-size:clamp(15px,2.1vw,20px);color:var(--muted);
-  max-width:52ch;margin-inline:auto;line-height:1.65}
-.magazalar{margin-top:40px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.mgz{display:flex;flex-direction:column;align-items:flex-start;padding:11px 22px;
-  border:1px solid var(--line);border-radius:12px;background:rgba(13,36,31,.5);
-  transition:border-color .5s,transform .5s cubic-bezier(.22,.8,.24,1),box-shadow .5s}
-.mgz small{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.mgz b{font-family:var(--serif);font-size:15px;letter-spacing:.06em}
-a.mgz:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 14px 34px rgba(201,162,75,.1)}
-a.mgz b{color:var(--gold)}
-.kaydir{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:11px;
-  letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
-  display:flex;flex-direction:column;align-items:center;gap:8px}
-.kaydir i{display:block;width:1px;height:38px;background:linear-gradient(var(--gold),transparent);
-  animation:in 3s ease-in-out infinite}
-@keyframes in{0%,100%{opacity:.18;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}}
-
-/* ---------------- SAHNE: tek, surekli ----------------
-   Bolum uzun (yukseklik JS'siz de calissin diye CSS'te).
-   Icindeki .cerceve viewport'a yapisiyor; her sey ilerlemeden
-   turetiliyor. */
-.sahne{position:relative;height:340svh}
-.cerceve{position:sticky;top:0;height:100svh;overflow:hidden;
-  display:grid;place-items:center}
-.cerceve::before{ /* sahnenin kendi isigi, telefonun arkasinda */
-  content:"";position:absolute;width:min(760px,92vw);aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,162,75,.09),transparent 62%);
+/* ================= PERDE: acilis + uc bolum, tek parca =========
+   Yukseklik CSS'te; JS kapali olsa da sayfa dogru uzunlukta. */
+.perde{position:relative;height:280svh}
+.cerceve{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;place-items:center}
+.cerceve::before{content:"";position:absolute;width:min(780px,94vw);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,162,75,.1),transparent 62%);
   transform:translateY(var(--isik,0));will-change:transform}
 .duzen{position:relative;width:min(1180px,100%);padding:0 var(--kenar);
   display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(28px,5vw,72px)}
 
+/* --- telefon --- */
 .tel-yuva{justify-self:center;perspective:1400px}
-.tel{position:relative;width:min(288px,64vw);aspect-ratio:9/19.1;border-radius:42px;
+.tel{position:relative;width:min(284px,62vw);aspect-ratio:9/19.1;border-radius:42px;
   border:1px solid var(--line);background:#000;overflow:hidden;
   box-shadow:0 50px 110px rgba(0,0,0,.72),0 0 0 8px rgba(255,255,255,.02);
-  transform:translateY(var(--suzul,0)) rotateX(var(--egim,0deg)) rotateY(var(--don,0deg));
-  will-change:transform}
+  opacity:var(--parlak,1);
+  transform:translateX(var(--yan,0)) translateY(var(--suzul,0))
+            rotateX(var(--egim,0deg)) rotateY(var(--don,0deg)) scale(var(--buyut,1));
+  will-change:transform,opacity}
 .tel::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:42px;
   background:linear-gradient(118deg,rgba(255,255,255,.08),transparent 46%)}
+/* Ekranlar capraz gecmez, KAYAR: iki arayuz fotografi ust uste
+   eridiginde ikisi de okunmuyor. */
 .kaydirak{position:absolute;inset:0;display:flex;flex-direction:column;
   transform:translate3d(0,calc(var(--gec,0) * -100%),0);will-change:transform}
 .kaydirak img{flex:0 0 100%;width:100%;height:100%;object-fit:cover}
 
-/* metin — ayni yerde durur, icerigi capraz gecisle degisir */
-.sozler{position:relative;min-height:clamp(240px,34vh,320px)}
+/* --- bolum yazilari: ayni yerde durur, icerigi devreder --- */
+.sozler{position:relative;min-height:clamp(230px,32vh,300px)}
 .soz{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
   opacity:0;transform:translateY(var(--ty,0));filter:blur(var(--bulanik,0));
   will-change:opacity,transform,filter;pointer-events:none}
@@ -154,45 +136,81 @@ a.mgz b{color:var(--gold)}
 .soz h3{font-family:var(--serif);font-size:clamp(26px,3.8vw,44px);line-height:1.16;letter-spacing:.02em}
 .soz p{margin-top:16px;color:var(--muted);font-size:clamp(15px,1.65vw,17.5px);max-width:42ch}
 
-/* sahnenin altindaki ince ilerleme */
-.sahne-ray{position:absolute;left:var(--kenar);right:var(--kenar);bottom:38px;height:1px;
-  background:var(--line)}
-.sahne-ray i{display:block;height:100%;width:0;background:var(--gold);
-  transform-origin:left;will-change:width}
+/* --- acilis: telefonun ONUNDE durur, kaydirinca cozulup gider --- */
+.giris{position:absolute;inset:0;z-index:3;display:grid;place-items:center;text-align:center;
+  padding:96px var(--kenar) 88px;
+  transform:scale(var(--gs,1));filter:blur(var(--gb,0));will-change:opacity,transform,filter}
+.giris::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 74% 62% at 50% 48%,rgba(5,13,11,.94),rgba(5,13,11,.62) 58%,rgba(5,13,11,.12) 88%,transparent)}
+.giris-ic{position:relative}
+.reel{width:clamp(64px,8vw,92px);margin:0 auto 26px;animation:don 52s linear infinite}
+@keyframes don{to{transform:rotate(360deg)}}
+.giris h1{font-family:var(--serif);font-weight:700;
+  font-size:clamp(36px,7.6vw,88px);line-height:1.04;letter-spacing:.04em}
+.giris h1 .altin{color:var(--gold)}
+.giris .slogan{margin-top:22px;font-size:clamp(15px,2vw,19px);color:var(--muted);
+  max-width:50ch;margin-inline:auto;line-height:1.62}
+.magazalar{margin-top:34px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.mgz{display:flex;flex-direction:column;align-items:flex-start;padding:11px 22px;
+  border:1px solid var(--line);border-radius:12px;background:rgba(13,36,31,.5);
+  transition:border-color .5s,transform .5s cubic-bezier(.22,.8,.24,1),box-shadow .5s}
+.mgz small{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.mgz b{font-family:var(--serif);font-size:15px;letter-spacing:.06em}
+a.mgz:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 14px 34px rgba(201,162,75,.1)}
+a.mgz b{color:var(--gold)}
+.kaydir{position:absolute;bottom:56px;left:50%;transform:translateX(-50%);font-size:11px;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
+  display:flex;flex-direction:column;align-items:center;gap:8px}
+.kaydir i{display:block;width:1px;height:34px;background:linear-gradient(var(--gold),transparent);
+  animation:in 3s ease-in-out infinite}
+@keyframes in{0%,100%{opacity:.18;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}}
+
+/* --- perdenin alt cizgisi: UC PARCA, sonu gorunsun --- */
+.ray{position:absolute;left:var(--kenar);right:var(--kenar);bottom:24px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ray span{position:relative;height:1px;background:var(--line);overflow:hidden}
+.ray span::after{content:"";position:absolute;inset:0;background:var(--gold);
+  transform:scaleX(var(--d,0));transform-origin:left}
 
 @media(max-width:900px){
-  .sahne{height:auto}
-  .cerceve{position:static;height:auto;padding:60px 0 20px}
-  .duzen{grid-template-columns:1fr;gap:26px}
-  .sozler{min-height:0;display:flex;flex-direction:column;gap:56px}
-  .soz{position:static;opacity:1!important;transform:none!important;pointer-events:auto}
+  .perde{height:auto}
+  /* DOM sirasinda acilis, bolumlerden SONRA geliyor (masaustunde
+     mutlak konumlu). Akisa dustugu her yerde one alinmali. */
+  .cerceve{position:static;height:auto;display:flex;flex-direction:column}
+  .giris{order:-1}
+  .giris{position:relative;display:block;min-height:88svh;padding:130px var(--kenar) 70px;
+    transform:none!important;filter:none!important;opacity:1!important}
+  .giris::before{display:none}
+  .giris-ic{display:grid;place-items:center;min-height:60svh;align-content:center}
+  .duzen{grid-template-columns:1fr;gap:26px;padding-top:20px}
+  .sozler{min-height:0;display:flex;flex-direction:column;gap:54px}
+  .soz{position:static;opacity:1!important;transform:none!important;filter:none!important;pointer-events:auto}
   .tel-yuva{display:none}
   /* Dar ekranda gorseller TAM GENISLIK olmasin: art arda gelen
-     buyuk fotograflar sayfayi ekran goruntusu albumune cevirir.
-     Telefon bicimli, kucuk ve ortali dursunlar. */
+     buyuk fotograflar sayfayi ekran goruntusu albumune cevirir. */
   .soz .telm{display:block;margin:24px auto 0;width:min(224px,60%);
     border-radius:26px;border:1px solid var(--line);overflow:hidden;
     box-shadow:0 26px 62px rgba(0,0,0,.62)}
-  .sahne-ray{display:none}
+  .ray{display:none}
 }
 @media(min-width:901px){.soz .telm{display:none}}
 
 /* ---------------- yumusak gecisli bolumler ---------------- */
-.bolum{padding:120px var(--kenar);max-width:1180px;margin:0 auto;position:relative}
-.bolum > h2{font-family:var(--serif);font-size:clamp(26px,4vw,44px);letter-spacing:.03em;
-  text-align:center;margin-bottom:14px}
-.bolum > .alt{text-align:center;color:var(--muted);max-width:56ch;margin:0 auto 56px}
+.bolum{padding:92px var(--kenar);max-width:1180px;margin:0 auto;position:relative}
+.bolum > h2{font-family:var(--serif);font-size:clamp(26px,4vw,42px);letter-spacing:.03em;
+  text-align:center;margin-bottom:12px}
+.bolum > .alt{text-align:center;color:var(--muted);max-width:56ch;margin:0 auto 44px}
 
-/* ozellikler: FOTOGRAF YOK, yalniz tipografi ve altin saç cizgiler */
+/* ozellikler: FOTOGRAF YOK, yalniz tipografi ve altin sac cizgiler */
 .satirlar{display:grid;gap:0}
 .satir{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:clamp(14px,3vw,40px);
-  padding:30px 0;border-top:1px solid var(--line);transition:padding .6s cubic-bezier(.22,.8,.24,1)}
+  padding:24px 0;border-top:1px solid var(--line);transition:padding .6s cubic-bezier(.22,.8,.24,1)}
 .satir:last-child{border-bottom:1px solid var(--line)}
 .satir .sira{font-family:var(--serif);font-size:12px;letter-spacing:.28em;color:var(--gold-soft);min-width:2.5em}
-.satir h4{font-family:var(--serif);font-size:clamp(19px,2.5vw,27px);letter-spacing:.02em;
+.satir h4{font-family:var(--serif);font-size:clamp(18px,2.3vw,25px);letter-spacing:.02em;
   transition:color .5s,transform .6s cubic-bezier(.22,.8,.24,1)}
 .satir p{color:var(--muted);font-size:14.5px;max-width:38ch;justify-self:end;text-align:right}
-.satir:hover{padding:38px 0}
+.satir:hover{padding:31px 0}
 .satir:hover h4{color:var(--gold);transform:translateX(8px)}
 @media(max-width:760px){
   .satir{grid-template-columns:auto 1fr;gap:12px}
@@ -200,16 +218,16 @@ a.mgz b{color:var(--gold)}
 }
 
 /* ---------------- alinti ---------------- */
-.serit{padding:96px var(--kenar);text-align:center;
+.serit{padding:74px var(--kenar);text-align:center;
   background:radial-gradient(ellipse 60% 130% at 50% 50%,rgba(201,162,75,.075),transparent 70%)}
-.serit p{font-family:var(--serif);font-size:clamp(21px,3.6vw,38px);line-height:1.36;
+.serit p{font-family:var(--serif);font-size:clamp(20px,3.2vw,34px);line-height:1.36;
   letter-spacing:.02em;max-width:21ch;margin:0 auto}
-.serit span{display:block;margin-top:22px;font-size:12px;letter-spacing:.26em;
+.serit span{display:block;margin-top:18px;font-size:12px;letter-spacing:.26em;
   text-transform:uppercase;color:var(--gold)}
 
 /* ---------------- sss + alt (DOKUNULMADI) ---------------- */
 .sss{max-width:820px;margin:0 auto}
-details{border-bottom:1px solid var(--line);padding:20px 0}
+details{border-bottom:1px solid var(--line);padding:18px 0}
 details summary{cursor:pointer;list-style:none;font-family:var(--serif);font-size:16.5px;
   letter-spacing:.02em;display:flex;align-items:center;gap:14px;transition:color .35s}
 details summary:hover{color:var(--gold)}
@@ -218,29 +236,37 @@ details summary::after{content:"+";margin-left:auto;color:var(--gold);font-size:
 details[open] summary::after{transform:rotate(45deg)}
 details p{margin-top:12px;color:var(--muted);font-size:14.5px}
 details a{color:var(--gold)}
-footer{border-top:1px solid var(--line);padding:58px var(--kenar) 42px;text-align:center}
-footer .marka{justify-content:center;margin-bottom:22px}
+footer{border-top:1px solid var(--line);padding:52px var(--kenar) 40px;text-align:center}
+footer .marka{justify-content:center;margin-bottom:20px}
 .baglar{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;font-size:13.5px;color:var(--muted)}
 .baglar a{transition:color .35s}
 .baglar a:hover{color:var(--gold)}
-footer .kucuk{margin-top:26px;font-size:12px;color:#5C6F68;line-height:1.85}
+footer .kucuk{margin-top:24px;font-size:12px;color:#5C6F68;line-height:1.85}
 footer .kucuk a{color:#7E9189}
 
 /* beliren bloklar — yumusak ve gec */
-.bel{opacity:0;transform:translateY(30px);
+.bel{opacity:0;transform:translateY(28px);
   transition:opacity 1.1s cubic-bezier(.22,.8,.24,1),transform 1.1s cubic-bezier(.22,.8,.24,1)}
 .bel.gorundu{opacity:1;transform:none}
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto}
   .bel{opacity:1;transform:none}
-  /* Hareket kapaliysa sahne akip giden bir bolume donusur:
-     her soz kendi gorseliyle alt alta, telefon yok. */
-  .soz{position:static;opacity:1!important;transform:none!important;filter:none!important}
+  /* Hareket kapaliysa perde akip giden bir bolume donusur:
+     acilis ustte, her soz kendi gorseliyle alt alta, telefon yok. */
+  .perde{height:auto}
+  /* DOM sirasinda acilis, bolumlerden SONRA geliyor (masaustunde
+     mutlak konumlu). Akisa dustugu her yerde one alinmali. */
+  .cerceve{position:static;height:auto;display:flex;flex-direction:column}
+  .giris{order:-1}
+  .giris{position:relative;display:block;min-height:88svh;padding:130px var(--kenar) 70px;
+    transform:none!important;filter:none!important;opacity:1!important}
+  .giris::before{display:none}
+  .giris-ic{display:grid;place-items:center;min-height:60svh;align-content:center}
+  .duzen{grid-template-columns:1fr;padding-top:20px}
   .sozler{min-height:0;display:flex;flex-direction:column;gap:48px}
-  .sahne{height:auto}.cerceve{position:static;height:auto;padding:60px 0 20px}
-  .duzen{grid-template-columns:1fr}
-  .tel-yuva,.sahne-ray{display:none}
+  .soz{position:static;opacity:1!important;transform:none!important;filter:none!important}
+  .tel-yuva,.ray{display:none}
   .soz .telm{display:block;margin:24px auto 0;width:min(224px,60%);
     border-radius:26px;border:1px solid var(--line);overflow:hidden}
 }
@@ -264,45 +290,32 @@ footer .kucuk a{color:#7E9189}
 <div class="bar" id="bar">
   <a class="marka" href="#"><svg><use href="#reel"/></svg>MAKARA</a>
   <nav>
-    <a href="#sahne" data-i18n="nav.how">Nasıl çalışır</a>
     <a href="#neden" data-i18n="nav.why">Neden MAKARA</a>
     <a href="#sss" data-i18n="nav.faq">SSS</a>
   </nav>
+  <a class="indir" href="https://play.google.com/store/apps/details?id=social.makara.app"
+     target="_blank" rel="noopener" data-i18n="cta.get">İndir</a>
   <div class="dil"><button data-dil="tr" class="acik">TR</button><span>·</span><button data-dil="en">EN</button></div>
 </div>
 
-<section class="hero">
-  <div class="hero-ic" id="heroIc">
-    <svg class="reel"><use href="#reel"/></svg>
-    <h1 data-i18n="hero.h1">Ne izlediğin,<br><span class="altin">kim olduğunu söyler.</span></h1>
-    <p class="slogan" data-i18n="hero.lead">MAKARA film ve dizi zevkine göre kurulan bir sinema topluluğu. Fragmanı burada izle, o filmi bekleyenleri bul.</p>
-    <div class="magazalar">
-      <a class="mgz" href="https://play.google.com/store/apps/details?id=social.makara.app" target="_blank" rel="noopener">
-        <small data-i18n="store.get">İndir</small><b>Google Play</b></a>
-      <span class="mgz"><small data-i18n="store.soon">Yakında</small><b>App Store</b></span>
-    </div>
-  </div>
-  <div class="kaydir"><i></i><span data-i18n="hero.scroll">Kaydır</span></div>
-</section>
-
-<!-- ================= TEK SAHNE ================= -->
-<section class="sahne" id="sahne">
+<!-- ================= TEK PERDE: acilis + uc bolum ================= -->
+<section class="perde" id="perde">
   <div class="cerceve">
     <div class="duzen">
       <div class="sozler" id="sozler">
-        <article class="soz" data-i="0">
+        <article class="soz">
           <span class="no">01</span>
           <h3 data-i18n="s1.h">Fragmanı izle,<br>o filmi bekleyeni bul</h3>
           <p data-i18n="s1.p">Vizyona girecek yapımların fragmanları ana sayfanda. Uygulamadan çıkmadan izle; video biter bitmez aynı filmi bekleyen seyirciler karşında.</p>
           <img class="telm" src="img/2-fragman.webp" alt="" loading="lazy">
         </article>
-        <article class="soz" data-i="1">
+        <article class="soz">
           <span class="no">02</span>
           <h3 data-i18n="s2.h">Zevk uyumunu<br>yüzdeyle gör</h3>
           <p data-i18n="s2.p">Favorilerin, izleme listen ve türlerin karşılaştırılır. Karşındaki kişiyle uyumunu ve ortak filmlerinizi birlikte görürsün.</p>
           <img class="telm" src="img/3-uyum.webp" alt="" loading="lazy">
         </article>
-        <article class="soz" data-i="2">
+        <article class="soz">
           <span class="no">03</span>
           <h3 data-i18n="s3.h">Ortak listenizi kurun,<br>sonra yarışın</h3>
           <p data-i18n="s3.p">Tanıştığın kişiyle tek bir izleme listesi. Sohbette on soruluk film yarışması; kim daha çok sinema biliyor, konuşurken öğrenirsiniz.</p>
@@ -320,7 +333,22 @@ footer .kucuk a{color:#7E9189}
         </div>
       </div>
     </div>
-    <div class="sahne-ray"><i id="sahneRay"></i></div>
+
+    <div class="giris" id="giris">
+      <div class="giris-ic">
+        <svg class="reel"><use href="#reel"/></svg>
+        <h1 data-i18n="hero.h1">Ne izlediğin,<br><span class="altin">kim olduğunu söyler.</span></h1>
+        <p class="slogan" data-i18n="hero.lead">MAKARA film ve dizi zevkine göre kurulan bir sinema topluluğu. Fragmanı burada izle, o filmi bekleyenleri bul.</p>
+        <div class="magazalar">
+          <a class="mgz" href="https://play.google.com/store/apps/details?id=social.makara.app" target="_blank" rel="noopener">
+            <small data-i18n="store.get">İndir</small><b>Google Play</b></a>
+          <span class="mgz"><small data-i18n="store.soon">Yakında</small><b>App Store</b></span>
+        </div>
+      </div>
+      <div class="kaydir"><i></i><span data-i18n="hero.scroll">Kaydır</span></div>
+    </div>
+
+    <div class="ray" id="ray"><span></span><span></span><span></span></div>
   </div>
 </section>
 
@@ -386,10 +414,11 @@ footer .kucuk a{color:#7E9189}
 </footer>
 
 <script>
+
 const T = {
  "meta.title":["MAKARA — Film ve dizi zevkine göre sinema topluluğu","MAKARA — A film community built on your taste"],
- "nav.how":["Nasıl çalışır","How it works"],
  "nav.why":["Neden MAKARA","Why MAKARA"],
+ "cta.get":["İndir","Get the app"],
  "nav.faq":["SSS","FAQ"],
  "hero.h1":["Ne izlediğin,<br><span class=\"altin\">kim olduğunu söyler.</span>","What you watch<br><span class=\"altin\">says who you are.</span>"],
  "hero.lead":["MAKARA film ve dizi zevkine göre kurulan bir sinema topluluğu. Fragmanı burada izle, o filmi bekleyenleri bul.","MAKARA is a film community built on your taste in movies and series. Watch the trailer here, then find everyone else waiting for it."],
@@ -437,7 +466,6 @@ const T = {
  "f.copy":["© 2026 MAKARA · Repress Studio. Tüm hakları saklıdır.","© 2026 MAKARA · Repress Studio. All rights reserved."],
  "f.tmdb":["Bu ürün <a href=\"https://www.themoviedb.org/\">TMDB</a> API'sini kullanır ancak TMDB tarafından onaylanmamış veya sertifikalanmamıştır.","This product uses the <a href=\"https://www.themoviedb.org/\">TMDB</a> API but is not endorsed or certified by TMDB."]
 };
-
 /* ---------------- dil ---------------- */
 function dilUygula(dil){
   const s = dil === 'en' ? 1 : 0;
@@ -464,41 +492,52 @@ try {
     || ((navigator.language || '').toLowerCase().startsWith('tr') ? 'tr' : 'en');
 } catch (e) {}
 if (baslangic === 'en') dilUygula('en');
-
 /* ===============================================================
    HAREKET MOTORU
 
    Tek bir kaydirma degeri var, o da YUMUSATILIYOR (lerp) ve
-   sahnedeki her sey ondan turetiliyor. Ayrik adim, sinif ziplamasi
-   yok: iki kare arasinda her an bir ara deger var. "Kati" hissi
-   onceki surumde buradan geliyordu.
+   perdedeki her sey ondan turetiliyor. Ayrik adim, sinif ziplamasi
+   yok: iki kare arasinda her an bir ara deger var.
 
-   Not: kaydirmanin kendisine dokunmuyoruz (wheel hijack yok).
-   Tarayicinin dogal kaydirmasi duruyor, yalnizca ANIMASYONLAR
-   gecikmeli takip ediyor — atalet hissi oradan geliyor ve
-   dokunmatikte de bozulmuyor.
+   Kaydirmanin kendisine dokunmuyoruz (wheel hijack yok). Tarayicinin
+   dogal kaydirmasi duruyor, yalnizca ANIMASYONLAR gecikmeli takip
+   ediyor — atalet hissi oradan geliyor ve dokunmatikte bozulmuyor.
    =============================================================== */
 const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const darEkran = () => innerWidth <= 900;
-
 const kis = (x, a, b) => Math.min(b, Math.max(a, x));
-const yumusat = (x) => x * x * (3 - 2 * x);   // smoothstep
+const yumusat = (x) => x * x * (3 - 2 * x);                    // smoothstep
+const cokYumusat = (x) => x * x * x * (x * (x * 6 - 15) + 10); // smootherstep
 
-/* --- ust cubuk + sayfa ilerlemesi --- */
 const bar = document.getElementById('bar');
 const ilerlemeCizgi = document.getElementById('ilerleme');
 
-/* --- sahne ogeleri --- */
-const sahne = document.getElementById('sahne');
+const perde = document.getElementById('perde');
+const cerceve = perde ? perde.querySelector('.cerceve') : null;
+const giris = document.getElementById('giris');
 const tel = document.getElementById('tel');
-const cerceve = sahne ? sahne.querySelector('.cerceve') : null;
 const kaydirak = document.getElementById('kaydirak');
 const ekranlar = kaydirak ? [...kaydirak.querySelectorAll('img')] : [];
 const sozler = [...document.querySelectorAll('.soz')];
-const sahneRay = document.getElementById('sahneRay');
-const heroIc = document.getElementById('heroIc');
+const rayParcalari = [...document.querySelectorAll('.ray span')];
 
-/* Hedef ve suanki deger — aradaki fark her karede kapatiliyor. */
+/* Acilista telefon SAHNENIN ORTASINDA, basligin arkasinda durur;
+   sonra kendi yerine cekilir. Kayma miktarini tahmin etmiyoruz,
+   olcuyoruz: sutun genislikleri ekrana gore degisiyor. */
+let telKayma = 0;
+function olcuAl() {
+  const duzen = document.querySelector('.duzen');
+  const yuva = document.querySelector('.tel-yuva');
+  if (!duzen || !yuva) return;
+  const a = duzen.getBoundingClientRect(), b = yuva.getBoundingClientRect();
+  telKayma = (a.left + a.width / 2) - (b.left + b.width / 2);
+}
+
+/* ACILISIN PAYI
+   Baslik ne kadar kaydirmada cozulup gidecek. Kucuk tutuluyor:
+   acilis bir "bolum" degil, bir gecis. Kalan yol uc bolume bolunuyor. */
+const GIRIS_PAYI = 0.15;
+
 let hedefY = 0, suY = 0, calisiyor = false;
 
 function olc() {
@@ -513,56 +552,71 @@ function ciz() {
 
   const vh = innerHeight;
 
-  /* --- ust cubuk --- */
   bar.classList.toggle('kaydi', suY > 12);
   if (ilerlemeCizgi) {
     const toplam = document.body.scrollHeight - vh;
     ilerlemeCizgi.style.width = (toplam > 0 ? (suY / toplam) * 100 : 0) + '%';
   }
 
-  /* --- hero: suzulerek cikiyor --- */
-  if (heroIc && !azHareket) {
-    const o = kis(suY / (vh * 0.85), 0, 1);
-    heroIc.style.transform = 'translate3d(0,' + (-o * 130) + 'px,0)';
-    heroIc.style.opacity = String(1 - yumusat(o));
-  }
+  if (perde && cerceve && !azHareket && !darEkran()) {
+    const yol = perde.offsetHeight - vh;
+    const q = kis((suY - perde.offsetTop) / (yol || 1), 0, 1);
 
-  /* --- sahne: her sey tek bir ilerlemeden --- */
-  if (sahne && cerceve && !azHareket && !darEkran()) {
-    const ust = sahne.offsetTop;
-    const yol = sahne.offsetHeight - vh;      // yapisik kaldigi mesafe
-    /* Basta ve sonda pay birakiyoruz: hareket, bolum yapisik
-       kalmayi birakmadan ONCE bitsin. Paysiz birakilirsa ucuncu bolum
-       tam okunur hale geldigi anda yukari kayip gidiyor. */
-    const hamP = kis((suY - ust) / (yol || 1), 0, 1);
-    const p = kis((hamP - 0.05) / 0.78, 0, 1);
+    /* --- acilis cozuluyor --- */
+    const g = yumusat(kis(q / GIRIS_PAYI, 0, 1));
+    giris.style.opacity = (1 - g).toFixed(3);
+    giris.style.setProperty('--gs', (1 - g * 0.07).toFixed(3));
+    giris.style.setProperty('--gb', (g * 11).toFixed(2) + 'px');
+    giris.style.pointerEvents = g > 0.55 ? 'none' : 'auto';
 
-    // Telefon: suzuluyor, hafifce egiliyor ve doniyor.
-    tel.style.setProperty('--suzul', (Math.sin(p * Math.PI) * -22).toFixed(2) + 'px');
+    /* Telefon acilista da GORUNUYOR — sadece geride ve sonuk.
+       Ilk ekranda urunun hic gorunmemesi insani kaydirmaya
+       ikna etmiyordu. */
+    tel.style.setProperty('--parlak', (0.26 + 0.74 * g).toFixed(3));
+    tel.style.setProperty('--yan', ((1 - g) * telKayma).toFixed(1) + 'px');
+    tel.style.setProperty('--buyut', (1 + (1 - g) * 0.06).toFixed(3));
+
+    /* --- uc bolum --- */
+    // Sonda pay: ucuncu bolum, perde birakmadan once okunacak
+    // kadar dursun.
+    const p = kis((q - GIRIS_PAYI) / (0.79 - 0), 0, 1);
+
+    tel.style.setProperty('--suzul', (Math.sin(p * Math.PI) * -20).toFixed(2) + 'px');
     tel.style.setProperty('--egim', ((0.5 - p) * 5).toFixed(2) + 'deg');
     tel.style.setProperty('--don', ((p - 0.5) * 9).toFixed(2) + 'deg');
-    cerceve.style.setProperty('--isik', (Math.sin(p * Math.PI) * -36).toFixed(1) + 'px');
-    if (sahneRay) sahneRay.style.width = (p * 100).toFixed(2) + '%';
+    cerceve.style.setProperty('--isik', (Math.sin(p * Math.PI) * -34).toFixed(1) + 'px');
 
-    /* Ham ilerlemeyi bolum basi/sonunda yavaslatiyoruz: yazi
-       okunacak kadar duruyor, gecis tek hamlede oluyor. */
     const n = ekranlar.length;
+    // Ham ilerlemeyi bolum basi/sonunda yavaslatiyoruz: yazi
+    // okunacak kadar duruyor, gecis tek hamlede oluyor.
+    // Her bolumun BASINDA VE SONUNDA gercek bir duruş var: ilk %24
+    // ve son %24 boyunca telefon hic kimildamiyor, yazi tam net
+    // duruyor. Ortadaki %52'de gecis tek hamlede oluyor.
     const ham = p * (n - 1);
     const taban = Math.min(Math.floor(ham), Math.max(n - 2, 0));
     const k = kis(ham - taban, 0, 1);
-    const konum = taban + k * k * k * (k * (k * 6 - 15) + 10);  // smootherstep
+    const konum = taban + cokYumusat(kis((k - 0.34) / 0.34, 0, 1));
     kaydirak.style.setProperty('--gec', konum.toFixed(4));
+
     /* METIN capraz gecmez, DEVREDER.
        Fotografta ust uste binme bir erime; yazida baski hatasi gibi
-       duruyor. Bu yuzden yazinin bandi dar (1.9) ve ustune odak
-       kaymasi var: giden yazi bulaniklasarak cikiyor. Iki bolum
-       arasinda kisa bir bosluk kaliyor — sahne degisimi orada. */
+       duruyor. Bant dar (1.9) ve ustune odak kaymasi var: giden yazi
+       bulaniklasarak cikiyor. */
     for (let i = 0; i < sozler.length; i++) {
-      const uzak = Math.abs(konum - i);
-      const gr = yumusat(kis(1 - uzak * 1.9, 0, 1));
+      // Bandin TEPESI DUZ: bolumun ortasinda yazi tam net kaliyor,
+      // yalnizca devir aninda cozuluyor. Tam ortada (u=0.5) ikisi de
+      // sifir — devir orada oluyor.
+      const u = Math.abs(konum - i);
+      const gr = yumusat(kis((0.5 - u) / 0.24, 0, 1)) * g;
       sozler[i].style.opacity = gr.toFixed(3);
       sozler[i].style.setProperty('--ty', ((konum - i) * 46).toFixed(1) + 'px');
       sozler[i].style.setProperty('--bulanik', ((1 - gr) * 7).toFixed(2) + 'px');
+    }
+
+    /* Uc parcali ray: kac bolum var, kacindayim. */
+    for (let i = 0; i < rayParcalari.length; i++) {
+      // g ile carpiliyor: acilista hicbir parca yanmasin.
+      rayParcalari[i].style.setProperty('--d', (kis(konum - i + 1, 0, 1) * g).toFixed(3));
     }
   }
 
@@ -571,19 +625,22 @@ function ciz() {
 }
 
 addEventListener('scroll', olc, {passive:true});
-addEventListener('resize', () => { olc(); ilkKare(); }, {passive:true});
+addEventListener('resize', () => { olcuAl(); ilkKare(); olc(); }, {passive:true});
 
-/* Dar ekranda ve hareket azaltmada sahne akip gidiyor: her soz
-   kendi gorseliyle alt alta duruyor, telefon gizli. */
 function ilkKare(){
   if (darEkran() || azHareket) {
-    sozler.forEach(s => { s.style.opacity = '1';
-      s.style.removeProperty('--ty'); s.style.removeProperty('--bulanik'); });
+    sozler.forEach(s => {
+      s.style.opacity = '1';
+      s.style.removeProperty('--ty');
+      s.style.removeProperty('--bulanik');
+    });
+    if (giris) { giris.style.opacity = '1'; giris.style.pointerEvents = 'auto'; }
     kaydirak && kaydirak.style.setProperty('--gec', '0');
   } else if (sozler[0]) {
-    sozler[0].style.opacity = '1';
+    sozler[0].style.opacity = '0';
   }
 }
+olcuAl();
 ilkKare();
 olc();
 
