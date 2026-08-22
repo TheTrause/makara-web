@@ -21,8 +21,17 @@
 
 <style>
 /* ===============================================================
-   MAKARA — tek dosya. Dis bagimlilik yok (yalniz Cinzel).
-   Palet uygulamadan birebir: ayni siyah, ayni altin.
+   MAKARA — tek dosya, dis bagimlilik yok (yalniz Cinzel).
+
+   TASARIM KARARI: HER SEY SUREKLI
+   Onceki surumde bolumler birbirini "kesiyordu": film seridi
+   fotograflari art arda diziyordu, vitrin adimlari sinif degistirerek
+   ZIPLIYORDU. Katilik oradan geliyordu.
+
+   Simdi tek bir kaydirma degeri var, o da yumusatiliyor (lerp) ve
+   sahnedeki her sey ondan turetiliyor — capraz gecis, telefonun
+   suzulmesi, metnin girip cikmasi. Ayrik adim yok; iki kare arasinda
+   her an bir ara deger var.
    =============================================================== */
 :root{
   --bg:#050D0B;
@@ -33,12 +42,10 @@
   --gold-soft:#8A7A4E;
   --cream:#F3EAD9;
   --muted:#8FA89E;
-  --emerald:#2AA17E;
-  --maroon:#6E2020;
   --serif:'Cinzel',Georgia,'Times New Roman',serif;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --kenar:clamp(20px,5vw,64px);
-  --mx:50vw; --my:35vh;      /* imlec spotu */
+  --mx:50vw; --my:35vh;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -47,189 +54,202 @@ body{background:var(--bg);color:var(--cream);font-family:var(--sans);
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 
-/* Film greni — cok hafif, okumayi bozmuyor */
-body::after{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:12;opacity:.05;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-/* Kenar karartmasi — bakisi ortada tutuyor */
-body::before{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:11;
-  background:radial-gradient(ellipse 90% 75% at 50% 45%,transparent 55%,rgba(0,0,0,.55));
-}
-/* Imlec spotu — projeksiyon isigi fareyi izliyor (yalniz masaustu) */
-#spot{
-  position:fixed;inset:0;pointer-events:none;z-index:1;opacity:0;
-  transition:opacity .6s ease;
-  background:radial-gradient(340px circle at var(--mx) var(--my),rgba(201,162,75,.07),transparent 70%);
-}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:12;opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:11;
+  background:radial-gradient(ellipse 92% 78% at 50% 45%,transparent 58%,rgba(0,0,0,.5))}
+#spot{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:0;transition:opacity .8s ease;
+  background:radial-gradient(380px circle at var(--mx) var(--my),rgba(201,162,75,.06),transparent 70%)}
 #spot.acik{opacity:1}
 
 /* ---------------- ust cubuk ---------------- */
 .bar{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:18px;
-  padding:14px var(--kenar);background:rgba(5,13,11,.7);backdrop-filter:blur(16px);
-  border-bottom:1px solid transparent;transition:border-color .35s,background .35s}
+  padding:14px var(--kenar);background:rgba(5,13,11,.66);backdrop-filter:blur(18px);
+  border-bottom:1px solid transparent;transition:border-color .5s,background .5s}
 .bar.kaydi{border-bottom-color:var(--line)}
 .marka{display:flex;align-items:center;gap:10px;font-family:var(--serif);
   font-size:15px;letter-spacing:.22em;color:var(--gold)}
 .marka svg{width:24px;height:24px}
 .bar nav{margin-left:auto;display:flex;gap:22px;font-size:13.5px;color:var(--muted)}
-.bar nav a{position:relative}
+.bar nav a{position:relative;transition:color .4s}
 .bar nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:1px;
-  background:var(--gold);transition:right .3s ease}
+  background:var(--gold);transition:right .45s cubic-bezier(.22,.8,.24,1)}
 .bar nav a:hover{color:var(--cream)}
 .bar nav a:hover::after{right:0}
 .dil{display:flex;gap:6px;font-size:12px;color:var(--muted)}
-.dil button{background:none;border:0;color:inherit;font:inherit;cursor:pointer;padding:2px 4px;letter-spacing:.08em}
+.dil button{background:none;border:0;color:inherit;font:inherit;cursor:pointer;padding:2px 4px;letter-spacing:.08em;transition:color .4s}
 .dil button.acik{color:var(--gold)}
 @media(max-width:860px){.bar nav{display:none}}
 
+/* ince ilerleme cizgisi — sayfanin neresindesin */
+#ilerleme{position:fixed;top:0;left:0;height:2px;width:0;z-index:21;
+  background:linear-gradient(90deg,transparent,var(--gold));opacity:.75}
+
 /* ---------------- hero ---------------- */
 .hero{min-height:100svh;display:grid;place-items:center;text-align:center;
-  padding:120px var(--kenar) 90px;position:relative;overflow:hidden}
+  padding:120px var(--kenar) 96px;position:relative}
 .hero::before{content:"";position:absolute;top:-32%;left:50%;transform:translateX(-50%);
   width:min(1250px,145vw);height:125%;pointer-events:none;
   background:radial-gradient(ellipse 55% 45% at 50% 30%,rgba(201,162,75,.17),transparent 70%);
-  animation:yanma 5.5s ease-in-out infinite}
-/* projeksiyon lambasi hafifce dalgalaniyor */
-@keyframes yanma{0%,100%{opacity:1}42%{opacity:.86}46%{opacity:1}70%{opacity:.92}}
-.hero-ic{position:relative;transform:translateY(var(--kaydirma,0));will-change:transform}
-.reel{width:clamp(80px,11vw,124px);margin:0 auto 32px;animation:don 46s linear infinite}
+  animation:yanma 6.5s ease-in-out infinite}
+@keyframes yanma{0%,100%{opacity:1}44%{opacity:.88}48%{opacity:1}72%{opacity:.94}}
+.hero-ic{position:relative;will-change:transform,opacity}
+.reel{width:clamp(78px,10.5vw,120px);margin:0 auto 32px;animation:don 52s linear infinite}
 @keyframes don{to{transform:rotate(360deg)}}
 .hero h1{font-family:var(--serif);font-weight:700;
-  font-size:clamp(38px,8.6vw,100px);line-height:1.03;letter-spacing:.04em;color:var(--cream)}
+  font-size:clamp(38px,8.6vw,100px);line-height:1.03;letter-spacing:.04em}
 .hero h1 .altin{color:var(--gold)}
 .hero .slogan{margin-top:24px;font-size:clamp(15px,2.1vw,20px);color:var(--muted);
   max-width:52ch;margin-inline:auto;line-height:1.65}
 .magazalar{margin-top:40px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .mgz{display:flex;flex-direction:column;align-items:flex-start;padding:11px 22px;
-  border:1px solid var(--line);border-radius:12px;background:rgba(13,36,31,.55);
-  transition:border-color .28s,transform .28s,box-shadow .28s}
+  border:1px solid var(--line);border-radius:12px;background:rgba(13,36,31,.5);
+  transition:border-color .5s,transform .5s cubic-bezier(.22,.8,.24,1),box-shadow .5s}
 .mgz small{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.mgz b{font-family:var(--serif);font-size:15px;letter-spacing:.06em;color:var(--cream)}
-a.mgz:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 12px 30px rgba(201,162,75,.12)}
+.mgz b{font-family:var(--serif);font-size:15px;letter-spacing:.06em}
+a.mgz:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 14px 34px rgba(201,162,75,.1)}
 a.mgz b{color:var(--gold)}
 .kaydir{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:11px;
   letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
   display:flex;flex-direction:column;align-items:center;gap:8px}
-.kaydir i{display:block;width:1px;height:36px;background:linear-gradient(var(--gold),transparent);
-  animation:in 2.4s ease-in-out infinite}
-@keyframes in{0%,100%{opacity:.2;transform:scaleY(.55)}50%{opacity:1;transform:scaleY(1)}}
+.kaydir i{display:block;width:1px;height:38px;background:linear-gradient(var(--gold),transparent);
+  animation:in 3s ease-in-out infinite}
+@keyframes in{0%,100%{opacity:.18;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}}
 
-/* ---------------- film seridi ---------------- */
-.film{position:relative;overflow:hidden;background:#141414;
-  border-block:1px solid var(--line);padding:30px 0}
-/* delik sirasi: ust ve alt */
-.film::before,.film::after{content:"";position:absolute;left:0;right:0;height:16px;z-index:3;
-  background-image:radial-gradient(circle at 11px 8px,var(--bg) 5px,transparent 5.5px);
-  background-size:34px 16px}
-.film::before{top:5px}.film::after{bottom:5px}
-.ray{display:flex;gap:10px;width:max-content;animation:kay 52s linear infinite}
-.film:hover .ray{animation-play-state:paused}
-@keyframes kay{to{transform:translateX(-50%)}}
-.kare{width:172px;height:250px;flex:none;overflow:hidden;border-radius:4px;
-  border:1px solid #1a1a1a;filter:grayscale(.35) brightness(.82);transition:filter .5s,transform .5s}
-.kare img{width:100%;height:100%;object-fit:cover;object-position:top}
-.film:hover .kare{filter:grayscale(0) brightness(1)}
-.kare:hover{transform:scale(1.03)}
+/* ---------------- SAHNE: tek, surekli ----------------
+   Bolum uzun (yukseklik JS'siz de calissin diye CSS'te).
+   Icindeki .cerceve viewport'a yapisiyor; her sey ilerlemeden
+   turetiliyor. */
+.sahne{position:relative;height:340svh}
+.cerceve{position:sticky;top:0;height:100svh;overflow:hidden;
+  display:grid;place-items:center}
+.cerceve::before{ /* sahnenin kendi isigi, telefonun arkasinda */
+  content:"";position:absolute;width:min(760px,92vw);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,162,75,.09),transparent 62%);
+  transform:translateY(var(--isik,0));will-change:transform}
+.duzen{position:relative;width:min(1180px,100%);padding:0 var(--kenar);
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(28px,5vw,72px)}
 
-/* ---------------- vitrin ---------------- */
-.vitrin{padding:0 var(--kenar) 20px;position:relative}
-.vitrin-ic{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px}
-.sahne{position:sticky;top:0;height:100svh;display:grid;place-items:center}
-.sahne-ic{display:flex;align-items:center;gap:26px}
-/* sol tarafta ilerleme rayi */
-.ray-dikey{display:flex;flex-direction:column;gap:10px;align-items:center}
-.ray-dikey span{width:2px;height:26px;background:var(--line);border-radius:2px;transition:background .4s,height .4s}
-.ray-dikey span.acik{background:var(--gold);height:38px}
-.tel{position:relative;width:min(292px,68vw);aspect-ratio:9/19.1;border-radius:42px;
+.tel-yuva{justify-self:center;perspective:1400px}
+.tel{position:relative;width:min(288px,64vw);aspect-ratio:9/19.1;border-radius:42px;
   border:1px solid var(--line);background:#000;overflow:hidden;
-  box-shadow:0 44px 100px rgba(0,0,0,.7),0 0 0 8px rgba(255,255,255,.02),0 0 60px rgba(201,162,75,.05)}
+  box-shadow:0 50px 110px rgba(0,0,0,.72),0 0 0 8px rgba(255,255,255,.02);
+  transform:translateY(var(--suzul,0)) rotateX(var(--egim,0deg)) rotateY(var(--don,0deg));
+  will-change:transform}
 .tel::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:42px;
-  background:linear-gradient(118deg,rgba(255,255,255,.075),transparent 44%)}
-.tel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:0;transform:scale(1.05);transition:opacity .6s ease,transform 1.1s cubic-bezier(.2,.7,.2,1)}
-.tel img.acik{opacity:1;transform:scale(1)}
+  background:linear-gradient(118deg,rgba(255,255,255,.08),transparent 46%)}
+.kaydirak{position:absolute;inset:0;display:flex;flex-direction:column;
+  transform:translate3d(0,calc(var(--gec,0) * -100%),0);will-change:transform}
+.kaydirak img{flex:0 0 100%;width:100%;height:100%;object-fit:cover}
 
-.adimlar{display:flex;flex-direction:column}
-.adim{min-height:88svh;display:flex;flex-direction:column;justify-content:center;
-  opacity:.24;transition:opacity .5s ease}
-.adim.acik{opacity:1}
-.adim .no{font-family:var(--serif);font-size:12px;letter-spacing:.3em;color:var(--gold);
-  display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.adim .no::after{content:"";flex:1;height:1px;max-width:130px;
-  background:linear-gradient(90deg,var(--gold-soft),transparent);
-  transform:scaleX(0);transform-origin:left;transition:transform .7s ease}
-.adim.acik .no::after{transform:scaleX(1)}
-.adim h3{font-family:var(--serif);font-size:clamp(24px,3.4vw,38px);line-height:1.2;letter-spacing:.02em}
-.adim p{margin-top:14px;color:var(--muted);font-size:clamp(14.5px,1.6vw,17px);max-width:44ch}
-.adim .telm{display:none;margin-top:26px;border-radius:26px;border:1px solid var(--line);overflow:hidden}
+/* metin — ayni yerde durur, icerigi capraz gecisle degisir */
+.sozler{position:relative;min-height:clamp(240px,34vh,320px)}
+.soz{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+  opacity:0;transform:translateY(var(--ty,0));filter:blur(var(--bulanik,0));
+  will-change:opacity,transform,filter;pointer-events:none}
+.soz .no{font-family:var(--serif);font-size:12px;letter-spacing:.32em;color:var(--gold);
+  display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.soz .no::after{content:"";flex:1;height:1px;max-width:150px;
+  background:linear-gradient(90deg,var(--gold-soft),transparent)}
+.soz h3{font-family:var(--serif);font-size:clamp(26px,3.8vw,44px);line-height:1.16;letter-spacing:.02em}
+.soz p{margin-top:16px;color:var(--muted);font-size:clamp(15px,1.65vw,17.5px);max-width:42ch}
+
+/* sahnenin altindaki ince ilerleme */
+.sahne-ray{position:absolute;left:var(--kenar);right:var(--kenar);bottom:38px;height:1px;
+  background:var(--line)}
+.sahne-ray i{display:block;height:100%;width:0;background:var(--gold);
+  transform-origin:left;will-change:width}
+
 @media(max-width:900px){
-  .vitrin-ic{grid-template-columns:1fr;gap:0}
-  .sahne{display:none}
-  .adim{min-height:auto;opacity:1;padding:46px 0}
-  .adim .telm{display:block}
-  .adim .no::after{transform:scaleX(1)}
+  .sahne{height:auto}
+  .cerceve{position:static;height:auto;padding:60px 0 20px}
+  .duzen{grid-template-columns:1fr;gap:26px}
+  .sozler{min-height:0;display:flex;flex-direction:column;gap:56px}
+  .soz{position:static;opacity:1!important;transform:none!important;pointer-events:auto}
+  .tel-yuva{display:none}
+  /* Dar ekranda gorseller TAM GENISLIK olmasin: art arda gelen
+     buyuk fotograflar sayfayi ekran goruntusu albumune cevirir.
+     Telefon bicimli, kucuk ve ortali dursunlar. */
+  .soz .telm{display:block;margin:24px auto 0;width:min(224px,60%);
+    border-radius:26px;border:1px solid var(--line);overflow:hidden;
+    box-shadow:0 26px 62px rgba(0,0,0,.62)}
+  .sahne-ray{display:none}
 }
+@media(min-width:901px){.soz .telm{display:none}}
 
-/* ---------------- ortak bolum ---------------- */
-.bolum{padding:112px var(--kenar);max-width:1180px;margin:0 auto}
+/* ---------------- yumusak gecisli bolumler ---------------- */
+.bolum{padding:120px var(--kenar);max-width:1180px;margin:0 auto;position:relative}
 .bolum > h2{font-family:var(--serif);font-size:clamp(26px,4vw,44px);letter-spacing:.03em;
   text-align:center;margin-bottom:14px}
-.bolum > .alt{text-align:center;color:var(--muted);max-width:56ch;margin:0 auto 54px}
-.izgara{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
-.kart{padding:28px;border:1px solid var(--line);border-radius:16px;
-  background:linear-gradient(180deg,rgba(13,36,31,.66),rgba(10,28,24,.3));
-  transition:border-color .3s,transform .3s,box-shadow .3s}
-.kart:hover{border-color:var(--gold-soft);transform:translateY(-4px);
-  box-shadow:0 18px 44px rgba(0,0,0,.4)}
-.kart .ik{width:34px;height:34px;color:var(--gold);margin-bottom:16px}
-.kart h4{font-family:var(--serif);font-size:17px;letter-spacing:.03em;margin-bottom:8px}
-.kart p{color:var(--muted);font-size:14.5px}
+.bolum > .alt{text-align:center;color:var(--muted);max-width:56ch;margin:0 auto 56px}
+
+/* ozellikler: FOTOGRAF YOK, yalniz tipografi ve altin saç cizgiler */
+.satirlar{display:grid;gap:0}
+.satir{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:clamp(14px,3vw,40px);
+  padding:30px 0;border-top:1px solid var(--line);transition:padding .6s cubic-bezier(.22,.8,.24,1)}
+.satir:last-child{border-bottom:1px solid var(--line)}
+.satir .sira{font-family:var(--serif);font-size:12px;letter-spacing:.28em;color:var(--gold-soft);min-width:2.5em}
+.satir h4{font-family:var(--serif);font-size:clamp(19px,2.5vw,27px);letter-spacing:.02em;
+  transition:color .5s,transform .6s cubic-bezier(.22,.8,.24,1)}
+.satir p{color:var(--muted);font-size:14.5px;max-width:38ch;justify-self:end;text-align:right}
+.satir:hover{padding:38px 0}
+.satir:hover h4{color:var(--gold);transform:translateX(8px)}
+@media(max-width:760px){
+  .satir{grid-template-columns:auto 1fr;gap:12px}
+  .satir p{grid-column:2;justify-self:start;text-align:left;margin-top:8px}
+}
 
 /* ---------------- alinti ---------------- */
-.serit{border-block:1px solid var(--line);padding:76px var(--kenar);text-align:center;
-  background:radial-gradient(ellipse 60% 120% at 50% 50%,rgba(201,162,75,.07),transparent 70%)}
-.serit p{font-family:var(--serif);font-size:clamp(21px,3.6vw,36px);line-height:1.38;
-  letter-spacing:.02em;max-width:22ch;margin:0 auto}
-.serit span{display:block;margin-top:20px;font-size:12px;letter-spacing:.24em;
+.serit{padding:96px var(--kenar);text-align:center;
+  background:radial-gradient(ellipse 60% 130% at 50% 50%,rgba(201,162,75,.075),transparent 70%)}
+.serit p{font-family:var(--serif);font-size:clamp(21px,3.6vw,38px);line-height:1.36;
+  letter-spacing:.02em;max-width:21ch;margin:0 auto}
+.serit span{display:block;margin-top:22px;font-size:12px;letter-spacing:.26em;
   text-transform:uppercase;color:var(--gold)}
 
-/* ---------------- sss ---------------- */
+/* ---------------- sss + alt (DOKUNULMADI) ---------------- */
 .sss{max-width:820px;margin:0 auto}
 details{border-bottom:1px solid var(--line);padding:20px 0}
 details summary{cursor:pointer;list-style:none;font-family:var(--serif);font-size:16.5px;
-  letter-spacing:.02em;display:flex;align-items:center;gap:14px;transition:color .25s}
+  letter-spacing:.02em;display:flex;align-items:center;gap:14px;transition:color .35s}
 details summary:hover{color:var(--gold)}
 details summary::-webkit-details-marker{display:none}
-details summary::after{content:"+";margin-left:auto;color:var(--gold);font-size:20px;transition:transform .3s}
+details summary::after{content:"+";margin-left:auto;color:var(--gold);font-size:20px;transition:transform .4s}
 details[open] summary::after{transform:rotate(45deg)}
 details p{margin-top:12px;color:var(--muted);font-size:14.5px}
 details a{color:var(--gold)}
-
-/* ---------------- alt ---------------- */
 footer{border-top:1px solid var(--line);padding:58px var(--kenar) 42px;text-align:center}
 footer .marka{justify-content:center;margin-bottom:22px}
 .baglar{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;font-size:13.5px;color:var(--muted)}
-.baglar a{transition:color .25s}
+.baglar a{transition:color .35s}
 .baglar a:hover{color:var(--gold)}
 footer .kucuk{margin-top:26px;font-size:12px;color:#5C6F68;line-height:1.85}
 footer .kucuk a{color:#7E9189}
 
-/* ---------------- kaydirinca beliren ---------------- */
-.bel{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+/* beliren bloklar — yumusak ve gec */
+.bel{opacity:0;transform:translateY(30px);
+  transition:opacity 1.1s cubic-bezier(.22,.8,.24,1),transform 1.1s cubic-bezier(.22,.8,.24,1)}
 .bel.gorundu{opacity:1;transform:none}
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto}
-  .adim,.bel{opacity:1;transform:none}
-  .hero-ic{transform:none!important}
+  .bel{opacity:1;transform:none}
+  /* Hareket kapaliysa sahne akip giden bir bolume donusur:
+     her soz kendi gorseliyle alt alta, telefon yok. */
+  .soz{position:static;opacity:1!important;transform:none!important;filter:none!important}
+  .sozler{min-height:0;display:flex;flex-direction:column;gap:48px}
+  .sahne{height:auto}.cerceve{position:static;height:auto;padding:60px 0 20px}
+  .duzen{grid-template-columns:1fr}
+  .tel-yuva,.sahne-ray{display:none}
+  .soz .telm{display:block;margin:24px auto 0;width:min(224px,60%);
+    border-radius:26px;border:1px solid var(--line);overflow:hidden}
 }
 </style>
 </head>
 <body>
 
 <div id="spot"></div>
+<div id="ilerleme"></div>
 
 <svg style="display:none">
   <symbol id="reel" viewBox="0 0 100 100">
@@ -244,14 +264,13 @@ footer .kucuk a{color:#7E9189}
 <div class="bar" id="bar">
   <a class="marka" href="#"><svg><use href="#reel"/></svg>MAKARA</a>
   <nav>
-    <a href="#vitrin" data-i18n="nav.how">Nasıl çalışır</a>
+    <a href="#sahne" data-i18n="nav.how">Nasıl çalışır</a>
     <a href="#neden" data-i18n="nav.why">Neden MAKARA</a>
     <a href="#sss" data-i18n="nav.faq">SSS</a>
   </nav>
   <div class="dil"><button data-dil="tr" class="acik">TR</button><span>·</span><button data-dil="en">EN</button></div>
 </div>
 
-<!-- ================= HERO ================= -->
 <section class="hero">
   <div class="hero-ic" id="heroIc">
     <svg class="reel"><use href="#reel"/></svg>
@@ -266,54 +285,42 @@ footer .kucuk a{color:#7E9189}
   <div class="kaydir"><i></i><span data-i18n="hero.scroll">Kaydır</span></div>
 </section>
 
-<!-- ================= FILM SERIDI ================= -->
-<div class="film" aria-hidden="true">
-  <div class="ray" id="ray"></div>
-</div>
+<!-- ================= TEK SAHNE ================= -->
+<section class="sahne" id="sahne">
+  <div class="cerceve">
+    <div class="duzen">
+      <div class="sozler" id="sozler">
+        <article class="soz" data-i="0">
+          <span class="no">01</span>
+          <h3 data-i18n="s1.h">Fragmanı izle,<br>o filmi bekleyeni bul</h3>
+          <p data-i18n="s1.p">Vizyona girecek yapımların fragmanları ana sayfanda. Uygulamadan çıkmadan izle; video biter bitmez aynı filmi bekleyen seyirciler karşında.</p>
+          <img class="telm" src="img/2-fragman.webp" alt="" loading="lazy">
+        </article>
+        <article class="soz" data-i="1">
+          <span class="no">02</span>
+          <h3 data-i18n="s2.h">Zevk uyumunu<br>yüzdeyle gör</h3>
+          <p data-i18n="s2.p">Favorilerin, izleme listen ve türlerin karşılaştırılır. Karşındaki kişiyle uyumunu ve ortak filmlerinizi birlikte görürsün.</p>
+          <img class="telm" src="img/3-uyum.webp" alt="" loading="lazy">
+        </article>
+        <article class="soz" data-i="2">
+          <span class="no">03</span>
+          <h3 data-i18n="s3.h">Ortak listenizi kurun,<br>sonra yarışın</h3>
+          <p data-i18n="s3.p">Tanıştığın kişiyle tek bir izleme listesi. Sohbette on soruluk film yarışması; kim daha çok sinema biliyor, konuşurken öğrenirsiniz.</p>
+          <img class="telm" src="img/4-ortakliste.webp" alt="" loading="lazy">
+        </article>
+      </div>
 
-<!-- ================= VITRIN ================= -->
-<section class="vitrin" id="vitrin">
-  <div class="vitrin-ic">
-    <div class="sahne">
-      <div class="sahne-ic">
-        <div class="ray-dikey" id="rayDikey"></div>
-        <div class="tel">
-          <img data-s="0" class="acik" src="img/1-vitrin.webp" alt="" loading="lazy">
-          <img data-s="1" src="img/2-fragman.webp" alt="" loading="lazy">
-          <img data-s="2" src="img/3-uyum.webp" alt="" loading="lazy">
-          <img data-s="3" src="img/4-ortakliste.webp" alt="" loading="lazy">
-          <img data-s="4" src="img/5-yarisma.webp" alt="" loading="lazy">
-          <img data-s="5" src="img/6-eslesme.webp" alt="" loading="lazy">
+      <div class="tel-yuva">
+        <div class="tel" id="tel">
+          <div class="kaydirak" id="kaydirak">
+            <img src="img/2-fragman.webp" alt="">
+            <img src="img/3-uyum.webp" alt="">
+            <img src="img/4-ortakliste.webp" alt="">
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="adimlar">
-      <article class="adim acik" data-a="0"><span class="no">01</span>
-        <h3 data-i18n="v1.h">Fragman vitrini</h3>
-        <p data-i18n="v1.p">Vizyona girecek ve öne çıkan yapımların fragmanları ana sayfanda. Uygulamadan çıkmadan izle.</p>
-        <img class="telm" src="img/1-vitrin.webp" alt="" loading="lazy"></article>
-      <article class="adim" data-a="1"><span class="no">02</span>
-        <h3 data-i18n="v2.h">Fragmanın altından eşleş</h3>
-        <p data-i18n="v2.p">Video biter bitmez o filmi bekleyen seyirciler karşında. Konuşacak konu zaten belli.</p>
-        <img class="telm" src="img/2-fragman.webp" alt="" loading="lazy"></article>
-      <article class="adim" data-a="2"><span class="no">03</span>
-        <h3 data-i18n="v3.h">Zevk uyumu, yüzdeyle</h3>
-        <p data-i18n="v3.p">Favorilerin, listen ve türlerin karşılaştırılır. Uyumu ve ortak filmlerinizi birlikte görürsün.</p>
-        <img class="telm" src="img/3-uyum.webp" alt="" loading="lazy"></article>
-      <article class="adim" data-a="3"><span class="no">04</span>
-        <h3 data-i18n="v4.h">Ortak izleme listesi</h3>
-        <p data-i18n="v4.p">Tanıştığın kişiyle tek bir liste. Kim ne ekledi, hangisini izlediniz — hepsi ortak.</p>
-        <img class="telm" src="img/4-ortakliste.webp" alt="" loading="lazy"></article>
-      <article class="adim" data-a="4"><span class="no">05</span>
-        <h3 data-i18n="v5.h">Sohbette film yarışması</h3>
-        <p data-i18n="v5.p">Seçtiğiniz türden on soru. Kim daha çok sinema biliyor, konuşurken öğrenirsiniz.</p>
-        <img class="telm" src="img/5-yarisma.webp" alt="" loading="lazy"></article>
-      <article class="adim" data-a="5"><span class="no">06</span>
-        <h3 data-i18n="v6.h">Türünü seç, sahneye çık</h3>
-        <p data-i18n="v6.p">İki tür seç, o türü sevenleri gör. Rastgele değil — zevkine göre.</p>
-        <img class="telm" src="img/6-eslesme.webp" alt="" loading="lazy"></article>
-    </div>
+    <div class="sahne-ray"><i id="sahneRay"></i></div>
   </div>
 </section>
 
@@ -322,26 +329,26 @@ footer .kucuk a{color:#7E9189}
   <span data-i18n="serit.s">Repress Studio</span>
 </div>
 
+<!-- ================= NEDEN — fotograf yok ================= -->
 <section class="bolum" id="neden">
   <h2 class="bel" data-i18n="neden.h">Neden MAKARA?</h2>
   <p class="alt bel" data-i18n="neden.p">Boş bir “selam” yerine, konuşacak bir şeyle başla.</p>
-  <div class="izgara">
-    <div class="kart bel">
-      <svg class="ik" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-8.7C.7 8.9 2.2 5.5 5.3 5.5c1.9 0 3.1 1.1 3.9 2.3C10 6.6 11.2 5.5 13 5.5c3.1 0 4.6 3.4 2.8 6.8C19 16.5 12 21 12 21z"/></svg>
+  <div class="satirlar">
+    <div class="satir bel"><span class="sira">01</span>
       <h4 data-i18n="n1.h">Zevke göre eşleşme</h4>
-      <p data-i18n="n1.p">Rastgele değil; film ve dizi zevkine göre. Ortak beğeni gerçek bir başlangıç.</p></div>
-    <div class="kart bel">
-      <svg class="ik" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
+      <p data-i18n="n1.p">Rastgele değil; film ve dizi zevkine göre.</p></div>
+    <div class="satir bel"><span class="sira">02</span>
       <h4 data-i18n="n2.h">“Şu an izliyorum” notları</h4>
-      <p data-i18n="n2.p">Ne izlediğini paylaş; kısa ömürlü notlarla anlık bir bağ kur.</p></div>
-    <div class="kart bel">
-      <svg class="ik" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+      <p data-i18n="n2.p">Kısa ömürlü notlarla anlık bir bağ.</p></div>
+    <div class="satir bel"><span class="sira">03</span>
       <h4 data-i18n="n3.h">İnceleme ve puanlama</h4>
-      <p data-i18n="n3.p">İzlediğin filmleri incele, puanla, kendi eleştirmen profilini kur.</p></div>
-    <div class="kart bel">
-      <svg class="ik" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>
-      <h4 data-i18n="n4.h">Güvenli alan</h4>
-      <p data-i18n="n4.p">Engelleme, şikayet ve görsel denetimiyle kontrollü, saygılı bir topluluk.</p></div>
+      <p data-i18n="n3.p">Kendi eleştirmen profilini kur.</p></div>
+    <div class="satir bel"><span class="sira">04</span>
+      <h4 data-i18n="n4.h">Vizyon takvimi</h4>
+      <p data-i18n="n4.p">Yaklaşan filmleri takip et, listene ekle.</p></div>
+    <div class="satir bel"><span class="sira">05</span>
+      <h4 data-i18n="n5.h">Güvenli alan</h4>
+      <p data-i18n="n5.p">Engelleme, şikayet ve görsel denetimi.</p></div>
   </div>
 </section>
 
@@ -379,93 +386,6 @@ footer .kucuk a{color:#7E9189}
 </footer>
 
 <script>
-const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-/* ---------------- ust cubuk ---------------- */
-const bar = document.getElementById('bar');
-addEventListener('scroll', () => bar.classList.toggle('kaydi', scrollY > 12), {passive:true});
-
-/* ---------------- film seridi ----------------
-   Kareler JS ile kuruluyor ve LISTE IKI KEZ yaziliyor: marquee
-   -50% kayinca ikinci kopya birincinin yerine oturuyor, dikis
-   gorunmuyor. HTML'de elle iki kez yazmak bakimi zorlastirirdi. */
-const kareler = ['1-vitrin','3-uyum','5-yarisma','2-fragman','8-sosyal','4-ortakliste','6-eslesme'];
-const ray = document.getElementById('ray');
-if (ray) {
-  const kur = () => kareler.map(k =>
-    `<div class="kare"><img src="img/${k}.webp" alt="" loading="lazy"></div>`).join('');
-  ray.innerHTML = kur() + kur();
-}
-
-/* ---------------- hero paralaksi ----------------
-   Kaydirdikca hero icerigi yavaslayarak yukari gidiyor; arka plan
-   sabit kaldigi icin derinlik hissi olusuyor. Katsayi kucuk (.28) —
-   fazlasi mide bulandiriyor. */
-const heroIc = document.getElementById('heroIc');
-if (heroIc && !azHareket) {
-  let bekliyor = false;
-  addEventListener('scroll', () => {
-    if (bekliyor) return;
-    bekliyor = true;
-    requestAnimationFrame(() => {
-      const y = Math.min(scrollY, innerHeight);
-      heroIc.style.setProperty('--kaydirma', (y * -0.28) + 'px');
-      heroIc.style.opacity = String(Math.max(0, 1 - y / (innerHeight * 0.8)));
-      bekliyor = false;
-    });
-  }, {passive:true});
-}
-
-/* ---------------- yapisan vitrin + ilerleme rayi ---------------- */
-const adimlar = document.querySelectorAll('.adim');
-const ekranlar = document.querySelectorAll('.tel img');
-const rayDikey = document.getElementById('rayDikey');
-if (rayDikey) rayDikey.innerHTML = [...adimlar].map(() => '<span></span>').join('');
-const cizgiler = rayDikey ? rayDikey.children : [];
-if (cizgiler.length) cizgiler[0].classList.add('acik');
-
-if ('IntersectionObserver' in window) {
-  const g = new IntersectionObserver((girisler) => {
-    for (const gr of girisler) {
-      if (!gr.isIntersecting) continue;
-      const i = gr.target.dataset.a;
-      adimlar.forEach(a => a.classList.toggle('acik', a.dataset.a === i));
-      ekranlar.forEach(e => e.classList.toggle('acik', e.dataset.s === i));
-      [...cizgiler].forEach((c, n) => c.classList.toggle('acik', String(n) === i));
-    }
-  }, {rootMargin:'-50% 0px -50% 0px', threshold:0});
-  adimlar.forEach(a => g.observe(a));
-
-  /* Kaydirinca beliren bloklar — bir kez tetikleniyor. */
-  const b = new IntersectionObserver((girisler, gozlemci) => {
-    for (const gr of girisler) {
-      if (!gr.isIntersecting) continue;
-      gr.target.classList.add('gorundu');
-      gozlemci.unobserve(gr.target);
-    }
-  }, {rootMargin:'0px 0px -12% 0px', threshold:.15});
-  document.querySelectorAll('.bel').forEach((e, i) => {
-    e.style.transitionDelay = (i % 4) * 70 + 'ms';
-    b.observe(e);
-  });
-} else {
-  document.querySelectorAll('.bel').forEach(e => e.classList.add('gorundu'));
-}
-
-/* ---------------- imlec spotu ----------------
-   Yalniz gercek fare varsa: dokunmatikte anlamsiz, ayrica her
-   dokunusta zipliyor. */
-if (matchMedia('(pointer: fine)').matches && !azHareket) {
-  const spot = document.getElementById('spot');
-  addEventListener('pointermove', (e) => {
-    spot.classList.add('acik');
-    spot.style.setProperty('--mx', e.clientX + 'px');
-    spot.style.setProperty('--my', e.clientY + 'px');
-  }, {passive:true});
-  addEventListener('pointerleave', () => spot.classList.remove('acik'));
-}
-
-/* ---------------- TR / EN ---------------- */
 const T = {
  "meta.title":["MAKARA — Film ve dizi zevkine göre sinema topluluğu","MAKARA — A film community built on your taste"],
  "nav.how":["Nasıl çalışır","How it works"],
@@ -476,30 +396,26 @@ const T = {
  "hero.scroll":["Kaydır","Scroll"],
  "store.get":["İndir","Get it on"],
  "store.soon":["Yakında","Coming soon"],
- "v1.h":["Fragman vitrini","Trailer showcase"],
- "v1.p":["Vizyona girecek ve öne çıkan yapımların fragmanları ana sayfanda. Uygulamadan çıkmadan izle.","Trailers for upcoming and trending titles, right on your home screen. Watch without leaving the app."],
- "v2.h":["Fragmanın altından eşleş","Match under the trailer"],
- "v2.p":["Video biter bitmez o filmi bekleyen seyirciler karşında. Konuşacak konu zaten belli.","The moment it ends, you see everyone else waiting for that film. The topic is already there."],
- "v3.h":["Zevk uyumu, yüzdeyle","Taste match, in percent"],
- "v3.p":["Favorilerin, listen ve türlerin karşılaştırılır. Uyumu ve ortak filmlerinizi birlikte görürsün.","Your favorites, watchlist and genres are compared. You see the match and the films you share."],
- "v4.h":["Ortak izleme listesi","A shared watchlist"],
- "v4.p":["Tanıştığın kişiyle tek bir liste. Kim ne ekledi, hangisini izlediniz — hepsi ortak.","One list with the person you meet. Who added what, what you've watched — all shared."],
- "v5.h":["Sohbette film yarışması","A film quiz in chat"],
- "v5.p":["Seçtiğiniz türden on soru. Kim daha çok sinema biliyor, konuşurken öğrenirsiniz.","Ten questions from a genre you pick. You find out who knows more cinema while you talk."],
- "v6.h":["Türünü seç, sahneye çık","Pick your genre"],
- "v6.p":["İki tür seç, o türü sevenleri gör. Rastgele değil — zevkine göre.","Choose two genres and see who loves them too. Not random — by taste."],
+ "s1.h":["Fragmanı izle,<br>o filmi bekleyeni bul","Watch the trailer,<br>find who's waiting for it"],
+ "s1.p":["Vizyona girecek yapımların fragmanları ana sayfanda. Uygulamadan çıkmadan izle; video biter bitmez aynı filmi bekleyen seyirciler karşında.","Trailers for upcoming titles sit on your home screen. Watch without leaving the app — the moment the video ends, everyone else waiting for that film is right there."],
+ "s2.h":["Zevk uyumunu<br>yüzdeyle gör","See your taste match<br>as a percentage"],
+ "s2.p":["Favorilerin, izleme listen ve türlerin karşılaştırılır. Karşındaki kişiyle uyumunu ve ortak filmlerinizi birlikte görürsün.","Your favorites, watchlist and genres are compared. You see the match with the other person and the films you both love."],
+ "s3.h":["Ortak listenizi kurun,<br>sonra yarışın","Build a shared list,<br>then compete"],
+ "s3.p":["Tanıştığın kişiyle tek bir izleme listesi. Sohbette on soruluk film yarışması; kim daha çok sinema biliyor, konuşurken öğrenirsiniz.","One watchlist with the person you meet. Then a ten-question film quiz in chat — you find out who knows more cinema while you talk."],
  "serit.p":["Aynı filmleri sevenler birbirini bulur.","People who love the same films find each other."],
  "serit.s":["Repress Studio","Repress Studio"],
  "neden.h":["Neden MAKARA?","Why MAKARA?"],
  "neden.p":["Boş bir “selam” yerine, konuşacak bir şeyle başla.","Start with something to talk about, not an empty “hey”."],
  "n1.h":["Zevke göre eşleşme","Matching by taste"],
- "n1.p":["Rastgele değil; film ve dizi zevkine göre. Ortak beğeni gerçek bir başlangıç.","Not random — by your taste in film and TV. Shared favorites are a real starting point."],
+ "n1.p":["Rastgele değil; film ve dizi zevkine göre.","Not random — by your taste in film and TV."],
  "n2.h":["“Şu an izliyorum” notları","“Now watching” notes"],
- "n2.p":["Ne izlediğini paylaş; kısa ömürlü notlarla anlık bir bağ kur.","Share what you're watching; short-lived notes spark an instant connection."],
+ "n2.p":["Kısa ömürlü notlarla anlık bir bağ.","Short-lived notes for an instant connection."],
  "n3.h":["İnceleme ve puanlama","Reviews and ratings"],
- "n3.p":["İzlediğin filmleri incele, puanla, kendi eleştirmen profilini kur.","Review and rate what you watch, and build your own critic profile."],
- "n4.h":["Güvenli alan","A safe space"],
- "n4.p":["Engelleme, şikayet ve görsel denetimiyle kontrollü, saygılı bir topluluk.","A controlled, respectful community with blocking, reporting and image moderation."],
+ "n3.p":["Kendi eleştirmen profilini kur.","Build your own critic profile."],
+ "n4.h":["Vizyon takvimi","Release calendar"],
+ "n4.p":["Yaklaşan filmleri takip et, listene ekle.","Follow upcoming films and add them to your list."],
+ "n5.h":["Güvenli alan","A safe space"],
+ "n5.p":["Engelleme, şikayet ve görsel denetimi.","Blocking, reporting and image moderation."],
  "sss.h":["Sıkça sorulanlar","FAQ"],
  "s1.q":["MAKARA nasıl eşleştiriyor?","How does MAKARA match people?"],
  "s1.a":["Film ve dizi zevkine göre. Favori yapımların ve tercihlerin üzerinden seninle ortak beğenilere sahip kişileri önerir; böylece konuşacak bir şeyin baştan olur.","By taste in film and TV. Based on your favorites and preferences it suggests people who share your taste — so you have something to talk about from the start."],
@@ -522,6 +438,7 @@ const T = {
  "f.tmdb":["Bu ürün <a href=\"https://www.themoviedb.org/\">TMDB</a> API'sini kullanır ancak TMDB tarafından onaylanmamış veya sertifikalanmamıştır.","This product uses the <a href=\"https://www.themoviedb.org/\">TMDB</a> API but is not endorsed or certified by TMDB."]
 };
 
+/* ---------------- dil ---------------- */
 function dilUygula(dil){
   const s = dil === 'en' ? 1 : 0;
   document.documentElement.lang = dil;
@@ -547,6 +464,156 @@ try {
     || ((navigator.language || '').toLowerCase().startsWith('tr') ? 'tr' : 'en');
 } catch (e) {}
 if (baslangic === 'en') dilUygula('en');
+
+/* ===============================================================
+   HAREKET MOTORU
+
+   Tek bir kaydirma degeri var, o da YUMUSATILIYOR (lerp) ve
+   sahnedeki her sey ondan turetiliyor. Ayrik adim, sinif ziplamasi
+   yok: iki kare arasinda her an bir ara deger var. "Kati" hissi
+   onceki surumde buradan geliyordu.
+
+   Not: kaydirmanin kendisine dokunmuyoruz (wheel hijack yok).
+   Tarayicinin dogal kaydirmasi duruyor, yalnizca ANIMASYONLAR
+   gecikmeli takip ediyor — atalet hissi oradan geliyor ve
+   dokunmatikte de bozulmuyor.
+   =============================================================== */
+const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const darEkran = () => innerWidth <= 900;
+
+const kis = (x, a, b) => Math.min(b, Math.max(a, x));
+const yumusat = (x) => x * x * (3 - 2 * x);   // smoothstep
+
+/* --- ust cubuk + sayfa ilerlemesi --- */
+const bar = document.getElementById('bar');
+const ilerlemeCizgi = document.getElementById('ilerleme');
+
+/* --- sahne ogeleri --- */
+const sahne = document.getElementById('sahne');
+const tel = document.getElementById('tel');
+const cerceve = sahne ? sahne.querySelector('.cerceve') : null;
+const kaydirak = document.getElementById('kaydirak');
+const ekranlar = kaydirak ? [...kaydirak.querySelectorAll('img')] : [];
+const sozler = [...document.querySelectorAll('.soz')];
+const sahneRay = document.getElementById('sahneRay');
+const heroIc = document.getElementById('heroIc');
+
+/* Hedef ve suanki deger — aradaki fark her karede kapatiliyor. */
+let hedefY = 0, suY = 0, calisiyor = false;
+
+function olc() {
+  hedefY = scrollY || document.documentElement.scrollTop;
+  if (!calisiyor) { calisiyor = true; requestAnimationFrame(ciz); }
+}
+
+function ciz() {
+  // 0.09: dusuk deger = daha agir, daha "smooth". 0.2 uzeri sertlesiyor.
+  suY += (hedefY - suY) * (azHareket ? 1 : 0.09);
+  if (Math.abs(hedefY - suY) < 0.4) suY = hedefY;
+
+  const vh = innerHeight;
+
+  /* --- ust cubuk --- */
+  bar.classList.toggle('kaydi', suY > 12);
+  if (ilerlemeCizgi) {
+    const toplam = document.body.scrollHeight - vh;
+    ilerlemeCizgi.style.width = (toplam > 0 ? (suY / toplam) * 100 : 0) + '%';
+  }
+
+  /* --- hero: suzulerek cikiyor --- */
+  if (heroIc && !azHareket) {
+    const o = kis(suY / (vh * 0.85), 0, 1);
+    heroIc.style.transform = 'translate3d(0,' + (-o * 130) + 'px,0)';
+    heroIc.style.opacity = String(1 - yumusat(o));
+  }
+
+  /* --- sahne: her sey tek bir ilerlemeden --- */
+  if (sahne && cerceve && !azHareket && !darEkran()) {
+    const ust = sahne.offsetTop;
+    const yol = sahne.offsetHeight - vh;      // yapisik kaldigi mesafe
+    /* Basta ve sonda pay birakiyoruz: hareket, bolum yapisik
+       kalmayi birakmadan ONCE bitsin. Paysiz birakilirsa ucuncu bolum
+       tam okunur hale geldigi anda yukari kayip gidiyor. */
+    const hamP = kis((suY - ust) / (yol || 1), 0, 1);
+    const p = kis((hamP - 0.05) / 0.78, 0, 1);
+
+    // Telefon: suzuluyor, hafifce egiliyor ve doniyor.
+    tel.style.setProperty('--suzul', (Math.sin(p * Math.PI) * -22).toFixed(2) + 'px');
+    tel.style.setProperty('--egim', ((0.5 - p) * 5).toFixed(2) + 'deg');
+    tel.style.setProperty('--don', ((p - 0.5) * 9).toFixed(2) + 'deg');
+    cerceve.style.setProperty('--isik', (Math.sin(p * Math.PI) * -36).toFixed(1) + 'px');
+    if (sahneRay) sahneRay.style.width = (p * 100).toFixed(2) + '%';
+
+    /* Ham ilerlemeyi bolum basi/sonunda yavaslatiyoruz: yazi
+       okunacak kadar duruyor, gecis tek hamlede oluyor. */
+    const n = ekranlar.length;
+    const ham = p * (n - 1);
+    const taban = Math.min(Math.floor(ham), Math.max(n - 2, 0));
+    const k = kis(ham - taban, 0, 1);
+    const konum = taban + k * k * k * (k * (k * 6 - 15) + 10);  // smootherstep
+    kaydirak.style.setProperty('--gec', konum.toFixed(4));
+    /* METIN capraz gecmez, DEVREDER.
+       Fotografta ust uste binme bir erime; yazida baski hatasi gibi
+       duruyor. Bu yuzden yazinin bandi dar (1.9) ve ustune odak
+       kaymasi var: giden yazi bulaniklasarak cikiyor. Iki bolum
+       arasinda kisa bir bosluk kaliyor — sahne degisimi orada. */
+    for (let i = 0; i < sozler.length; i++) {
+      const uzak = Math.abs(konum - i);
+      const gr = yumusat(kis(1 - uzak * 1.9, 0, 1));
+      sozler[i].style.opacity = gr.toFixed(3);
+      sozler[i].style.setProperty('--ty', ((konum - i) * 46).toFixed(1) + 'px');
+      sozler[i].style.setProperty('--bulanik', ((1 - gr) * 7).toFixed(2) + 'px');
+    }
+  }
+
+  if (suY !== hedefY) requestAnimationFrame(ciz);
+  else calisiyor = false;
+}
+
+addEventListener('scroll', olc, {passive:true});
+addEventListener('resize', () => { olc(); ilkKare(); }, {passive:true});
+
+/* Dar ekranda ve hareket azaltmada sahne akip gidiyor: her soz
+   kendi gorseliyle alt alta duruyor, telefon gizli. */
+function ilkKare(){
+  if (darEkran() || azHareket) {
+    sozler.forEach(s => { s.style.opacity = '1';
+      s.style.removeProperty('--ty'); s.style.removeProperty('--bulanik'); });
+    kaydirak && kaydirak.style.setProperty('--gec', '0');
+  } else if (sozler[0]) {
+    sozler[0].style.opacity = '1';
+  }
+}
+ilkKare();
+olc();
+
+/* --- beliren bloklar --- */
+if ('IntersectionObserver' in window) {
+  const b = new IntersectionObserver((g, o) => {
+    for (const x of g) {
+      if (!x.isIntersecting) continue;
+      x.target.classList.add('gorundu');
+      o.unobserve(x.target);
+    }
+  }, {rootMargin:'0px 0px -10% 0px', threshold:.12});
+  document.querySelectorAll('.bel').forEach((e, i) => {
+    e.style.transitionDelay = (i % 5) * 90 + 'ms';
+    b.observe(e);
+  });
+} else {
+  document.querySelectorAll('.bel').forEach(e => e.classList.add('gorundu'));
+}
+
+/* --- imlec spotu (yalniz gercek fare) --- */
+if (matchMedia('(pointer: fine)').matches && !azHareket) {
+  const spot = document.getElementById('spot');
+  addEventListener('pointermove', (e) => {
+    spot.classList.add('acik');
+    spot.style.setProperty('--mx', e.clientX + 'px');
+    spot.style.setProperty('--my', e.clientY + 'px');
+  }, {passive:true});
+  addEventListener('pointerleave', () => spot.classList.remove('acik'));
+}
 </script>
 </body>
 </html>
