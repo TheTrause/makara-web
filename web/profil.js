@@ -18,14 +18,14 @@
   var oturum = null;
   try { oturum = (await M.sb.auth.getSession()).data.session; } catch (e) { /* yok */ }
 
-  // Google dönüşü: ?code= (PKCE) supabase-js tarafından oturuma çevrildi;
+  // Google/Apple dönüşü: ?code= (PKCE) supabase-js tarafından oturuma çevrildi;
   // tek kullanımlık kodu ve olası hata parametrelerini adresten temizle.
   var q = new URLSearchParams(location.search);
   if (q.has('code') || q.has('error') || q.has('error_description')) {
-    var googleHata = !oturum && (q.has('error') || q.has('code'));
+    var oauthHata = !oturum && (q.has('error') || q.has('code'));
     ['code', 'error', 'error_code', 'error_description', 'state'].forEach(function (k) { q.delete(k); });
     history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q.toString() : '') + location.hash);
-    if (googleHata) { location.replace(M.girisYolu + '?hata=google'); return; }
+    if (oauthHata) { location.replace(M.girisYolu + '?hata=oauth'); return; }
   }
   M.ustCubuk(oturum);
   M.altBilgi();

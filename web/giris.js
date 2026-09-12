@@ -23,29 +23,43 @@
   var dgm = document.getElementById('giris-dgm');
   var hata = document.getElementById('giris-hata');
   var googleDgm = document.getElementById('google-dgm');
+  var appleDgm = document.getElementById('apple-dgm');
+
+  /* Apple web girisi Supabase'de "Secret Key (for OAuth)" + Services ID
+     girilince calisir; o zamana kadar dugme gizli kalir. Ayar bitince true. */
+  var APPLE_ACIK = false;
 
   function goster(k) { hata.textContent = t(k); hata.hidden = false; }
 
-  // Google'dan hata/iptal ile dönüldüyse (profil sayfası buraya ?hata=google ile yollar).
-  if (new URLSearchParams(location.search).get('hata') === 'google') goster('h_google');
+  // Google/Apple'dan hata ya da iptalle dönüldüyse (profil sayfası ?hata=oauth ile yollar).
+  var h = new URLSearchParams(location.search).get('hata');
+  if (h === 'oauth' || h === 'google') goster('h_oauth');
 
-  /* Google: uygulamayla ayni Supabase OAuth akisi. Donus adresi kendi
-     sitemiz (Supabase Redirect URL listesinde); PKCE kodu orada oturuma cevrilir. */
-  googleDgm.addEventListener('click', async function () {
-    hata.hidden = true;
-    googleDgm.disabled = true;
-    try {
-      var r = await M.sb.auth.signInWithOAuth({
-        provider: 'google',
-        options: { redirectTo: location.origin + hedef() }
-      });
-      if (r.error) { goster('h_google'); googleDgm.disabled = false; }
-      // Başarıda tarayıcı Google'a gider; bu sayfa kapanır.
-    } catch (e) {
-      goster('h_google');
-      googleDgm.disabled = false;
-    }
-  });
+  /* Uygulamayla ayni Supabase OAuth akisi. Donus adresi kendi sitemiz
+     (Supabase Redirect URL listesinde); PKCE kodu orada oturuma cevrilir. */
+  function oauthBagla(dugme, saglayici) {
+    dugme.addEventListener('click', async function () {
+      hata.hidden = true;
+      dugme.disabled = true;
+      try {
+        var r = await M.sb.auth.signInWithOAuth({
+          provider: saglayici,
+          options: { redirectTo: location.origin + hedef() }
+        });
+        if (r.error) { goster('h_oauth'); dugme.disabled = false; }
+        // Başarıda tarayıcı sağlayıcıya gider; bu sayfa kapanır.
+      } catch (e) {
+        goster('h_oauth');
+        dugme.disabled = false;
+      }
+    });
+  }
+  oauthBagla(googleDgm, 'google');
+  if (APPLE_ACIK) {
+    appleDgm.hidden = false;
+    document.getElementById('apple-not').hidden = true;
+    oauthBagla(appleDgm, 'apple');
+  }
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();

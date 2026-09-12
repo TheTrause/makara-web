@@ -59,6 +59,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .dgm.google:hover{filter:brightness(.96)}
 .dgm.google[disabled]{opacity:.6;cursor:wait}
 .google-g{width:18px;height:18px;flex:none}
+.giris-kutu .dgm.apple{margin-top:10px}
+.dgm.apple{gap:10px;background:#000;color:#fff;border-color:rgba(255,255,255,.55);font-weight:600}
+.dgm.apple:hover{filter:brightness(1.25)}
+.dgm.apple[disabled]{opacity:.6;cursor:wait}
+.apple-logo{width:15px;height:18px;flex:none}
 .ayrac{display:flex;align-items:center;gap:12px;margin-top:22px;color:var(--muted);font-size:12.5px}
 .ayrac::before,.ayrac::after{content:"";flex:1;height:1px;background:var(--line)}
 .giris-kutu .dgm[disabled]{opacity:.6;cursor:wait}
