@@ -5,8 +5,11 @@
   'use strict';
 
   var A = window.MAKARA_AYAR;
+  /* PKCE: Google donusunde adreste yalniz tek kullanimlik ?code= olur
+     (erisim anahtari adres cubuguna/gecmise dusmez); supabase-js onu
+     acilista oturuma cevirir. E-posta+sifre girisi bundan etkilenmez. */
   var sb = window.supabase.createClient(A.supabaseUrl, A.supabaseAnahtar, {
-    auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false }
+    auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, flowType: 'pkce' }
   });
 
   var dil = 'tr';
@@ -35,6 +38,11 @@
     h_ag: ['Bağlantı kurulamadı. İnternetini kontrol edip tekrar dene.',
       'Could not connect. Check your connection and try again.'],
     h_bos: ['E-posta ve şifreni gir.', 'Enter your email and password.'],
+    google_dgm: ['Google ile devam et', 'Continue with Google'],
+    veya: ['veya e-posta ile', 'or with email'],
+    h_google: ['Google ile giriş tamamlanamadı. Tekrar dene.', 'Google sign-in could not be completed. Try again.'],
+    g_apple: ['Apple ile kaydolduysan web girişi yakında geliyor; şimdilik uygulamayı kullan.',
+      'If you signed up with Apple, web sign-in is coming soon; use the app for now.'],
     g_hesap_yok: ['Hesabın yok mu? Önce MAKARA uygulamasını indir.', 'No account yet? Get the MAKARA app first.'],
     g_sifre: ['Şifreni mi unuttun? Uygulamanın giriş ekranından sıfırlayabilirsin.',
       'Forgot your password? Reset it from the sign-in screen in the app.'],

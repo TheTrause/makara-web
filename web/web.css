@@ -55,6 +55,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   background:var(--koyu);color:var(--cream);font:inherit;font-size:15px;outline:none;transition:border-color .25s}
 .alan input:focus{border-color:var(--gold-soft)}
 .giris-kutu .dgm{width:100%;margin-top:22px;padding:13px}
+.dgm.google{gap:10px;background:#fff;color:#1f1f1f;border-color:#dadce0;font-weight:600}
+.dgm.google:hover{filter:brightness(.96)}
+.dgm.google[disabled]{opacity:.6;cursor:wait}
+.google-g{width:18px;height:18px;flex:none}
+.ayrac{display:flex;align-items:center;gap:12px;margin-top:22px;color:var(--muted);font-size:12.5px}
+.ayrac::before,.ayrac::after{content:"";flex:1;height:1px;background:var(--line)}
 .giris-kutu .dgm[disabled]{opacity:.6;cursor:wait}
 .hata{margin-top:14px;padding:11px 14px;border-radius:12px;background:rgba(138,50,50,.18);
   border:1px solid rgba(138,50,50,.5);color:#F0D6CF;font-size:13.5px}

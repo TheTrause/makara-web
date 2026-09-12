@@ -22,8 +22,30 @@
   var form = document.getElementById('giris-form');
   var dgm = document.getElementById('giris-dgm');
   var hata = document.getElementById('giris-hata');
+  var googleDgm = document.getElementById('google-dgm');
 
   function goster(k) { hata.textContent = t(k); hata.hidden = false; }
+
+  // Google'dan hata/iptal ile dönüldüyse (profil sayfası buraya ?hata=google ile yollar).
+  if (new URLSearchParams(location.search).get('hata') === 'google') goster('h_google');
+
+  /* Google: uygulamayla ayni Supabase OAuth akisi. Donus adresi kendi
+     sitemiz (Supabase Redirect URL listesinde); PKCE kodu orada oturuma cevrilir. */
+  googleDgm.addEventListener('click', async function () {
+    hata.hidden = true;
+    googleDgm.disabled = true;
+    try {
+      var r = await M.sb.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: location.origin + hedef() }
+      });
+      if (r.error) { goster('h_google'); googleDgm.disabled = false; }
+      // Başarıda tarayıcı Google'a gider; bu sayfa kapanır.
+    } catch (e) {
+      goster('h_google');
+      googleDgm.disabled = false;
+    }
+  });
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
