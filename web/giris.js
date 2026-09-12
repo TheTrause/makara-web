@@ -27,7 +27,7 @@
 
   /* Apple web girisi Supabase'de "Secret Key (for OAuth)" + Services ID
      girilince calisir; o zamana kadar dugme gizli kalir. Ayar bitince true. */
-  var APPLE_ACIK = false;
+  var APPLE_ACIK = false || new URLSearchParams(location.search).get('apple') === '1'; // test: /giris?apple=1
 
   function goster(k) { hata.textContent = t(k); hata.hidden = false; }
 
