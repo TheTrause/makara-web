@@ -104,6 +104,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:12;opa
 .bar .indir{padding:6px 15px;border-radius:980px;background:var(--gold);color:#08110E;
   font-size:12.5px;font-weight:600;letter-spacing:.01em;transition:filter .35s,transform .35s}
 .bar .indir:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.bar .giris-bag{font-size:12.5px;color:rgba(243,234,217,.78);transition:color .35s}
+.bar .giris-bag:hover{color:var(--cream)}
 @media(max-width:880px){.bar nav{display:none}}
 
 #ilerleme{position:fixed;top:0;left:0;height:2px;width:0;z-index:21;
@@ -309,6 +311,7 @@ footer .kucuk a{color:#7E9189}
   </nav>
   <div class="sag">
     <div class="dil"><button data-dil="tr" class="acik">TR</button><span>·</span><button data-dil="en">EN</button></div>
+    <a class="giris-bag" href="/giris.html" data-i18n="cta.login">Giriş</a>
     <a class="indir" href="https://play.google.com/store/apps/details?id=social.makara.app"
        target="_blank" rel="noopener" data-i18n="cta.get">İndir</a>
   </div>
@@ -515,6 +518,7 @@ const T = {
  "nav.prem":["Premium","Premium"],
  "nav.faq":["SSS","FAQ"],
  "cta.get":["İndir","Get"],
+ "cta.login":["Giriş","Sign in"],
  "hero.h1":["İzlediğin her filmi<br><span>bir hikâyeye dönüştür.</span>","Turn every film you watch<br><span>into a story.</span>"],
  "hero.lead":["Sinemaseverlerin sosyal platformu. Film günlüğünü tut, fragman izle, zevkini keşfet.","The social platform for film lovers. Keep your film diary, watch trailers, discover your taste."],
  "hero.play":["Google Play'den indir","Get it on Google Play"],

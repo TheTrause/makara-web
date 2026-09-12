@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giriş · MAKARA</title>
+<meta name="description" content="MAKARA hesabınla giriş yap: film günlüğün, incelemelerin ve takip ağın.">
+<meta name="theme-color" content="#050D0B">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/web/web.css">
+</head>
+<body>
+<header class="ust">
+  <a class="marka" href="/"><img src="/favicon-32x32.png" alt="">MAKARA</a>
+  <nav class="ust-sag" id="ust-sag"></nav>
+</header>
+
+<main class="kap">
+  <div class="giris-sahne">
+    <form class="giris-kutu" id="giris-form" novalidate>
+      <span class="etiket">MAKARA</span>
+      <h1 data-t="g_baslik">Tekrar hoş geldin</h1>
+      <p class="aciklama" data-t="g_alt">MAKARA hesabınla giriş yap.</p>
+      <label class="alan"><span data-t="eposta">E-posta</span>
+        <input name="eposta" type="email" autocomplete="email" inputmode="email" required></label>
+      <label class="alan"><span data-t="sifre">Şifre</span>
+        <input name="sifre" type="password" autocomplete="current-password" required></label>
+      <p class="hata" id="giris-hata" role="alert" hidden></p>
+      <button class="dgm dolu" id="giris-dgm" type="submit" data-t="g_dgm">Giriş yap</button>
+      <div class="giris-notlar">
+        <p data-t="g_sifre">Şifreni mi unuttun? Uygulamanın giriş ekranından sıfırlayabilirsin.</p>
+        <p data-t="g_not">Web bir okuma penceresidir.</p>
+      </div>
+    </form>
+  </div>
+  <div class="giris-alt">
+    <p data-t="g_hesap_yok">Hesabın yok mu? Önce MAKARA uygulamasını indir.</p>
+    <div id="magaza"></div>
+  </div>
+</main>
+
+<footer class="alt" id="alt"></footer>
+
+<script src="/web/supabase.js"></script>
+<script src="/web/ayar.js"></script>
+<script src="/web/ortak.js"></script>
+<script src="/web/giris.js"></script>
+</body>
+</html>

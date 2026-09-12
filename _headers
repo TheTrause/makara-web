@@ -1,0 +1,23 @@
+# Cloudflare Pages yanit basliklari (vercel.json "headers" karsiligi).
+# Not: Functions yanitlarina (afis vekili) uygulanmaz; o kendi basliklarini koyar.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/giris
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://jubyzpkwrrnfpfigakfx.supabase.co https://image.tmdb.org; connect-src 'self' https://jubyzpkwrrnfpfigakfx.supabase.co wss://jubyzpkwrrnfpfigakfx.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  Cache-Control: no-cache
+
+/profil
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://jubyzpkwrrnfpfigakfx.supabase.co https://image.tmdb.org; connect-src 'self' https://jubyzpkwrrnfpfigakfx.supabase.co wss://jubyzpkwrrnfpfigakfx.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  Cache-Control: no-cache
+
+/u/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://jubyzpkwrrnfpfigakfx.supabase.co https://image.tmdb.org; connect-src 'self' https://jubyzpkwrrnfpfigakfx.supabase.co wss://jubyzpkwrrnfpfigakfx.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  Cache-Control: no-cache
+
+/web/*
+  Cache-Control: public, max-age=3600

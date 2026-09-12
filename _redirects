@@ -1,0 +1,4 @@
+# Cloudflare Pages yonlendirmeleri (vercel.json "rewrites" karsiligi).
+# 200 = adres cubugu degismeden profil sayfasi sunulur (/u/kullaniciadi).
+# /giris ve /profil icin kural gerekmez: Pages giris.html'i /giris olarak sunar.
+/u/:ad  /profil  200
