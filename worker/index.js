@@ -1,13 +1,14 @@
-/* Afis vekili — /afis/<boy>/<dosya> -> https://image.tmdb.org/t/p/<boy>/<dosya>
+/* MAKARA web — Cloudflare Worker.
  *
+ * Yalniz /afis/* buraya gelir (wrangler.jsonc run_worker_first); diger her
+ * sey statik dosyadir ve env.ASSETS'ten sunulur.
+ *
+ * Afis vekili: /afis/<boy>/<dosya> -> https://image.tmdb.org/t/p/<boy>/<dosya>
  * Neden: Turkiye'de image.tmdb.org DNS duzeyinde engelli; girissiz profil
- * sayfasinda (uygulamanin oturum isteyen vekili kullanilamaz) afisler bu
- * yoldan, Cloudflare'in agi uzerinden gelir.
- *
- * Guvenlik: acik vekil DEGIL. Hedef sabit (yalniz image.tmdb.org/t/p/),
- * boy beyaz listede, dosya adi TMDB bicimi ([A-Za-z0-9_-].jpg|png) disinda
- * hicbir sey kabul edilmez; sorgu dizesi, cerez ve istek basliklari
- * iletilmez; yalniz resim turunde yanit geri verilir.
+ * sayfasinda afisler Cloudflare agi uzerinden gelir.
+ * Guvenlik: acik vekil DEGIL. Hedef sabit, boy beyaz listede, dosya adi
+ * yalniz TMDB bicimi; sorgu dizesi, cerez ve istek basliklari iletilmez;
+ * yalniz resim turunde yanit geri verilir.
  */
 const BOYLAR = new Set(['w92', 'w154', 'w185', 'w342', 'w500', 'w780']);
 const DOSYA = /^[A-Za-z0-9_-]+\.(?:jpg|png)$/;
@@ -16,16 +17,19 @@ const RESIM = /^image\/(?:jpeg|png|webp)\b/;
 function bulunamadi(sure) {
   return new Response('Not Found', {
     status: 404,
-    headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'public, max-age=' + (sure || 300),
-      'X-Content-Type-Options': 'nosniff' },
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'public, max-age=' + (sure || 300),
+      'X-Content-Type-Options': 'nosniff',
+    },
   });
 }
 
-export async function onRequest({ request, params }) {
+async function afis(request, url) {
   if (request.method !== 'GET' && request.method !== 'HEAD') {
     return new Response('Method Not Allowed', { status: 405, headers: { Allow: 'GET, HEAD' } });
   }
-  const parca = Array.isArray(params.path) ? params.path : [];
+  const parca = url.pathname.split('/').slice(2); // ['', 'afis', boy, dosya]
   if (parca.length !== 2 || !BOYLAR.has(parca[0]) || !DOSYA.test(parca[1])) {
     return bulunamadi(3600);
   }
@@ -51,3 +55,11 @@ export async function onRequest({ request, params }) {
     },
   });
 }
+
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    if (url.pathname.startsWith('/afis/')) return afis(request, url);
+    return env.ASSETS.fetch(request);
+  },
+};
