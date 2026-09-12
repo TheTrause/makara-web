@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-i18n="meta.title">MAKARA — Film ve dizi zevkine göre sinema topluluğu</title>
-<meta name="description" content="MAKARA, film ve dizi zevkine göre kurulan bir sinema topluluğu. Fragman izle, zevk uyumunu gör, ortak liste kur, film yarışması oyna.">
+<title data-i18n="meta.title">MAKARA — Sinemaseverlerin sosyal platformu</title>
+<meta name="description" content="MAKARA, sinemaseverlerin sosyal platformu. Film günlüğünü tut, fragman izle, puanla ve incele; Zevk DNA'nı keşfet, Afiş Turnuvası oyna, sinemaseverleri takip et.">
 <meta name="theme-color" content="#050D0B">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="MAKARA — Film ve dizi zevkine göre sinema topluluğu">
-<meta property="og:description" content="Fragmanı izle, o filmi bekleyeni bul.">
+<meta property="og:title" content="MAKARA — Sinemaseverlerin sosyal platformu">
+<meta property="og:description" content="İzlediğin her filmi bir hikâyeye dönüştür. Film günlüğü, fragmanlar, Zevk DNA'sı, Afiş Turnuvası ve film akışı.">
 <meta property="og:image" content="https://makara.social/og.png">
 <meta property="og:url" content="https://makara.social/">
 <meta name="twitter:card" content="summary_large_image">
@@ -196,6 +196,52 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:12;opa
   .uzun{grid-row:auto}
 }
 
+/* Kart ici canlandirma: gercek ekran goruntusu yerine arayuzden kucuk
+   bir PARCA — ayni tokenlar, ayni ince cizgi, ayni koyu zemin. */
+.mock{margin-top:auto;padding-top:24px}
+.satirlar{display:flex;flex-direction:column;gap:10px}
+.satir{display:flex;align-items:center;gap:13px;padding:11px 14px;border:1px solid var(--line);
+  border-radius:16px;background:rgba(3,8,7,.45)}
+.satir b{display:block;font-size:14px;font-weight:600;color:var(--cream);line-height:1.3}
+.satir small{display:block;font-size:12.5px;color:var(--muted);line-height:1.35}
+.afis{flex:none;width:38px;height:56px;border-radius:7px;border:1px solid var(--line);
+  background:linear-gradient(160deg,#1d3a33,#07120f 72%)}
+.afis.t2{background:linear-gradient(160deg,#4a2a1c,#0d0806 72%)}
+.afis.t3{background:linear-gradient(160deg,#2b2a44,#08080f 72%)}
+.yuz{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
+  background:radial-gradient(circle at 35% 30%,#2a4a42,#0a1714 75%)}
+.yuz.t2{background:radial-gradient(circle at 35% 30%,#5a4524,#120d06 75%)}
+.yildiz{margin-left:auto;color:var(--gold);letter-spacing:.12em;font-size:12.5px;white-space:nowrap}
+.cip{display:inline-block;align-self:flex-start;margin-top:14px;padding:6px 13px;border:1px solid rgba(201,162,75,.45);
+  border-radius:980px;font-family:var(--serif);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.takip{margin-left:auto;padding:5px 13px;border-radius:980px;background:var(--gold);color:#08110E;
+  font-size:12px;font-weight:600;white-space:nowrap}
+.takip.bos{background:none;border:1px solid var(--line);color:var(--muted)}
+.rakam small{font-size:.36em;letter-spacing:-.01em;color:var(--gold-soft)}
+.arketip{font-family:var(--serif);font-weight:700;font-size:clamp(20px,2vw,24px);letter-spacing:.04em;
+  color:var(--gold);margin-bottom:10px;line-height:1.2}
+.radar{display:block;width:112px;height:112px;margin:0 auto}
+.vs{display:flex;align-items:center;justify-content:center;gap:14px}
+.vs .afis{width:70px;height:102px;border-radius:10px}
+.vs .afis.secili{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 12px 30px rgba(201,162,75,.18)}
+.vs span{font-family:var(--serif);color:var(--gold);font-size:12px;letter-spacing:.24em}
+.soru{padding:11px 14px;border:1px solid var(--line);border-radius:14px;font-size:13px;
+  color:var(--cream);text-align:center;background:rgba(3,8,7,.45)}
+.sik{margin-top:7px;padding:8px 14px;border:1px solid var(--line);border-radius:12px;font-size:13px;color:var(--muted)}
+.sik.dogru{border-color:rgba(201,162,75,.7);color:var(--cream)}
+
+/* ---------------- kademeler ---------------- */
+.kademeler{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,1.4vw,18px);max-width:980px;margin:0 auto}
+.kademe{display:flex;flex-direction:column}
+.kademe.ust{box-shadow:inset 0 0 0 1px rgba(201,162,75,.55),inset 0 1px 0 rgba(255,255,255,.045)}
+.kademe .ad{font-family:var(--serif);font-weight:700;font-size:clamp(24px,2.6vw,30px);letter-spacing:.06em;color:var(--cream)}
+.kademe .rakam{margin:12px 0 6px}
+.kademe ul{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:9px}
+.kademe li{position:relative;padding-left:22px;color:var(--muted);font-size:14.5px}
+.kademe li::before{content:"";position:absolute;left:2px;top:.6em;width:8px;height:8px;border-radius:50%;border:1.5px solid var(--gold)}
+.kademe li b{color:var(--cream);font-weight:600}
+@media(max-width:900px){.kademeler{grid-template-columns:1fr}}
+
 /* ---------------- KREM LEVHA ----------------
    Sayfanin tek acik zeminli yeri. Apple'in siyah/beyaz donusumunun
    bizdeki karsiligi; ayrica sayfayi ikiye bolerek "daha var" der. */
@@ -258,6 +304,7 @@ footer .kucuk a{color:#7E9189}
   <a class="marka" href="#"><svg><use href="#reel"/></svg>MAKARA</a>
   <nav>
     <a href="#ozellikler" data-i18n="nav.feat">Özellikler</a>
+    <a href="#premium" data-i18n="nav.prem">Premium</a>
     <a href="#sss" data-i18n="nav.faq">SSS</a>
   </nav>
   <div class="sag">
@@ -271,81 +318,170 @@ footer .kucuk a{color:#7E9189}
 <section class="acilis">
   <div class="acilis-ic">
     <svg class="reel bel"><use href="#reel"/></svg>
-    <h1 class="h1 bel" data-i18n="hero.h1">Ne izlediğin,<br><span>kim olduğunu söyler.</span></h1>
-    <p class="slogan bel" data-i18n="hero.lead">Film ve dizi zevkine göre kurulan sinema topluluğu.</p>
+    <h1 class="h1 bel" data-i18n="hero.h1">İzlediğin her filmi<br><span>bir hikâyeye dönüştür.</span></h1>
+    <p class="slogan bel" data-i18n="hero.lead">Sinemaseverlerin sosyal platformu. Film günlüğünü tut, fragman izle, zevkini keşfet.</p>
     <div class="dugmeler bel">
       <a class="dgm dolu" href="https://play.google.com/store/apps/details?id=social.makara.app"
          target="_blank" rel="noopener" data-i18n="hero.play">Google Play'den indir</a>
       <span class="dgm bos" data-i18n="hero.ios">App Store'da yakında</span>
     </div>
   </div>
-  <div class="urun bel"><img src="img/2-fragman.webp" alt="MAKARA fragman vitrini" fetchpriority="high"></div>
+  <div class="urun bel"><img src="img/vitrin.webp" alt="MAKARA keşfet ekranı" fetchpriority="high"></div>
 </section>
 
 <!-- ===================== BENTO ===================== -->
 <section class="bolum" id="ozellikler">
   <div class="basi bel">
     <span class="etiket" data-i18n="oz.etiket">Özellikler</span>
-    <h2 class="h2" data-i18n="oz.h">Konuşacak bir şeyle başla.</h2>
-    <p data-i18n="oz.p">Boş bir “selam” yerine, ikinizin de sevdiği bir filmle.</p>
+    <h2 class="h2" data-i18n="oz.h">Seyirciden fazlası.</h2>
+    <p data-i18n="oz.p">İzlediklerin bir günlüğe, puanların bir zevk haritasına, takip ettiğin sinemaseverler bir akışa dönüşür.</p>
   </div>
 
   <div class="bento">
     <article class="kutu a4 uzun bel">
-      <span class="etiket" data-i18n="k1.e">Fragman vitrini</span>
-      <h3 class="h3" data-i18n="k1.h">Fragmanı izle,<br>o filmi bekleyeni bul.</h3>
-      <p data-i18n="k1.p">Vizyona girecek yapımların fragmanları ana sayfanda. Uygulamadan çıkmadan izle; video biter bitmez aynı filmi bekleyen seyirciler karşında.</p>
-      <div class="pencere"><img src="img/2-fragman.webp" alt="" loading="lazy" style="--kaydir:-14%"></div>
+      <span class="etiket" data-i18n="k1.e">Film günlüğü</span>
+      <h3 class="h3" data-i18n="k1.h">İzle, kaydet,<br>incele, puanla.</h3>
+      <p data-i18n="k1.p">İzlediğin her film ve diziyi günlüğüne ekle, puan ver, inceleme yaz. İnceledikçe Yeni Eleştirmen’den Efsane Eleştirmen’e rozetler kazan.</p>
+      <div class="mock">
+        <div class="satirlar">
+          <div class="satir"><span class="afis"></span><div><b>Stalker</b><small data-i18n="k1.r1">1979 · İnceleme yazdın</small></div><span class="yildiz">★★★★★</span></div>
+          <div class="satir"><span class="afis t2"></span><div><b>Chungking Express</b><small data-i18n="k1.r2">1994 · Puanladın</small></div><span class="yildiz">★★★★☆</span></div>
+          <div class="satir"><span class="afis t3"></span><div><b>Oldboy</b><small data-i18n="k1.r3">2003 · İzleme listende</small></div></div>
+        </div>
+        <span class="cip" data-i18n="k1.rozet">Usta Eleştirmen rozeti</span>
+      </div>
     </article>
 
     <article class="kutu a2 bel">
-      <span class="etiket" data-i18n="k2.e">Zevk uyumu</span>
-      <div class="rakam" data-i18n="k2.n">%88</div>
-      <p data-i18n="k2.p">Favorilerin, izleme listen ve türlerin karşılaştırılır. Uyumunu ve ortak filmlerinizi yüzdeyle görürsün.</p>
+      <span class="etiket" data-i18n="k2.e">İzleme Kâhini</span>
+      <div class="rakam" data-i18n="k2.n">~4,2<small>/5</small></div>
+      <p data-i18n="k2.p">Bir filmi izlemeden önce kaç puan vereceğini tahmin eder. İzleyince puanla, isabetini gör.</p>
     </article>
 
     <article class="kutu a2 bel">
-      <span class="etiket" data-i18n="k3.e">Ortak liste</span>
-      <h3 class="h3" data-i18n="k3.h">Tek liste, iki kişi.</h3>
-      <p data-i18n="k3.p">Tanıştığın kişiyle paylaşılan izleme listesi. Kim ne ekledi, hangisini izlediniz.</p>
-      <div class="pencere" style="--boy:clamp(140px,15vw,178px)"><img src="img/4-ortakliste.webp" alt="" loading="lazy" style="--kaydir:-18%"></div>
+      <span class="etiket" data-i18n="k3.e">Zevk DNA’sı</span>
+      <div class="arketip" data-i18n="k3.h">Yeraltı Kâşifi</div>
+      <p data-i18n="k3.p">İzlediklerin ve incelemelerinden 17 arketipten biri çıkar; paylaşılabilir kimlik kartın olur.</p>
+      <div class="mock">
+        <svg class="radar" viewBox="0 0 120 120" aria-hidden="true">
+          <polygon points="60,10 103.3,35 103.3,85 60,110 16.7,85 16.7,35" fill="none" stroke="#193A33" stroke-width="1.2"/>
+          <polygon points="60,35 81.65,47.5 81.65,72.5 60,85 38.35,72.5 38.35,47.5" fill="none" stroke="#193A33" stroke-width="1"/>
+          <path d="M60 10V110M16.7 35L103.3 85M103.3 35L16.7 85" stroke="#193A33" stroke-width="1"/>
+          <polygon points="60,15 90.31,42.5 79.49,71.25 60,100 44.84,68.75 31.85,43.75" fill="rgba(201,162,75,.18)" stroke="#C9A24B" stroke-width="1.6"/>
+        </svg>
+      </div>
     </article>
 
     <article class="kutu a2 bel">
-      <span class="etiket" data-i18n="k4.e">Film yarışması</span>
-      <h3 class="h3" data-i18n="k4.h">Sohbette on soru.</h3>
-      <p data-i18n="k4.p">Kim daha çok sinema biliyor, konuşurken öğrenirsiniz.</p>
+      <span class="etiket" data-i18n="k4.e">Afiş Turnuvası</span>
+      <h3 class="h3" data-i18n="k4.h">İki afiş,<br>tek seçim.</h3>
+      <p data-i18n="k4.p">Her turda iki afişten birini seç. Sona kalan senin şampiyonun.</p>
+      <div class="mock"><div class="vs"><span class="afis t2 secili"></span><span>VS</span><span class="afis t3"></span></div></div>
     </article>
 
     <article class="kutu a2 bel">
-      <span class="etiket" data-i18n="k5.e">Şu an izliyorum</span>
-      <h3 class="h3" data-i18n="k5.h">Kısa ömürlü notlar.</h3>
-      <p data-i18n="k5.p">Ne izlediğini paylaş, anlık bir bağ kur; not gün sonunda kaybolsun.</p>
+      <span class="etiket" data-i18n="k5.e">Fragman vitrini</span>
+      <h3 class="h3" data-i18n="k5.h">Fragmanı uygulamada izle.</h3>
+      <p data-i18n="k5.p">Vizyona girecek yapımların fragmanları ana sayfanda; izle, listene ekle.</p>
+      <div class="pencere" style="--boy:clamp(140px,15vw,178px)"><img src="img/fragman.webp" alt="" loading="lazy"></div>
     </article>
 
     <article class="kutu a2 bel">
-      <span class="etiket" data-i18n="k6.e">Güvenli alan</span>
-      <h3 class="h3" data-i18n="k6.h">Denetlenen topluluk.</h3>
-      <p data-i18n="k6.p">Engelleme, şikayet ve görsel denetimi. Kurallar herkes için aynı.</p>
+      <span class="etiket" data-i18n="k6.e">Bilgi yarışması</span>
+      <h3 class="h3" data-i18n="k6.h">Kim daha çok sinema biliyor?</h3>
+      <p data-i18n="k6.p">Takip ettiklerinle sohbette on soruluk film ve dizi yarışması.</p>
+      <div class="mock">
+        <div class="soru" data-i18n="k6.soru">Chungking Express hangi şehirde geçer?</div>
+        <div class="sik dogru">Hong Kong</div>
+        <div class="sik">Taipei</div>
+      </div>
+    </article>
+
+    <article class="kutu a3 bel">
+      <span class="etiket" data-i18n="k7.e">Takip ve keşif</span>
+      <h3 class="h3" data-i18n="k7.h">Sinemaseverleri takip et.</h3>
+      <p data-i18n="k7.p">Yeni sinemaseverler keşfet; favorilerine, incelemelerine ve listelerine göz at.</p>
+      <div class="mock satirlar">
+        <div class="satir"><span class="yuz"></span><div><b>@gece_seansi</b><small data-i18n="k7.r1">318 film · 42 inceleme</small></div><span class="takip" data-i18n="k7.takip">Takip et</span></div>
+        <div class="satir"><span class="yuz t2"></span><div><b>@kurosawaci</b><small data-i18n="k7.r2">1.204 film · 97 inceleme</small></div><span class="takip bos" data-i18n="k7.takipte">Takiptesin</span></div>
+      </div>
+    </article>
+
+    <article class="kutu a3 bel">
+      <span class="etiket" data-i18n="k8.e">Film akışı</span>
+      <h3 class="h3" data-i18n="k8.h">Takip ettiklerin ne izliyor?</h3>
+      <p data-i18n="k8.p">İzlenen, puanlanan ve incelenen filmler tek akışta.</p>
+      <div class="mock satirlar">
+        <div class="satir"><span class="yuz t2"></span><div><b>@kurosawaci</b><small data-i18n="k8.r1">Stalker’ı inceledi · 2 sa</small></div><span class="yildiz">★★★★★</span></div>
+        <div class="satir"><span class="yuz"></span><div><b>@gece_seansi</b><small data-i18n="k8.r2">Oldboy’u izleme listesine ekledi</small></div></div>
+      </div>
     </article>
   </div>
 
-  <p class="dahasi bel" data-i18n="dahasi">Ayrıca <b>vizyon takvimi</b>, <b>inceleme ve puanlama</b>, <b>dört premium kademe</b>.</p>
+  <p class="dahasi bel" data-i18n="dahasi">Ayrıca <b>vizyon takvimi</b>, <b>sinema serisi</b>, <b>Zaman Kapsülü</b> ve <b>denetlenen, güvenli bir topluluk</b>.</p>
 </section>
 
 <!-- ===================== KREM LEVHA ===================== -->
 <div class="levha">
-  <p data-i18n="levha.p">Aynı filmleri sevenler birbirini bulur.</p>
+  <p data-i18n="levha.p">Her film bir iz bırakır.</p>
   <span data-i18n="levha.s">Repress Studio</span>
 </div>
+
+<!-- ===================== KADEMELER ===================== -->
+<section class="bolum" id="premium">
+  <div class="basi bel">
+    <span class="etiket" data-i18n="pr.etiket">Premium</span>
+    <h2 class="h2" data-i18n="pr.h">İki kademe.</h2>
+    <p data-i18n="pr.p">Temel özellikler ücretsiz. Daha derine inmek isteyenler için Başrol ve Yönetmen.</p>
+  </div>
+  <div class="kademeler">
+    <article class="kutu kademe bel">
+      <span class="etiket">Premium</span>
+      <div class="ad">Başrol</div>
+      <div class="rakam" data-i18n="pr.b.fiyat">₺149<small>/ay</small></div>
+      <p data-i18n="pr.b.p">Zevkini derinlemesine tanı.</p>
+      <ul data-i18n="pr.b.liste">
+        <li><b>Sinema istatistiklerin</b>: tür, yönetmen, oyuncu — canlı grafiklerle</li>
+        <li><b>Zevk DNA’n</b>: arketipin ve paylaşılabilir kimlik kartın</li>
+        <li><b>Senin İçin</b>: zevkine göre derin öneriler</li>
+        <li><b>Sana Özel 30</b>: kişisel film listen</li>
+        <li><b>128’lik dev afiş turnuvası</b></li>
+        <li>Yönetmen ve oyuncu yolculuğu: filmografi takibi ve rozetler</li>
+        <li>Sohbette bilgi yarışması</li>
+        <li>Sınırsız takip ve kişi önerisi</li>
+        <li>Sinema serisi dondurma: ayda 2 gün</li>
+      </ul>
+    </article>
+    <article class="kutu kademe ust bel">
+      <span class="etiket">Premium</span>
+      <div class="ad">Yönetmen</div>
+      <div class="rakam" data-i18n="pr.y.fiyat">₺1499<small>/ay</small></div>
+      <p data-i18n="pr.y.p">Bütün araçlar, en üst kademe.</p>
+      <ul data-i18n="pr.y.liste">
+        <li><b>Başrol’ün her şeyi</b></li>
+        <li><b>İzleme Kâhini</b>: izlemeden önce puan tahmini</li>
+        <li><b>Kör Nokta Radarı</b>: sevdiğin türlerde kaçırdıkların</li>
+        <li><b>Sinema Zaman Kapsülü</b>: gelecekteki kendine not</li>
+        <li><b>Yıllık Sinema Karnesi</b>: hikâye gibi, paylaşılır</li>
+        <li>Sinema Ligi: aylık sezon, canlı sıralama</li>
+        <li>Profil afişi ve altın Yönetmen rozeti</li>
+        <li>Sinema serisi dondurma: ayda 4 gün</li>
+        <li>Öncelikli destek</li>
+      </ul>
+    </article>
+  </div>
+  <p class="dahasi bel" data-i18n="pr.not">Abonelik aylık yenilenir; istediğin zaman iptal edebilirsin.</p>
+</section>
 
 <section class="bolum" id="sss">
   <h2 class="bel" data-i18n="sss.h">Sıkça sorulanlar</h2>
   <div class="sss bel">
-    <details open><summary data-i18n="s1.q">MAKARA nasıl eşleştiriyor?</summary>
-      <p data-i18n="s1.a">Film ve dizi zevkine göre. Favori yapımların ve tercihlerin üzerinden seninle ortak beğenilere sahip kişileri önerir; böylece konuşacak bir şeyin baştan olur.</p></details>
+    <details open><summary data-i18n="s1.q">MAKARA ne işe yarar?</summary>
+      <p data-i18n="s1.a">MAKARA sinemaseverlerin sosyal platformu. İzlediğin film ve dizileri günlüğüne kaydeder, puanlar ve incelersin; fragmanları uygulamadan çıkmadan izler, yeni yapımlar keşfedersin. Zevk DNA’n, Afiş Turnuvası ve bilgi yarışmasıyla sinemayla oynarsın; diğer sinemaseverleri takip edip film akışlarını görürsün.</p></details>
     <details><summary data-i18n="s2.q">Uygulama ücretsiz mi?</summary>
-      <p data-i18n="s2.a">Temel özellikler ücretsiz. Dileyenler için ek olanaklar sunan premium kademeler var: Bilet, Loca, Başrol ve Yönetmen.</p></details>
+      <p data-i18n="s2.a">Evet. Film günlüğü, inceleme ve puanlama, fragmanlar, takip ve film akışı ücretsiz. Daha fazlasını isteyenler için iki premium kademe var: Başrol (₺149/ay) ve Yönetmen (₺1499/ay). Abonelik aylık yenilenir, istediğin zaman iptal edebilirsin.</p></details>
+    <details><summary data-i18n="s5.q">Başrol ile Yönetmen arasındaki fark ne?</summary>
+      <p data-i18n="s5.a">Başrol; sinema istatistiklerini, Zevk DNA’nı, kişisel önerileri ve 128’lik dev afiş turnuvasını açar. Yönetmen, Başrol’ün her şeyine ek olarak İzleme Kâhini, Kör Nokta Radarı, Sinema Zaman Kapsülü ve Yıllık Sinema Karnesi’ni getirir.</p></details>
     <details><summary data-i18n="s3.q">Verilerim güvende mi?</summary>
       <p data-i18n="s3.a">Tüm iletişim şifreli bağlantı üzerinden yapılır ve verilerin satılmaz. Ayrıntılar için <a href="/privacy.html">Gizlilik Politikası</a> ve <a href="/kvkk.html">KVKK</a> sayfasına bakabilirsin; hesabını istediğin an tamamen silebilirsin.</p></details>
     <details><summary data-i18n="s4.q">Ne zaman çıkıyor?</summary>
@@ -374,43 +510,73 @@ footer .kucuk a{color:#7E9189}
 
 <script>
 const T = {
- "meta.title":["MAKARA — Film ve dizi zevkine göre sinema topluluğu","MAKARA — A film community built on your taste"],
+ "meta.title":["MAKARA — Sinemaseverlerin sosyal platformu","MAKARA — The social platform for film lovers"],
  "nav.feat":["Özellikler","Features"],
+ "nav.prem":["Premium","Premium"],
  "nav.faq":["SSS","FAQ"],
  "cta.get":["İndir","Get"],
- "hero.h1":["Ne izlediğin,<br><span>kim olduğunu söyler.</span>","What you watch<br><span>says who you are.</span>"],
- "hero.lead":["Film ve dizi zevkine göre kurulan sinema topluluğu.","A film community built on your taste in movies and series."],
+ "hero.h1":["İzlediğin her filmi<br><span>bir hikâyeye dönüştür.</span>","Turn every film you watch<br><span>into a story.</span>"],
+ "hero.lead":["Sinemaseverlerin sosyal platformu. Film günlüğünü tut, fragman izle, zevkini keşfet.","The social platform for film lovers. Keep your film diary, watch trailers, discover your taste."],
  "hero.play":["Google Play'den indir","Get it on Google Play"],
  "hero.ios":["App Store'da yakında","Coming soon to the App Store"],
  "oz.etiket":["Özellikler","Features"],
- "oz.h":["Konuşacak bir şeyle başla.","Start with something to talk about."],
- "oz.p":["Boş bir “selam” yerine, ikinizin de sevdiği bir filmle.","Not an empty “hey” — a film you both love."],
- "k1.e":["Fragman vitrini","Trailer showcase"],
- "k1.h":["Fragmanı izle,<br>o filmi bekleyeni bul.","Watch the trailer,<br>find who's waiting for it."],
- "k1.p":["Vizyona girecek yapımların fragmanları ana sayfanda. Uygulamadan çıkmadan izle; video biter bitmez aynı filmi bekleyen seyirciler karşında.","Trailers for upcoming titles sit on your home screen. Watch without leaving the app — the moment it ends, everyone else waiting for that film is right there."],
- "k2.e":["Zevk uyumu","Taste match"],
- "k2.n":["%88","88%"],
- "k2.p":["Favorilerin, izleme listen ve türlerin karşılaştırılır. Uyumunu ve ortak filmlerinizi yüzdeyle görürsün.","Your favorites, watchlist and genres are compared. You see the match and the films you share, as a percentage."],
- "k3.e":["Ortak liste","Shared list"],
- "k3.h":["Tek liste, iki kişi.","One list, two people."],
- "k3.p":["Tanıştığın kişiyle paylaşılan izleme listesi. Kim ne ekledi, hangisini izlediniz.","A watchlist shared with the person you meet. Who added what, what you've watched."],
- "k4.e":["Film yarışması","Film quiz"],
- "k4.h":["Sohbette on soru.","Ten questions in chat."],
- "k4.p":["Kim daha çok sinema biliyor, konuşurken öğrenirsiniz.","You find out who knows more cinema while you talk."],
- "k5.e":["Şu an izliyorum","Now watching"],
- "k5.h":["Kısa ömürlü notlar.","Notes that fade."],
- "k5.p":["Ne izlediğini paylaş, anlık bir bağ kur; not gün sonunda kaybolsun.","Share what you're watching for an instant connection — the note disappears by the end of the day."],
- "k6.e":["Güvenli alan","A safe space"],
- "k6.h":["Denetlenen topluluk.","A moderated community."],
- "k6.p":["Engelleme, şikayet ve görsel denetimi. Kurallar herkes için aynı.","Blocking, reporting and image moderation. The same rules for everyone."],
- "dahasi":["Ayrıca <b>vizyon takvimi</b>, <b>inceleme ve puanlama</b>, <b>dört premium kademe</b>.","Plus a <b>release calendar</b>, <b>reviews and ratings</b>, and <b>four premium tiers</b>."],
- "levha.p":["Aynı filmleri sevenler birbirini bulur.","People who love the same films find each other."],
+ "oz.h":["Seyirciden fazlası.","More than an audience."],
+ "oz.p":["İzlediklerin bir günlüğe, puanların bir zevk haritasına, takip ettiğin sinemaseverler bir akışa dönüşür.","What you watch becomes a diary, your ratings a map of your taste, and the film lovers you follow a feed."],
+ "k1.e":["Film günlüğü","Film diary"],
+ "k1.h":["İzle, kaydet,<br>incele, puanla.","Watch, log,<br>review, rate."],
+ "k1.p":["İzlediğin her film ve diziyi günlüğüne ekle, puan ver, inceleme yaz. İnceledikçe Yeni Eleştirmen’den Efsane Eleştirmen’e rozetler kazan.","Add every film and series you watch to your diary, rate it, write a review. The more you review, the more badges you earn — from New Critic to Legendary Critic."],
+ "k1.r1":["1979 · İnceleme yazdın","1979 · You reviewed"],
+ "k1.r2":["1994 · Puanladın","1994 · You rated"],
+ "k1.r3":["2003 · İzleme listende","2003 · On your watchlist"],
+ "k1.rozet":["Usta Eleştirmen rozeti","Master Critic badge"],
+ "k2.e":["İzleme Kâhini","Watch Oracle"],
+ "k2.n":["~4,2<small>/5</small>","~4.2<small>/5</small>"],
+ "k2.p":["Bir filmi izlemeden önce kaç puan vereceğini tahmin eder. İzleyince puanla, isabetini gör.","Predicts how you’ll rate a film before you watch it. Rate it afterwards and see how close it got."],
+ "k3.e":["Zevk DNA’sı","Taste DNA"],
+ "k3.h":["Yeraltı Kâşifi","Underground Explorer"],
+ "k3.p":["İzlediklerin ve incelemelerinden 17 arketipten biri çıkar; paylaşılabilir kimlik kartın olur.","Your watches and reviews reveal one of 17 archetypes — with a shareable identity card."],
+ "k4.e":["Afiş Turnuvası","Poster Tournament"],
+ "k4.h":["İki afiş,<br>tek seçim.","Two posters,<br>one pick."],
+ "k4.p":["Her turda iki afişten birini seç. Sona kalan senin şampiyonun.","Pick one of two posters each round. The last one standing is your champion."],
+ "k5.e":["Fragman vitrini","Trailer showcase"],
+ "k5.h":["Fragmanı uygulamada izle.","Watch trailers in the app."],
+ "k5.p":["Vizyona girecek yapımların fragmanları ana sayfanda; izle, listene ekle.","Trailers for upcoming releases sit on your home screen — watch, then add them to your list."],
+ "k6.e":["Bilgi yarışması","Film quiz"],
+ "k6.h":["Kim daha çok sinema biliyor?","Who knows more cinema?"],
+ "k6.p":["Takip ettiklerinle sohbette on soruluk film ve dizi yarışması.","A ten-question film and TV quiz in chat with the people you follow."],
+ "k6.soru":["Chungking Express hangi şehirde geçer?","Where is Chungking Express set?"],
+ "k7.e":["Takip ve keşif","Follow & discover"],
+ "k7.h":["Sinemaseverleri takip et.","Follow film lovers."],
+ "k7.p":["Yeni sinemaseverler keşfet; favorilerine, incelemelerine ve listelerine göz at.","Discover new film lovers and browse their favorites, reviews and lists."],
+ "k7.r1":["318 film · 42 inceleme","318 films · 42 reviews"],
+ "k7.r2":["1.204 film · 97 inceleme","1,204 films · 97 reviews"],
+ "k7.takip":["Takip et","Follow"],
+ "k7.takipte":["Takiptesin","Following"],
+ "k8.e":["Film akışı","Film feed"],
+ "k8.h":["Takip ettiklerin ne izliyor?","What are your follows watching?"],
+ "k8.p":["İzlenen, puanlanan ve incelenen filmler tek akışta.","What they watch, rate and review — in one feed."],
+ "k8.r1":["Stalker’ı inceledi · 2 sa","reviewed Stalker · 2h"],
+ "k8.r2":["Oldboy’u izleme listesine ekledi","added Oldboy to their watchlist"],
+ "dahasi":["Ayrıca <b>vizyon takvimi</b>, <b>sinema serisi</b>, <b>Zaman Kapsülü</b> ve <b>denetlenen, güvenli bir topluluk</b>.","Plus a <b>release calendar</b>, <b>cinema streaks</b>, <b>Time Capsules</b> and <b>a moderated, safe community</b>."],
+ "levha.p":["Her film bir iz bırakır.","Every film leaves a mark."],
  "levha.s":["Repress Studio","Repress Studio"],
+ "pr.etiket":["Premium","Premium"],
+ "pr.h":["İki kademe.","Two tiers."],
+ "pr.p":["Temel özellikler ücretsiz. Daha derine inmek isteyenler için Başrol ve Yönetmen.","Core features are free. Başrol and Yönetmen are for those who want to go deeper."],
+ "pr.b.fiyat":["₺149<small>/ay</small>","₺149<small>/mo</small>"],
+ "pr.b.p":["Zevkini derinlemesine tanı.","Get to know your taste in depth."],
+ "pr.b.liste":["<li><b>Sinema istatistiklerin</b>: tür, yönetmen, oyuncu — canlı grafiklerle</li><li><b>Zevk DNA’n</b>: arketipin ve paylaşılabilir kimlik kartın</li><li><b>Senin İçin</b>: zevkine göre derin öneriler</li><li><b>Sana Özel 30</b>: kişisel film listen</li><li><b>128’lik dev afiş turnuvası</b></li><li>Yönetmen ve oyuncu yolculuğu: filmografi takibi ve rozetler</li><li>Sohbette bilgi yarışması</li><li>Sınırsız takip ve kişi önerisi</li><li>Sinema serisi dondurma: ayda 2 gün</li>","<li><b>Your film stats</b>: genres, directors, actors — in live charts</li><li><b>Your Taste DNA</b>: your archetype and a shareable identity card</li><li><b>For You</b>: deep picks based on your taste</li><li><b>Your 30</b>: a personal film list</li><li><b>128-title mega poster tournament</b></li><li>Director and actor journeys: filmography tracking and badges</li><li>Film quiz in chat</li><li>Unlimited follows and people suggestions</li><li>Cinema streak freeze: 2 days a month</li>"],
+ "pr.y.fiyat":["₺1499<small>/ay</small>","₺1499<small>/mo</small>"],
+ "pr.y.p":["Bütün araçlar, en üst kademe.","Every tool — the top tier."],
+ "pr.y.liste":["<li><b>Başrol’ün her şeyi</b></li><li><b>İzleme Kâhini</b>: izlemeden önce puan tahmini</li><li><b>Kör Nokta Radarı</b>: sevdiğin türlerde kaçırdıkların</li><li><b>Sinema Zaman Kapsülü</b>: gelecekteki kendine not</li><li><b>Yıllık Sinema Karnesi</b>: hikâye gibi, paylaşılır</li><li>Sinema Ligi: aylık sezon, canlı sıralama</li><li>Profil afişi ve altın Yönetmen rozeti</li><li>Sinema serisi dondurma: ayda 4 gün</li><li>Öncelikli destek</li>","<li><b>Everything in Başrol</b></li><li><b>Watch Oracle</b>: predicts your rating before you watch</li><li><b>Blind Spot Radar</b>: essentials you’ve missed in genres you love</li><li><b>Cinema Time Capsule</b>: notes to your future self</li><li><b>Yearly Cinema Report Card</b>: told like a story, shareable</li><li>Cinema League: monthly seasons, live rankings</li><li>Profile banner and golden Yönetmen badge</li><li>Cinema streak freeze: 4 days a month</li><li>Priority support</li>"],
+ "pr.not":["Abonelik aylık yenilenir; istediğin zaman iptal edebilirsin.","Subscriptions renew monthly; cancel anytime."],
  "sss.h":["Sıkça sorulanlar","FAQ"],
- "s1.q":["MAKARA nasıl eşleştiriyor?","How does MAKARA match people?"],
- "s1.a":["Film ve dizi zevkine göre. Favori yapımların ve tercihlerin üzerinden seninle ortak beğenilere sahip kişileri önerir; böylece konuşacak bir şeyin baştan olur.","By taste in film and TV. Based on your favorites and preferences it suggests people who share your taste — so you have something to talk about from the start."],
+ "s1.q":["MAKARA ne işe yarar?","What is MAKARA for?"],
+ "s1.a":["MAKARA sinemaseverlerin sosyal platformu. İzlediğin film ve dizileri günlüğüne kaydeder, puanlar ve incelersin; fragmanları uygulamadan çıkmadan izler, yeni yapımlar keşfedersin. Zevk DNA’n, Afiş Turnuvası ve bilgi yarışmasıyla sinemayla oynarsın; diğer sinemaseverleri takip edip film akışlarını görürsün.","MAKARA is the social platform for film lovers. Log, rate and review the films and series you watch; watch trailers without leaving the app and discover new titles. Play with cinema through your Taste DNA, the Poster Tournament and film quizzes — and follow other film lovers to see their film feed."],
  "s2.q":["Uygulama ücretsiz mi?","Is the app free?"],
- "s2.a":["Temel özellikler ücretsiz. Dileyenler için ek olanaklar sunan premium kademeler var: Bilet, Loca, Başrol ve Yönetmen.","Core features are free. Premium tiers with extra perks are available: Bilet, Loca, Başrol and Yönetmen."],
+ "s2.a":["Evet. Film günlüğü, inceleme ve puanlama, fragmanlar, takip ve film akışı ücretsiz. Daha fazlasını isteyenler için iki premium kademe var: Başrol (₺149/ay) ve Yönetmen (₺1499/ay). Abonelik aylık yenilenir, istediğin zaman iptal edebilirsin.","Yes. The film diary, reviews and ratings, trailers, follows and the film feed are free. For more, there are two premium tiers: Başrol (₺149/month) and Yönetmen (₺1499/month). Subscriptions renew monthly and you can cancel anytime."],
+ "s5.q":["Başrol ile Yönetmen arasındaki fark ne?","What’s the difference between Başrol and Yönetmen?"],
+ "s5.a":["Başrol; sinema istatistiklerini, Zevk DNA’nı, kişisel önerileri ve 128’lik dev afiş turnuvasını açar. Yönetmen, Başrol’ün her şeyine ek olarak İzleme Kâhini, Kör Nokta Radarı, Sinema Zaman Kapsülü ve Yıllık Sinema Karnesi’ni getirir.","Başrol unlocks your film stats, your Taste DNA, personal picks and the 128-title mega poster tournament. Yönetmen includes everything in Başrol, plus the Watch Oracle, Blind Spot Radar, Cinema Time Capsule and the Yearly Cinema Report Card."],
  "s3.q":["Verilerim güvende mi?","Is my data safe?"],
  "s3.a":["Tüm iletişim şifreli bağlantı üzerinden yapılır ve verilerin satılmaz. Ayrıntılar için <a href=\"/privacy.html\">Gizlilik Politikası</a> ve <a href=\"/kvkk.html\">KVKK</a> sayfasına bakabilirsin; hesabını istediğin an tamamen silebilirsin.","All traffic runs over an encrypted connection and your data is never sold. See the <a href=\"/privacy.html\">Privacy Policy</a> and <a href=\"/kvkk.html\">KVKK</a> page; you can delete your account entirely at any time."],
  "s4.q":["Ne zaman çıkıyor?","When is it launching?"],
