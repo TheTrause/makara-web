@@ -26,8 +26,8 @@
   var appleDgm = document.getElementById('apple-dgm');
 
   /* Apple web girisi Supabase'de "Secret Key (for OAuth)" + Services ID
-     girilince calisir; o zamana kadar dugme gizli kalir. Ayar bitince true. */
-  var APPLE_ACIK = false || new URLSearchParams(location.search).get('apple') === '1'; // test: /giris?apple=1
+     girildi (2026-09-13, Services ID social.makara.web). Secret 2027-03-11'de doluyor. */
+  var APPLE_ACIK = true;
 
   function goster(k) { hata.textContent = t(k); hata.hidden = false; }
 
