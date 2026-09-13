@@ -8,15 +8,19 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=()
 
 /giris
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://jubyzpkwrrnfpfigakfx.supabase.co https://image.tmdb.org; connect-src 'self' https://jubyzpkwrrnfpfigakfx.supabase.co wss://jubyzpkwrrnfpfigakfx.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://jubyzpkwrrnfpfigakfx.supabase.co https://image.tmdb.org; connect-src 'self' https://jubyzpkwrrnfpfigakfx.supabase.co wss://jubyzpkwrrnfpfigakfx.supabase.co https://cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  Cache-Control: no-cache
+
+/sifre
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://jubyzpkwrrnfpfigakfx.supabase.co https://image.tmdb.org; connect-src 'self' https://jubyzpkwrrnfpfigakfx.supabase.co wss://jubyzpkwrrnfpfigakfx.supabase.co https://cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
   Cache-Control: no-cache
 
 /profil
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://jubyzpkwrrnfpfigakfx.supabase.co https://image.tmdb.org; connect-src 'self' https://jubyzpkwrrnfpfigakfx.supabase.co wss://jubyzpkwrrnfpfigakfx.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://jubyzpkwrrnfpfigakfx.supabase.co https://image.tmdb.org; connect-src 'self' https://jubyzpkwrrnfpfigakfx.supabase.co wss://jubyzpkwrrnfpfigakfx.supabase.co https://cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
   Cache-Control: no-cache
 
 /u/*
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://jubyzpkwrrnfpfigakfx.supabase.co https://image.tmdb.org; connect-src 'self' https://jubyzpkwrrnfpfigakfx.supabase.co wss://jubyzpkwrrnfpfigakfx.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://jubyzpkwrrnfpfigakfx.supabase.co https://image.tmdb.org; connect-src 'self' https://jubyzpkwrrnfpfigakfx.supabase.co wss://jubyzpkwrrnfpfigakfx.supabase.co https://cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
   Cache-Control: no-cache
 
 /web/*

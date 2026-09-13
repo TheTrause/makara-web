@@ -10,10 +10,11 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/web/web.css?v=20260913b">
+<link rel="stylesheet" href="/web/web.css?v=20260913c">
 </head>
 <body>
 <header class="ust">
@@ -43,7 +44,7 @@
       <p class="hata" id="giris-hata" role="alert" hidden></p>
       <button class="dgm dolu" id="giris-dgm" type="submit" data-t="g_dgm">Giriş yap</button>
       <div class="giris-notlar">
-        <p data-t="g_sifre">Şifreni mi unuttun? Uygulamanın giriş ekranından sıfırlayabilirsin.</p>
+        <p><a class="bag" href="/sifre" data-t="g_sifre_bag">Şifreni mi unuttun?</a></p>
         <p id="apple-not" data-t="g_apple">Apple ile kaydolduysan web girişi yakında geliyor.</p>
         <p data-t="g_not">Web bir okuma penceresidir.</p>
       </div>
@@ -57,9 +58,9 @@
 
 <footer class="alt" id="alt"></footer>
 
-<script src="/web/supabase.js?v=20260913b"></script>
-<script src="/web/ayar.js?v=20260913b"></script>
-<script src="/web/ortak.js?v=20260913b"></script>
-<script src="/web/giris.js?v=20260913b"></script>
+<script src="/web/supabase.js?v=20260913c"></script>
+<script src="/web/ayar.js?v=20260913c"></script>
+<script src="/web/ortak.js?v=20260913c"></script>
+<script src="/web/giris.js?v=20260913c"></script>
 </body>
 </html>

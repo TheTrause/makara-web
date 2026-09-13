@@ -70,6 +70,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .hata{margin-top:14px;padding:11px 14px;border-radius:12px;background:rgba(138,50,50,.18);
   border:1px solid rgba(138,50,50,.5);color:#F0D6CF;font-size:13.5px}
 .giris-notlar{margin-top:22px;display:grid;gap:8px;font-size:13px;color:var(--muted)}
+.giris-notlar .bag{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
 .giris-alt{max-width:420px;margin:26px auto 0;text-align:center;color:var(--muted);font-size:13px}
 
 /* ---------- profil: kahraman ---------- */

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Şifre sıfırla · MAKARA</title>
+<meta name="description" content="MAKARA şifreni e-postana gelen kodla sıfırla.">
+<meta name="theme-color" content="#050D0B">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/web/web.css?v=20260913c">
+</head>
+<body>
+<header class="ust">
+  <a class="marka" href="/"><img src="/favicon-32x32.png" alt="">MAKARA</a>
+  <nav class="ust-sag" id="ust-sag"></nav>
+</header>
+
+<main class="kap">
+  <div class="giris-sahne">
+    <!-- 1. adım: e-posta -> kod gönder -->
+    <form class="giris-kutu" id="adim-eposta" novalidate>
+      <span class="etiket">MAKARA</span>
+      <h1 data-t="s_baslik">Şifreni sıfırla</h1>
+      <p class="aciklama" data-t="s_alt1">Hesabının e-posta adresini yaz; sana 6 haneli bir kod gönderelim.</p>
+      <label class="alan"><span data-t="eposta">E-posta</span>
+        <input name="eposta" type="email" autocomplete="email" inputmode="email" required></label>
+      <p class="hata" id="hata1" role="alert" hidden></p>
+      <button class="dgm dolu" id="dgm1" type="submit" data-t="s_kod_gonder">Kod gönder</button>
+      <div class="giris-notlar"><p><a class="bag" id="girise-don" href="/giris" data-t="s_girise">Girişe dön</a></p></div>
+    </form>
+
+    <!-- 2. adım: kod + yeni şifre -->
+    <form class="giris-kutu" id="adim-kod" novalidate hidden>
+      <span class="etiket">MAKARA</span>
+      <h1 data-t="s_baslik">Şifreni sıfırla</h1>
+      <p class="aciklama" id="alt2"></p>
+      <label class="alan"><span data-t="s_kod">6 haneli kod</span>
+        <input name="kod" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required></label>
+      <label class="alan"><span data-t="s_yeni">Yeni şifre</span>
+        <input name="sifre" type="password" autocomplete="new-password" minlength="6" required></label>
+      <label class="alan"><span data-t="s_yeni2">Yeni şifre (tekrar)</span>
+        <input name="sifre2" type="password" autocomplete="new-password" minlength="6" required></label>
+      <p class="hata" id="hata2" role="alert" hidden></p>
+      <button class="dgm dolu" id="dgm2" type="submit" data-t="s_kaydet">Şifreyi değiştir</button>
+      <div class="giris-notlar"><p><a class="bag" href="#" id="yeniden" data-t="s_yeniden">Kodu yeniden gönder</a></p></div>
+    </form>
+  </div>
+</main>
+
+<footer class="alt" id="alt"></footer>
+
+<script src="/web/supabase.js?v=20260913c"></script>
+<script src="/web/ayar.js?v=20260913c"></script>
+<script src="/web/ortak.js?v=20260913c"></script>
+<script src="/web/sifre.js?v=20260913c"></script>
+</body>
+</html>

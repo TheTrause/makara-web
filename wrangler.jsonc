@@ -11,6 +11,6 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash",
-    "run_worker_first": ["/afis/*"]
+    "run_worker_first": ["/afis/*", "/.well-known/*"]
   }
 }

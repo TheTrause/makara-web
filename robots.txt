@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /giris
+Disallow: /profil
+Disallow: /afis/
+
+Sitemap: https://makara.social/sitemap.xml

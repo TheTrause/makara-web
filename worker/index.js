@@ -56,10 +56,25 @@ async function afis(request, url) {
   });
 }
 
+/* RFC 9116 guvenlik iletisim dosyasi. Nokta ile baslayan klasorun statik
+   yuklemeye girip girmeyecegine guvenmemek icin Worker'dan sunuluyor. */
+const GUVENLIK_TXT = [
+  'Contact: mailto:destek@makara.social',
+  'Expires: 2027-09-13T00:00:00.000Z',
+  'Preferred-Languages: tr, en',
+  'Canonical: https://makara.social/.well-known/security.txt',
+  '',
+].join('\n');
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname.startsWith('/afis/')) return afis(request, url);
+    if (url.pathname === '/.well-known/security.txt') {
+      return new Response(GUVENLIK_TXT, {
+        headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'public, max-age=86400' },
+      });
+    }
     return env.ASSETS.fetch(request);
   },
 };
