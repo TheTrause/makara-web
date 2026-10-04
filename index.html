@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-i18n="meta.title">MAKARA — Sinemaseverlerin sosyal platformu</title>
+<title data-i18n="meta.title">MAKARA - Sinemaseverlerin sosyal platformu</title>
 <meta name="description" content="MAKARA, sinemaseverlerin sosyal platformu. Film günlüğünü tut, fragman izle, puanla ve incele; Zevk DNA'nı keşfet, Afiş Turnuvası oyna, sinemaseverleri takip et.">
-<meta name="theme-color" content="#050D0B">
+<meta name="theme-color" content="#0B0B0B">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -13,30 +13,37 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
  {"@type":"Organization","@id":"https://makara.social/#org","name":"Repress Studio","url":"https://makara.social/","logo":"https://makara.social/img/icon-512.png","email":"destek@makara.social","sameAs":["https://instagram.com/socialmakara"]},
- {"@type":"WebSite","@id":"https://makara.social/#site","name":"MAKARA","alternateName":"MAKARA — Sinemaseverlerin sosyal platformu","url":"https://makara.social/","inLanguage":["tr","en"],"publisher":{"@id":"https://makara.social/#org"}},
+ {"@type":"WebSite","@id":"https://makara.social/#site","name":"MAKARA","alternateName":"MAKARA - Sinemaseverlerin sosyal platformu","url":"https://makara.social/","inLanguage":["tr","en"],"publisher":{"@id":"https://makara.social/#org"}},
  {"@type":"MobileApplication","name":"MAKARA","operatingSystem":"Android","applicationCategory":"SocialNetworkingApplication","description":"Sinemaseverlerin sosyal platformu: film günlüğü, incelemeler, fragmanlar, Zevk DNA'sı, Afiş Turnuvası ve takip ağı.","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"downloadUrl":"https://play.google.com/store/apps/details?id=social.makara.app","publisher":{"@id":"https://makara.social/#org"}}
 ]}
 </script>
 <meta property="og:type" content="website">
-<meta property="og:title" content="MAKARA — Sinemaseverlerin sosyal platformu">
+<meta property="og:title" content="MAKARA - Sinemaseverlerin sosyal platformu">
 <meta property="og:description" content="İzlediğin her filmi bir hikâyeye dönüştür. Film günlüğü, fragmanlar, Zevk DNA'sı, Afiş Turnuvası ve film akışı.">
 <meta property="og:image" content="https://makara.social/og.png?v=2">
 <meta property="og:url" content="https://makara.social/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/vitrin.webp" as="image" fetchpriority="high">
 
 <style>
+/* Cinzel kendi sunucumuzdan (Google Fonts baglantisi yok). Degisken
+   font: 600 ve 700 ayni dosyada; latin-ext Turkce harfler icin. */
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:600 700;font-display:swap;
+  src:url(/fonts/cinzel-latin-ext.woff2) format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:600 700;font-display:swap;
+  src:url(/fonts/cinzel-latin.woff2) format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 /* ===============================================================
-   MAKARA — tek dosya, dis bagimlilik yok (yalniz Cinzel).
+   MAKARA - tek dosya, dis bagimlilik yok.
 
    YAPI: APPLE URUN SAYFASI DUZENI, MAKARA KIMLIGIYLE
 
    Onceki surumde sayfa uzun bir YAPISIK SAHNEden ibaretti: kaydiriyorsun
    ama sayfa durdugu yerde duruyor. Uzunluk sikayeti aslinda oradan
    geliyordu. Apple urun sayfalari neredeyse hic uzun yapisma
-   kullanmaz — sayfa her an ilerler, her bolum tek bir fikirdir ve
+   kullanmaz - sayfa her an ilerler, her bolum tek bir fikirdir ve
    bolumler zeminleriyle birbirinden ayrilir.
 
    Buradan alinan dort sey:
@@ -48,21 +55,22 @@
       Apple'in beyaz/siyah donusumunun bizdeki karsiligi.
    3) BENTO IZGARA. Alti ozellik alt alta alti fotograf olarak degil,
       tek ekranda farkli boyda kartlar olarak. Hem cok daha kisa hem de
-      "ekran goruntusu albumu" hissi yok — kartlarda arayuzun TAMAMI
+      "ekran goruntusu albumu" hissi yok - kartlarda arayuzun TAMAMI
       degil bir PARCASI var.
    4) URUN BIR KERE, BUYUK. Tek telefon, acilista, alt kenardan
       kirpilmis: hem urunu gosterir hem asagida devam ettigini soyler.
    =============================================================== */
 :root{
-  --bg:#050D0B;
-  --koyu:#030807;
-  --kart:#0C1B17;
-  --kart2:#102621;
-  --line:#193A33;
+  /* Uygulamayla ayni notr siyah (2026-10-04); eskisi yesil-siyahti. */
+  --bg:#0B0B0B;
+  --koyu:#070707;
+  --kart:#161616;
+  --kart2:#1C1C1C;
+  --line:#2A2A2A;
   --gold:#C9A24B;
   --gold-soft:#8A7A4E;
   --cream:#F3EAD9;
-  --muted:#8FA89E;
+  --muted:#9A9A9A;
   --serif:'Cinzel',Georgia,'Times New Roman',serif;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --kenar:clamp(20px,5vw,60px);
@@ -76,6 +84,7 @@ body{background:var(--bg);color:var(--cream);font-family:var(--sans);
   line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
 
 /* Apple'in siki baslik olcegi: buyuk punto, negatif harf arali,
    dar satir yuksekligi. Sayfanin karakterini bu belirliyor. */
@@ -95,9 +104,9 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:12;opa
 /* ---------------- ust cubuk: ince, ortalanmis (Apple) ------------- */
 .bar{position:fixed;top:0;left:0;right:0;z-index:20;height:50px;
   display:flex;align-items:center;padding:0 var(--kenar);
-  background:rgba(5,13,11,.72);backdrop-filter:saturate(180%) blur(20px);
+  background:rgba(11,11,11,.72);backdrop-filter:saturate(180%) blur(20px);
   border-bottom:1px solid transparent;transition:border-color .5s}
-.bar.kaydi{border-bottom-color:rgba(25,58,51,.9)}
+.bar.kaydi{border-bottom-color:rgba(42,42,42,.9)}
 .marka{display:flex;align-items:center;gap:9px;font-family:var(--serif);
   font-size:14px;letter-spacing:.2em;color:var(--gold)}
 .marka svg{width:21px;height:21px}
@@ -109,15 +118,23 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:12;opa
 .dil{display:flex;gap:5px;font-size:11.5px;color:var(--muted)}
 .dil button{background:none;border:0;color:inherit;font:inherit;cursor:pointer;padding:2px 3px;letter-spacing:.06em;transition:color .35s}
 .dil button.acik{color:var(--gold)}
-.bar .indir{padding:6px 15px;border-radius:980px;background:var(--gold);color:#08110E;
+.bar .indir{padding:6px 15px;border-radius:980px;background:var(--gold);color:#16150F;
   font-size:12.5px;font-weight:600;letter-spacing:.01em;transition:filter .35s,transform .35s}
 .bar .indir:hover{filter:brightness(1.12);transform:translateY(-1px)}
 .bar .giris-bag{font-size:12.5px;color:rgba(243,234,217,.78);transition:color .35s}
 .bar .giris-bag:hover{color:var(--cream)}
 @media(max-width:880px){.bar nav{display:none}}
 
-#ilerleme{position:fixed;top:0;left:0;height:2px;width:0;z-index:21;
+/* Kaydirma dinleyicisi yok: tarayici destekliyorsa cizgi CSS ile
+   kaydirmaya baglanir, desteklemiyorsa hic gorunmez. */
+#ilerleme{position:fixed;top:0;left:0;height:2px;width:100%;z-index:21;display:none;
+  transform-origin:0 50%;transform:scaleX(0);
   background:linear-gradient(90deg,transparent,var(--gold));opacity:.8}
+@supports (animation-timeline:scroll()){
+  #ilerleme{display:block;animation:ilerle linear both;animation-timeline:scroll(root)}
+}
+@keyframes ilerle{to{transform:scaleX(1)}}
+#ust-isaret{position:absolute;top:0;left:0;width:1px;height:8px;pointer-events:none}
 
 /* ---------------- ortak bolum kabi ---------------- */
 .bolum{max-width:var(--en);margin:0 auto;padding:clamp(84px,10vw,132px) var(--kenar)}
@@ -130,36 +147,48 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:12;opa
 .basi p{margin-top:18px;color:var(--muted);font-size:clamp(15px,1.6vw,18px);max-width:52ch;margin-inline:auto}
 
 /* ---------------- acilis ---------------- */
-.acilis{position:relative;text-align:center;padding:132px var(--kenar) 0;overflow:hidden}
-.acilis::before{content:"";position:absolute;top:-14%;left:50%;transform:translateX(-50%);
-  width:min(1180px,140vw);height:96%;pointer-events:none;
-  background:radial-gradient(ellipse 52% 46% at 50% 34%,rgba(201,162,75,.16),transparent 70%);
+/* Ortalanmis acilis yerine iki kolon: solda metin, sagda telefon.
+   Dar ekranda alt alta (once metin). */
+.acilis{position:relative;max-width:var(--en);margin:0 auto;padding:118px var(--kenar) 0;
+  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,5vw,72px);
+  align-items:end;overflow:hidden}
+.acilis::before{content:"";position:absolute;top:-10%;right:-10%;
+  width:min(900px,120vw);height:100%;pointer-events:none;
+  background:radial-gradient(ellipse 46% 46% at 62% 40%,rgba(201,162,75,.14),transparent 70%);
   animation:yanma 7s ease-in-out infinite}
 @keyframes yanma{0%,100%{opacity:1}44%{opacity:.86}48%{opacity:1}72%{opacity:.93}}
-.acilis-ic{position:relative;max-width:960px;margin:0 auto}
-.reel{width:clamp(52px,6vw,70px);margin:0 auto 26px;animation:don 52s linear infinite}
+.acilis-ic{position:relative;align-self:center;padding-bottom:clamp(40px,6vw,96px)}
+.reel{width:clamp(48px,5vw,62px);margin:0 0 24px;animation:don 52s linear infinite}
 @keyframes don{to{transform:rotate(360deg)}}
-.acilis .h1 span{color:var(--gold)}
-.acilis .slogan{margin-top:22px;font-size:clamp(16px,2vw,21px);color:var(--muted);
-  max-width:46ch;margin-inline:auto;line-height:1.5}
-.dugmeler{margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.dgm{padding:12px 26px;border-radius:980px;font-size:14.5px;font-weight:600;letter-spacing:.005em;
+.acilis .h1{font-size:clamp(38px,4.1vw,58px);max-width:20ch}
+.acilis .slogan{margin-top:22px;font-size:clamp(16px,1.7vw,20px);color:#CFC4AE;
+  max-width:44ch;line-height:1.5}
+.dugmeler{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+.dgm{display:inline-flex;flex-direction:column;justify-content:center;min-height:56px;
+  padding:8px 24px;border-radius:16px;font-size:16.5px;font-weight:600;letter-spacing:.005em;line-height:1.2;
   transition:filter .35s,transform .35s,background .35s,color .35s}
-.dgm.dolu{background:var(--gold);color:#08110E}
+.dgm.dolu{background:var(--gold);color:#16150F}
 .dgm.dolu:hover{filter:brightness(1.12);transform:translateY(-2px)}
-.dgm.bos{border:1px solid var(--line);color:var(--muted)}
+.dgm.bos{border:1.5px solid #6E6E6E;color:var(--cream)}
+.dgm small{font-size:12px;font-weight:500;opacity:.8}
 
-/* Telefon: TEK ve BUYUK, alt kenardan kirpik — asagida devami var. */
+/* Telefon: TEK ve BUYUK, alt kenardan kirpik - asagida devami var. */
 /* Alt kenar, cerceve ile birlikte karartiliyor: kirpilan yerde
    yuvarlak kose ve cizgi gorunurse "kesilmis resim" gibi duruyor. */
-.urun{position:relative;margin:clamp(48px,6vw,76px) auto 0;width:min(330px,72vw);
+.urun{position:relative;margin:0 auto;width:min(330px,72vw);
   border-radius:46px 46px 0 0;border:1px solid var(--line);border-bottom:0;background:#000;
   overflow:hidden;box-shadow:0 60px 130px rgba(0,0,0,.8),0 0 0 9px rgba(255,255,255,.022);
   aspect-ratio:9/16.2}
-.urun img{width:100%;display:block}
+.urun img{width:100%;height:auto;display:block}
 .urun::after{content:"";position:absolute;inset:-1px -12px -1px -12px;pointer-events:none;
   background:linear-gradient(180deg,rgba(255,255,255,.06),transparent 26%,
-    transparent 56%,rgba(5,13,11,.72) 84%,var(--bg) 99%)}
+    transparent 56%,rgba(11,11,11,.72) 84%,var(--bg) 99%)}
+
+/* Dar ekranda acilis alt alta: once metin, sonra telefon. */
+@media(max-width:860px){
+  .acilis{grid-template-columns:1fr;padding-top:104px}
+  .acilis-ic{padding-bottom:0}
+}
 
 /* ---------------- BENTO ---------------- */
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(12px,1.4vw,18px)}
@@ -174,7 +203,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:12;opa
 /* Buyuk kartta pencere kalan bosluğu doldursun; sabit yukseklik
    birakinca kartin alti bos kaliyordu. */
 .uzun .pencere{margin-top:26px;flex:1 1 auto;height:auto;min-height:180px}
-.kutu .etiket{display:block;margin-bottom:14px;font-size:10.5px;letter-spacing:.26em}
 .a4{grid-column:span 4}
 .a3{grid-column:span 3}
 .a2{grid-column:span 2}
@@ -207,24 +235,24 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:12;opa
 }
 
 /* Kart ici canlandirma: gercek ekran goruntusu yerine arayuzden kucuk
-   bir PARCA — ayni tokenlar, ayni ince cizgi, ayni koyu zemin. */
+   bir PARCA - ayni tokenlar, ayni ince cizgi, ayni koyu zemin. */
 .mock{margin-top:auto;padding-top:24px}
 .satirlar{display:flex;flex-direction:column;gap:10px}
 .satir{display:flex;align-items:center;gap:13px;padding:11px 14px;border:1px solid var(--line);
-  border-radius:16px;background:rgba(3,8,7,.45)}
+  border-radius:16px;background:rgba(8,8,8,.45)}
 .satir b{display:block;font-size:14px;font-weight:600;color:var(--cream);line-height:1.3}
 .satir small{display:block;font-size:12.5px;color:var(--muted);line-height:1.35}
 .afis{flex:none;width:38px;height:56px;border-radius:7px;border:1px solid var(--line);
-  background:linear-gradient(160deg,#1d3a33,#07120f 72%)}
+  background:linear-gradient(160deg,#333028,#0b0a08 72%)}
 .afis.t2{background:linear-gradient(160deg,#4a2a1c,#0d0806 72%)}
 .afis.t3{background:linear-gradient(160deg,#2b2a44,#08080f 72%)}
 .yuz{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
-  background:radial-gradient(circle at 35% 30%,#2a4a42,#0a1714 75%)}
+  background:radial-gradient(circle at 35% 30%,#3c3a34,#0d0d0c 75%)}
 .yuz.t2{background:radial-gradient(circle at 35% 30%,#5a4524,#120d06 75%)}
 .yildiz{margin-left:auto;color:var(--gold);letter-spacing:.12em;font-size:12.5px;white-space:nowrap}
 .cip{display:inline-block;align-self:flex-start;margin-top:14px;padding:6px 13px;border:1px solid rgba(201,162,75,.45);
   border-radius:980px;font-family:var(--serif);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
-.takip{margin-left:auto;padding:5px 13px;border-radius:980px;background:var(--gold);color:#08110E;
+.takip{margin-left:auto;padding:5px 13px;border-radius:980px;background:var(--gold);color:#16150F;
   font-size:12px;font-weight:600;white-space:nowrap}
 .takip.bos{background:none;border:1px solid var(--line);color:var(--muted)}
 .rakam small{font-size:.36em;letter-spacing:-.01em;color:var(--gold-soft)}
@@ -236,7 +264,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:12;opa
 .vs .afis.secili{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 12px 30px rgba(201,162,75,.18)}
 .vs span{font-family:var(--serif);color:var(--gold);font-size:12px;letter-spacing:.24em}
 .soru{padding:11px 14px;border:1px solid var(--line);border-radius:14px;font-size:13px;
-  color:var(--cream);text-align:center;background:rgba(3,8,7,.45)}
+  color:var(--cream);text-align:center;background:rgba(8,8,8,.45)}
 .sik{margin-top:7px;padding:8px 14px;border:1px solid var(--line);border-radius:12px;font-size:13px;color:var(--muted)}
 .sik.dogru{border-color:rgba(201,162,75,.7);color:var(--cream)}
 
@@ -250,12 +278,18 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:12;opa
 .kademe li{position:relative;padding-left:22px;color:var(--muted);font-size:14.5px}
 .kademe li::before{content:"";position:absolute;left:2px;top:.6em;width:8px;height:8px;border-radius:50%;border:1.5px solid var(--gold)}
 .kademe li b{color:var(--cream);font-weight:600}
+/* Kalan maddeler acilir: kartta en fazla bes madde gorunur. */
+.kademe details.hepsi{border:0;padding:0;margin-top:16px}
+.kademe details.hepsi summary{font-family:var(--sans);font-size:14.5px;font-weight:600;letter-spacing:0;
+  color:var(--gold);min-height:44px;gap:8px}
+.kademe details.hepsi summary::after{margin-left:0;font-size:18px}
+.kademe details.hepsi ul{margin-top:8px}
 @media(max-width:900px){.kademeler{grid-template-columns:1fr}}
 
 /* ---------------- KREM LEVHA ----------------
    Sayfanin tek acik zeminli yeri. Apple'in siyah/beyaz donusumunun
    bizdeki karsiligi; ayrica sayfayi ikiye bolerek "daha var" der. */
-.levha{background:var(--cream);color:#0A1512;text-align:center;
+.levha{background:var(--cream);color:#0B0B0B;text-align:center;
   padding:clamp(88px,11vw,140px) var(--kenar)}
 .levha p{font-family:var(--serif);font-weight:700;letter-spacing:.01em;
   font-size:clamp(26px,4.6vw,58px);line-height:1.2;max-width:17ch;margin:0 auto}
@@ -281,10 +315,10 @@ footer .marka{justify-content:center;margin-bottom:20px}
 .baglar{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;font-size:13.5px;color:var(--muted)}
 .baglar a{transition:color .35s}
 .baglar a:hover{color:var(--gold)}
-footer .kucuk{margin-top:24px;font-size:12px;color:#5C6F68;line-height:1.85}
-footer .kucuk a{color:#7E9189}
+footer .kucuk{margin-top:24px;font-size:12.5px;color:#8A8A8A;line-height:1.85}
+footer .kucuk a{color:#B0B0B0}
 
-/* beliren bloklar — Apple'in yumusak yukselisi */
+/* beliren bloklar - Apple'in yumusak yukselisi */
 .bel{opacity:0;transform:translateY(26px);
   transition:opacity .95s cubic-bezier(.16,1,.3,1),transform .95s cubic-bezier(.16,1,.3,1)}
 .bel.gorundu{opacity:1;transform:none}
@@ -299,6 +333,7 @@ footer .kucuk a{color:#7E9189}
 
 <div id="spot"></div>
 <div id="ilerleme"></div>
+<div id="ust-isaret"></div>
 
 <svg style="display:none">
   <symbol id="reel" viewBox="0 0 100 100">
@@ -321,7 +356,7 @@ footer .kucuk a{color:#7E9189}
     <div class="dil"><button data-dil="tr" class="acik">TR</button><span>·</span><button data-dil="en">EN</button></div>
     <a class="giris-bag" href="/giris.html" data-i18n="cta.login">Giriş</a>
     <a class="indir" href="https://play.google.com/store/apps/details?id=social.makara.app"
-       target="_blank" rel="noopener" data-i18n="cta.get">İndir</a>
+       target="_blank" rel="noopener" data-i18n="cta.get">Uygulamayı indir</a>
   </div>
 </div>
 
@@ -329,15 +364,15 @@ footer .kucuk a{color:#7E9189}
 <section class="acilis">
   <div class="acilis-ic">
     <svg class="reel bel"><use href="#reel"/></svg>
-    <h1 class="h1 bel" data-i18n="hero.h1">İzlediğin her filmi<br><span>bir hikâyeye dönüştür.</span></h1>
+    <h1 class="h1 bel" data-i18n="hero.h1">İzlediğin her filmi bir hikâyeye dönüştür.</h1>
     <p class="slogan bel" data-i18n="hero.lead">Sinemaseverlerin sosyal platformu. Film günlüğünü tut, fragman izle, zevkini keşfet.</p>
     <div class="dugmeler bel">
       <a class="dgm dolu" href="https://play.google.com/store/apps/details?id=social.makara.app"
-         target="_blank" rel="noopener" data-i18n="hero.play">Google Play'den indir</a>
-      <span class="dgm bos" data-i18n="hero.ios">App Store'da yakında</span>
+         target="_blank" rel="noopener" data-i18n="hero.play"><small>Şimdi indir</small>Google Play</a>
+      <span class="dgm bos" data-i18n="hero.ios"><small>Yakında</small>App Store</span>
     </div>
   </div>
-  <div class="urun bel"><img src="img/vitrin.webp" alt="MAKARA keşfet ekranı" fetchpriority="high"></div>
+  <div class="urun bel"><img src="img/vitrin.webp" alt="MAKARA keşfet ekranı" width="560" height="1008" fetchpriority="high"></div>
 </section>
 
 <!-- ===================== BENTO ===================== -->
@@ -350,8 +385,7 @@ footer .kucuk a{color:#7E9189}
 
   <div class="bento">
     <article class="kutu a4 uzun bel">
-      <span class="etiket" data-i18n="k1.e">Film günlüğü</span>
-      <h3 class="h3" data-i18n="k1.h">İzle, kaydet,<br>incele, puanla.</h3>
+      <h3 class="h3" data-i18n="k1.h">İzle, kaydet, incele, puanla.</h3>
       <p data-i18n="k1.p">İzlediğin her film ve diziyi günlüğüne ekle, puan ver, inceleme yaz. İnceledikçe Yeni Eleştirmen’den Efsane Eleştirmen’e rozetler kazan.</p>
       <div class="mock">
         <div class="satirlar">
@@ -364,41 +398,38 @@ footer .kucuk a{color:#7E9189}
     </article>
 
     <article class="kutu a2 bel">
-      <span class="etiket" data-i18n="k2.e">İzleme Kâhini</span>
+      <h3 class="h3" data-i18n="k2.e">İzleme Kâhini</h3>
       <div class="rakam" data-i18n="k2.n">~4,2<small>/5</small></div>
       <p data-i18n="k2.p">Bir filmi izlemeden önce kaç puan vereceğini tahmin eder. İzleyince puanla, isabetini gör.</p>
     </article>
 
     <article class="kutu a2 bel">
-      <span class="etiket" data-i18n="k3.e">Zevk DNA’sı</span>
+      <h3 class="h3" data-i18n="k3.e">Zevk DNA’sı</h3>
       <div class="arketip" data-i18n="k3.h">Yeraltı Kâşifi</div>
       <p data-i18n="k3.p">İzlediklerin ve incelemelerinden 17 arketipten biri çıkar; paylaşılabilir kimlik kartın olur.</p>
       <div class="mock">
         <svg class="radar" viewBox="0 0 120 120" aria-hidden="true">
-          <polygon points="60,10 103.3,35 103.3,85 60,110 16.7,85 16.7,35" fill="none" stroke="#193A33" stroke-width="1.2"/>
-          <polygon points="60,35 81.65,47.5 81.65,72.5 60,85 38.35,72.5 38.35,47.5" fill="none" stroke="#193A33" stroke-width="1"/>
-          <path d="M60 10V110M16.7 35L103.3 85M103.3 35L16.7 85" stroke="#193A33" stroke-width="1"/>
+          <polygon points="60,10 103.3,35 103.3,85 60,110 16.7,85 16.7,35" fill="none" stroke="#2A2A2A" stroke-width="1.2"/>
+          <polygon points="60,35 81.65,47.5 81.65,72.5 60,85 38.35,72.5 38.35,47.5" fill="none" stroke="#2A2A2A" stroke-width="1"/>
+          <path d="M60 10V110M16.7 35L103.3 85M103.3 35L16.7 85" stroke="#2A2A2A" stroke-width="1"/>
           <polygon points="60,15 90.31,42.5 79.49,71.25 60,100 44.84,68.75 31.85,43.75" fill="rgba(201,162,75,.18)" stroke="#C9A24B" stroke-width="1.6"/>
         </svg>
       </div>
     </article>
 
     <article class="kutu a2 bel">
-      <span class="etiket" data-i18n="k4.e">Afiş Turnuvası</span>
-      <h3 class="h3" data-i18n="k4.h">İki afiş,<br>tek seçim.</h3>
+      <h3 class="h3" data-i18n="k4.h">İki afiş, tek seçim.</h3>
       <p data-i18n="k4.p">Her turda iki afişten birini seç. Sona kalan senin şampiyonun.</p>
       <div class="mock"><div class="vs"><span class="afis t2 secili"></span><span>VS</span><span class="afis t3"></span></div></div>
     </article>
 
     <article class="kutu a2 bel">
-      <span class="etiket" data-i18n="k5.e">Fragman vitrini</span>
       <h3 class="h3" data-i18n="k5.h">Fragmanı uygulamada izle.</h3>
       <p data-i18n="k5.p">Vizyona girecek yapımların fragmanları ana sayfanda; izle, listene ekle.</p>
-      <div class="pencere" style="--boy:clamp(140px,15vw,178px)"><img src="img/fragman.webp" alt="" loading="lazy"></div>
+      <div class="pencere" style="--boy:clamp(140px,15vw,178px)"><img src="img/fragman.webp" alt="" width="560" height="392" loading="lazy"></div>
     </article>
 
     <article class="kutu a2 bel">
-      <span class="etiket" data-i18n="k6.e">Bilgi yarışması</span>
       <h3 class="h3" data-i18n="k6.h">Kim daha çok sinema biliyor?</h3>
       <p data-i18n="k6.p">Takip ettiklerinle sohbette on soruluk film ve dizi yarışması.</p>
       <div class="mock">
@@ -409,7 +440,6 @@ footer .kucuk a{color:#7E9189}
     </article>
 
     <article class="kutu a3 bel">
-      <span class="etiket" data-i18n="k7.e">Takip ve keşif</span>
       <h3 class="h3" data-i18n="k7.h">Sinemaseverleri takip et.</h3>
       <p data-i18n="k7.p">Yeni sinemaseverler keşfet; favorilerine, incelemelerine ve listelerine göz at.</p>
       <div class="mock satirlar">
@@ -419,7 +449,6 @@ footer .kucuk a{color:#7E9189}
     </article>
 
     <article class="kutu a3 bel">
-      <span class="etiket" data-i18n="k8.e">Film akışı</span>
       <h3 class="h3" data-i18n="k8.h">Takip ettiklerin ne izliyor?</h3>
       <p data-i18n="k8.p">İzlenen, puanlanan ve incelenen filmler tek akışta.</p>
       <div class="mock satirlar">
@@ -447,24 +476,26 @@ footer .kucuk a{color:#7E9189}
   </div>
   <div class="kademeler">
     <article class="kutu kademe bel">
-      <span class="etiket">Premium</span>
       <div class="ad">Başrol</div>
       <div class="rakam" data-i18n="pr.b.fiyat">₺149<small>/ay</small></div>
       <p data-i18n="pr.b.p">Zevkini derinlemesine tanı.</p>
       <ul data-i18n="pr.b.liste">
-        <li><b>Sinema istatistiklerin</b>: tür, yönetmen, oyuncu — canlı grafiklerle</li>
+        <li><b>Sinema istatistiklerin</b>: tür, yönetmen ve oyuncu, canlı grafiklerle</li>
         <li><b>Zevk DNA’n</b>: arketipin ve paylaşılabilir kimlik kartın</li>
         <li><b>Senin İçin</b>: zevkine göre derin öneriler</li>
         <li><b>Sana Özel 30</b>: kişisel film listen</li>
         <li><b>128’lik dev afiş turnuvası</b></li>
-        <li>Yönetmen ve oyuncu yolculuğu: filmografi takibi ve rozetler</li>
-        <li>Sohbette bilgi yarışması</li>
-        <li>Sınırsız takip ve kişi önerisi</li>
-        <li>Sinema serisi dondurma: ayda 2 gün</li>
       </ul>
+      <details class="hepsi"><summary data-i18n="pr.hepsi">Tüm özellikler</summary>
+        <ul data-i18n="pr.b.daha">
+          <li>Yönetmen ve oyuncu yolculuğu: filmografi takibi ve rozetler</li>
+          <li>Sohbette bilgi yarışması</li>
+          <li>Sınırsız takip ve kişi önerisi</li>
+          <li>Sinema serisi dondurma: ayda 2 gün</li>
+        </ul>
+      </details>
     </article>
     <article class="kutu kademe ust bel">
-      <span class="etiket">Premium</span>
       <div class="ad">Yönetmen</div>
       <div class="rakam" data-i18n="pr.y.fiyat">₺1499<small>/ay</small></div>
       <p data-i18n="pr.y.p">Bütün araçlar, en üst kademe.</p>
@@ -474,11 +505,15 @@ footer .kucuk a{color:#7E9189}
         <li><b>Kör Nokta Radarı</b>: sevdiğin türlerde kaçırdıkların</li>
         <li><b>Sinema Zaman Kapsülü</b>: gelecekteki kendine not</li>
         <li><b>Yıllık Sinema Karnesi</b>: hikâye gibi, paylaşılır</li>
-        <li>Sinema Ligi: aylık sezon, canlı sıralama</li>
-        <li>Profil afişi ve altın Yönetmen rozeti</li>
-        <li>Sinema serisi dondurma: ayda 4 gün</li>
-        <li>Öncelikli destek</li>
       </ul>
+      <details class="hepsi"><summary data-i18n="pr.hepsi">Tüm özellikler</summary>
+        <ul data-i18n="pr.y.daha">
+          <li>Sinema Ligi: aylık sezon, canlı sıralama</li>
+          <li>Profil afişi ve altın Yönetmen rozeti</li>
+          <li>Sinema serisi dondurma: ayda 4 gün</li>
+          <li>Öncelikli destek</li>
+        </ul>
+      </details>
     </article>
   </div>
   <p class="dahasi bel" data-i18n="pr.not">Abonelik aylık yenilenir; istediğin zaman iptal edebilirsin.</p>
@@ -521,22 +556,21 @@ footer .kucuk a{color:#7E9189}
 
 <script>
 const T = {
- "meta.title":["MAKARA — Sinemaseverlerin sosyal platformu","MAKARA — The social platform for film lovers"],
+ "meta.title":["MAKARA - Sinemaseverlerin sosyal platformu","MAKARA - The social platform for film lovers"],
  "nav.feat":["Özellikler","Features"],
  "nav.prem":["Premium","Premium"],
  "nav.faq":["SSS","FAQ"],
- "cta.get":["İndir","Get"],
+ "cta.get":["Uygulamayı indir","Get the app"],
  "cta.login":["Giriş","Sign in"],
- "hero.h1":["İzlediğin her filmi<br><span>bir hikâyeye dönüştür.</span>","Turn every film you watch<br><span>into a story.</span>"],
+ "hero.h1":["İzlediğin her filmi bir hikâyeye dönüştür.","Turn every film you watch into a story."],
  "hero.lead":["Sinemaseverlerin sosyal platformu. Film günlüğünü tut, fragman izle, zevkini keşfet.","The social platform for film lovers. Keep your film diary, watch trailers, discover your taste."],
- "hero.play":["Google Play'den indir","Get it on Google Play"],
- "hero.ios":["App Store'da yakında","Coming soon to the App Store"],
+ "hero.play":["<small>Şimdi indir</small>Google Play","<small>Get it on</small>Google Play"],
+ "hero.ios":["<small>Yakında</small>App Store","<small>Coming soon</small>App Store"],
  "oz.etiket":["Özellikler","Features"],
  "oz.h":["Seyirciden fazlası.","More than an audience."],
  "oz.p":["İzlediklerin bir günlüğe, puanların bir zevk haritasına, takip ettiğin sinemaseverler bir akışa dönüşür.","What you watch becomes a diary, your ratings a map of your taste, and the film lovers you follow a feed."],
- "k1.e":["Film günlüğü","Film diary"],
- "k1.h":["İzle, kaydet,<br>incele, puanla.","Watch, log,<br>review, rate."],
- "k1.p":["İzlediğin her film ve diziyi günlüğüne ekle, puan ver, inceleme yaz. İnceledikçe Yeni Eleştirmen’den Efsane Eleştirmen’e rozetler kazan.","Add every film and series you watch to your diary, rate it, write a review. The more you review, the more badges you earn — from New Critic to Legendary Critic."],
+ "k1.h":["İzle, kaydet, incele, puanla.","Watch, log, review, rate."],
+ "k1.p":["İzlediğin her film ve diziyi günlüğüne ekle, puan ver, inceleme yaz. İnceledikçe Yeni Eleştirmen’den Efsane Eleştirmen’e rozetler kazan.","Add every film and series you watch to your diary, rate it, write a review. The more you review, the more badges you earn, from New Critic to Legendary Critic."],
  "k1.r1":["1979 · İnceleme yazdın","1979 · You reviewed"],
  "k1.r2":["1994 · Puanladın","1994 · You rated"],
  "k1.r3":["2003 · İzleme listende","2003 · On your watchlist"],
@@ -546,27 +580,22 @@ const T = {
  "k2.p":["Bir filmi izlemeden önce kaç puan vereceğini tahmin eder. İzleyince puanla, isabetini gör.","Predicts how you’ll rate a film before you watch it. Rate it afterwards and see how close it got."],
  "k3.e":["Zevk DNA’sı","Taste DNA"],
  "k3.h":["Yeraltı Kâşifi","Underground Explorer"],
- "k3.p":["İzlediklerin ve incelemelerinden 17 arketipten biri çıkar; paylaşılabilir kimlik kartın olur.","Your watches and reviews reveal one of 17 archetypes — with a shareable identity card."],
- "k4.e":["Afiş Turnuvası","Poster Tournament"],
- "k4.h":["İki afiş,<br>tek seçim.","Two posters,<br>one pick."],
+ "k3.p":["İzlediklerin ve incelemelerinden 17 arketipten biri çıkar; paylaşılabilir kimlik kartın olur.","Your watches and reviews reveal one of 17 archetypes, with a shareable identity card."],
+ "k4.h":["İki afiş, tek seçim.","Two posters, one pick."],
  "k4.p":["Her turda iki afişten birini seç. Sona kalan senin şampiyonun.","Pick one of two posters each round. The last one standing is your champion."],
- "k5.e":["Fragman vitrini","Trailer showcase"],
  "k5.h":["Fragmanı uygulamada izle.","Watch trailers in the app."],
- "k5.p":["Vizyona girecek yapımların fragmanları ana sayfanda; izle, listene ekle.","Trailers for upcoming releases sit on your home screen — watch, then add them to your list."],
- "k6.e":["Bilgi yarışması","Film quiz"],
+ "k5.p":["Vizyona girecek yapımların fragmanları ana sayfanda; izle, listene ekle.","Trailers for upcoming releases sit on your home screen; watch them, then add them to your list."],
  "k6.h":["Kim daha çok sinema biliyor?","Who knows more cinema?"],
  "k6.p":["Takip ettiklerinle sohbette on soruluk film ve dizi yarışması.","A ten-question film and TV quiz in chat with the people you follow."],
  "k6.soru":["Chungking Express hangi şehirde geçer?","Where is Chungking Express set?"],
- "k7.e":["Takip ve keşif","Follow & discover"],
  "k7.h":["Sinemaseverleri takip et.","Follow film lovers."],
  "k7.p":["Yeni sinemaseverler keşfet; favorilerine, incelemelerine ve listelerine göz at.","Discover new film lovers and browse their favorites, reviews and lists."],
  "k7.r1":["318 film · 42 inceleme","318 films · 42 reviews"],
  "k7.r2":["1.204 film · 97 inceleme","1,204 films · 97 reviews"],
  "k7.takip":["Takip et","Follow"],
  "k7.takipte":["Takiptesin","Following"],
- "k8.e":["Film akışı","Film feed"],
  "k8.h":["Takip ettiklerin ne izliyor?","What are your follows watching?"],
- "k8.p":["İzlenen, puanlanan ve incelenen filmler tek akışta.","What they watch, rate and review — in one feed."],
+ "k8.p":["İzlenen, puanlanan ve incelenen filmler tek akışta.","What they watch, rate and review, in one feed."],
  "k8.r1":["Stalker’ı inceledi · 2 sa","reviewed Stalker · 2h"],
  "k8.r2":["Oldboy’u izleme listesine ekledi","added Oldboy to their watchlist"],
  "dahasi":["Ayrıca <b>vizyon takvimi</b>, <b>sinema serisi</b>, <b>Zaman Kapsülü</b> ve <b>denetlenen, güvenli bir topluluk</b>.","Plus a <b>release calendar</b>, <b>cinema streaks</b>, <b>Time Capsules</b> and <b>a moderated, safe community</b>."],
@@ -577,14 +606,17 @@ const T = {
  "pr.p":["Temel özellikler ücretsiz. Daha derine inmek isteyenler için Başrol ve Yönetmen.","Core features are free. Başrol and Yönetmen are for those who want to go deeper."],
  "pr.b.fiyat":["₺149<small>/ay</small>","₺149<small>/mo</small>"],
  "pr.b.p":["Zevkini derinlemesine tanı.","Get to know your taste in depth."],
- "pr.b.liste":["<li><b>Sinema istatistiklerin</b>: tür, yönetmen, oyuncu — canlı grafiklerle</li><li><b>Zevk DNA’n</b>: arketipin ve paylaşılabilir kimlik kartın</li><li><b>Senin İçin</b>: zevkine göre derin öneriler</li><li><b>Sana Özel 30</b>: kişisel film listen</li><li><b>128’lik dev afiş turnuvası</b></li><li>Yönetmen ve oyuncu yolculuğu: filmografi takibi ve rozetler</li><li>Sohbette bilgi yarışması</li><li>Sınırsız takip ve kişi önerisi</li><li>Sinema serisi dondurma: ayda 2 gün</li>","<li><b>Your film stats</b>: genres, directors, actors — in live charts</li><li><b>Your Taste DNA</b>: your archetype and a shareable identity card</li><li><b>For You</b>: deep picks based on your taste</li><li><b>Your 30</b>: a personal film list</li><li><b>128-title mega poster tournament</b></li><li>Director and actor journeys: filmography tracking and badges</li><li>Film quiz in chat</li><li>Unlimited follows and people suggestions</li><li>Cinema streak freeze: 2 days a month</li>"],
+ "pr.b.liste":["<li><b>Sinema istatistiklerin</b>: tür, yönetmen ve oyuncu, canlı grafiklerle</li><li><b>Zevk DNA’n</b>: arketipin ve paylaşılabilir kimlik kartın</li><li><b>Senin İçin</b>: zevkine göre derin öneriler</li><li><b>Sana Özel 30</b>: kişisel film listen</li><li><b>128’lik dev afiş turnuvası</b></li>","<li><b>Your film stats</b>: genres, directors and actors, in live charts</li><li><b>Your Taste DNA</b>: your archetype and a shareable identity card</li><li><b>For You</b>: deep picks based on your taste</li><li><b>Your 30</b>: a personal film list</li><li><b>128-title mega poster tournament</b></li>"],
+ "pr.b.daha":["<li>Yönetmen ve oyuncu yolculuğu: filmografi takibi ve rozetler</li><li>Sohbette bilgi yarışması</li><li>Sınırsız takip ve kişi önerisi</li><li>Sinema serisi dondurma: ayda 2 gün</li>","<li>Director and actor journeys: filmography tracking and badges</li><li>Film quiz in chat</li><li>Unlimited follows and people suggestions</li><li>Cinema streak freeze: 2 days a month</li>"],
+ "pr.hepsi":["Tüm özellikler","All features"],
  "pr.y.fiyat":["₺1499<small>/ay</small>","₺1499<small>/mo</small>"],
- "pr.y.p":["Bütün araçlar, en üst kademe.","Every tool — the top tier."],
- "pr.y.liste":["<li><b>Başrol’ün her şeyi</b></li><li><b>İzleme Kâhini</b>: izlemeden önce puan tahmini</li><li><b>Kör Nokta Radarı</b>: sevdiğin türlerde kaçırdıkların</li><li><b>Sinema Zaman Kapsülü</b>: gelecekteki kendine not</li><li><b>Yıllık Sinema Karnesi</b>: hikâye gibi, paylaşılır</li><li>Sinema Ligi: aylık sezon, canlı sıralama</li><li>Profil afişi ve altın Yönetmen rozeti</li><li>Sinema serisi dondurma: ayda 4 gün</li><li>Öncelikli destek</li>","<li><b>Everything in Başrol</b></li><li><b>Watch Oracle</b>: predicts your rating before you watch</li><li><b>Blind Spot Radar</b>: essentials you’ve missed in genres you love</li><li><b>Cinema Time Capsule</b>: notes to your future self</li><li><b>Yearly Cinema Report Card</b>: told like a story, shareable</li><li>Cinema League: monthly seasons, live rankings</li><li>Profile banner and golden Yönetmen badge</li><li>Cinema streak freeze: 4 days a month</li><li>Priority support</li>"],
+ "pr.y.p":["Bütün araçlar, en üst kademe.","Every tool. The top tier."],
+ "pr.y.liste":["<li><b>Başrol’ün her şeyi</b></li><li><b>İzleme Kâhini</b>: izlemeden önce puan tahmini</li><li><b>Kör Nokta Radarı</b>: sevdiğin türlerde kaçırdıkların</li><li><b>Sinema Zaman Kapsülü</b>: gelecekteki kendine not</li><li><b>Yıllık Sinema Karnesi</b>: hikâye gibi, paylaşılır</li>","<li><b>Everything in Başrol</b></li><li><b>Watch Oracle</b>: predicts your rating before you watch</li><li><b>Blind Spot Radar</b>: essentials you’ve missed in genres you love</li><li><b>Cinema Time Capsule</b>: notes to your future self</li><li><b>Yearly Cinema Report Card</b>: told like a story, shareable</li>"],
+ "pr.y.daha":["<li>Sinema Ligi: aylık sezon, canlı sıralama</li><li>Profil afişi ve altın Yönetmen rozeti</li><li>Sinema serisi dondurma: ayda 4 gün</li><li>Öncelikli destek</li>","<li>Cinema League: monthly seasons, live rankings</li><li>Profile banner and golden Yönetmen badge</li><li>Cinema streak freeze: 4 days a month</li><li>Priority support</li>"],
  "pr.not":["Abonelik aylık yenilenir; istediğin zaman iptal edebilirsin.","Subscriptions renew monthly; cancel anytime."],
  "sss.h":["Sıkça sorulanlar","FAQ"],
  "s1.q":["MAKARA ne işe yarar?","What is MAKARA for?"],
- "s1.a":["MAKARA sinemaseverlerin sosyal platformu. İzlediğin film ve dizileri günlüğüne kaydeder, puanlar ve incelersin; fragmanları uygulamadan çıkmadan izler, yeni yapımlar keşfedersin. Zevk DNA’n, Afiş Turnuvası ve bilgi yarışmasıyla sinemayla oynarsın; diğer sinemaseverleri takip edip film akışlarını görürsün.","MAKARA is the social platform for film lovers. Log, rate and review the films and series you watch; watch trailers without leaving the app and discover new titles. Play with cinema through your Taste DNA, the Poster Tournament and film quizzes — and follow other film lovers to see their film feed."],
+ "s1.a":["MAKARA sinemaseverlerin sosyal platformu. İzlediğin film ve dizileri günlüğüne kaydeder, puanlar ve incelersin; fragmanları uygulamadan çıkmadan izler, yeni yapımlar keşfedersin. Zevk DNA’n, Afiş Turnuvası ve bilgi yarışmasıyla sinemayla oynarsın; diğer sinemaseverleri takip edip film akışlarını görürsün.","MAKARA is the social platform for film lovers. Log, rate and review the films and series you watch; watch trailers without leaving the app and discover new titles. Play with cinema through your Taste DNA, the Poster Tournament and film quizzes, and follow other film lovers to see their film feed."],
  "s2.q":["Uygulama ücretsiz mi?","Is the app free?"],
  "s2.a":["Evet. Film günlüğü, inceleme ve puanlama, fragmanlar, takip ve film akışı ücretsiz. Daha fazlasını isteyenler için iki premium kademe var: Başrol (₺149/ay) ve Yönetmen (₺1499/ay). Abonelik aylık yenilenir, istediğin zaman iptal edebilirsin.","Yes. The film diary, reviews and ratings, trailers, follows and the film feed are free. For more, there are two premium tiers: Başrol (₺149/month) and Yönetmen (₺1499/month). Subscriptions renew monthly and you can cancel anytime."],
  "s5.q":["Başrol ile Yönetmen arasındaki fark ne?","What’s the difference between Başrol and Yönetmen?"],
@@ -636,33 +668,21 @@ if (baslangic === 'en') dilUygula('en');
 
    Apple urun sayfalarinda hareketin buyuk kismi tek bir seydir:
    ogeler goruse girerken YUKSELEREK beliriyor. Uzun yapisik
-   sahneler yok — sayfa her an ilerliyor, "kaydiriyorum ama sayfa
+   sahneler yok - sayfa her an ilerliyor, "kaydiriyorum ama sayfa
    duruyor" hissi hic olusmuyor.
 
    Burada da oyle: kaydirmayi ele gecirmiyoruz, sadece ust cizgiyi
    ve belirme sirasini suruyoruz.
    =============================================================== */
 const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const bar = document.getElementById('bar');
-const ilerlemeCizgi = document.getElementById('ilerleme');
 
-let hedefY = 0, suY = 0, calisiyor = false;
-
-function olc() {
-  hedefY = scrollY || document.documentElement.scrollTop;
-  if (!calisiyor) { calisiyor = true; requestAnimationFrame(ciz); }
+/* Ust cubugun alt cizgisi: sayfanin tepesindeki isaret gorunmez
+   olunca acilir. Kaydirma dinleyicisi yok; ilerleme cizgisi CSS'te. */
+if ('IntersectionObserver' in window) {
+  const bar = document.getElementById('bar');
+  new IntersectionObserver(([x]) => bar.classList.toggle('kaydi', !x.isIntersecting))
+    .observe(document.getElementById('ust-isaret'));
 }
-function ciz() {
-  suY += (hedefY - suY) * (azHareket ? 1 : 0.12);
-  if (Math.abs(hedefY - suY) < 0.4) suY = hedefY;
-  bar.classList.toggle('kaydi', suY > 8);
-  const toplam = document.body.scrollHeight - innerHeight;
-  ilerlemeCizgi.style.width = (toplam > 0 ? (suY / toplam) * 100 : 0) + '%';
-  if (suY !== hedefY) requestAnimationFrame(ciz);
-  else calisiyor = false;
-}
-addEventListener('scroll', olc, {passive:true});
-olc();
 
 /* --- yukselerek belirme ---
    Gecikme SIRAYA gore degil, KOMSULUGA gore veriliyor: ayni anda
