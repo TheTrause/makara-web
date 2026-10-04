@@ -139,7 +139,7 @@
     });
     eylem.appendChild(paylasDgm);
     if (!p.kendi) {
-      eylem.appendChild(el('a', { sinif: 'dgm dolu', href: 'https://play.google.com/store/apps/details?id=social.makara.app',
+      eylem.appendChild(el('a', { sinif: 'dgm dolu', href: M.magazaLinki(),
         target: '_blank', rel: 'noopener', metin: t('uygulamada_takip') }));
     }
 

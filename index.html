@@ -369,7 +369,7 @@ footer .kucuk a{color:#B0B0B0}
     <div class="dugmeler bel">
       <a class="dgm dolu" href="https://play.google.com/store/apps/details?id=social.makara.app"
          target="_blank" rel="noopener" data-i18n="hero.play"><small>Şimdi indir</small>Google Play</a>
-      <span class="dgm bos" data-i18n="hero.ios"><small>Yakında</small>App Store</span>
+      <span class="dgm bos" id="ios-dugme" data-i18n="hero.ios"><small>Yakında</small>App Store</span>
     </div>
   </div>
   <div class="urun bel"><img src="img/vitrin.webp" alt="MAKARA keşfet ekranı" width="560" height="1008" fetchpriority="high"></div>
@@ -566,6 +566,7 @@ const T = {
  "hero.lead":["Sinemaseverlerin sosyal platformu. Film günlüğünü tut, fragman izle, zevkini keşfet.","The social platform for film lovers. Keep your film diary, watch trailers, discover your taste."],
  "hero.play":["<small>Şimdi indir</small>Google Play","<small>Get it on</small>Google Play"],
  "hero.ios":["<small>Yakında</small>App Store","<small>Coming soon</small>App Store"],
+ "hero.iosCanli":["<small>Şimdi indir</small>App Store","<small>Download on the</small>App Store"],
  "oz.etiket":["Özellikler","Features"],
  "oz.h":["Seyirciden fazlası.","More than an audience."],
  "oz.p":["İzlediklerin bir günlüğe, puanların bir zevk haritasına, takip ettiğin sinemaseverler bir akışa dönüşür.","What you watch becomes a diary, your ratings a map of your taste, and the film lovers you follow a feed."],
@@ -674,6 +675,22 @@ if (baslangic === 'en') dilUygula('en');
    Burada da oyle: kaydirmayi ele gecirmiyoruz, sadece ust cizgiyi
    ve belirme sirasini suruyoruz.
    =============================================================== */
+/* App Store dugmesi. Bag Apple ID'den (6797695011) ve degismez; iOS
+   yayina alininca IOS_YAYINDA = true yap (web/ortak.js'te de ayni bayrak).
+   O zamana kadar "Yakinda" yazan pasif dugme kalir. */
+const IOS_YAYINDA = false;
+if (IOS_YAYINDA) {
+  const eski = document.getElementById('ios-dugme');
+  const a = document.createElement('a');
+  a.className = 'dgm dolu';
+  a.href = 'https://apps.apple.com/app/id6797695011';
+  a.target = '_blank';
+  a.rel = 'noopener';
+  a.dataset.i18n = 'hero.iosCanli';
+  a.innerHTML = T['hero.iosCanli'][document.documentElement.lang === 'en' ? 1 : 0];
+  eski.replaceWith(a);
+}
+
 const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* Ust cubugun alt cizgisi: sayfanin tepesindeki isaret gorunmez

@@ -108,6 +108,7 @@
     cta_alt: ['İzlediklerini kaydet, incele, sinemaseverleri takip et.', 'Log what you watch, review it, follow film lovers.'],
     indir: ['Google Play’den indir', 'Get it on Google Play'],
     ios: ['App Store’da yakında', 'Coming soon to the App Store'],
+    ios_indir: ['App Store’dan indir', 'Download on the App Store'],
     bulunamadi: ['Profil bulunamadı', 'Profile not found'],
     bulunamadi_alt: ['Bu kullanıcı adıyla bir profil yok ya da görüntülenemiyor.',
       'There is no profile with this username, or it cannot be shown.'],
@@ -220,10 +221,21 @@
   function paylasimLinki(ad) { return 'https://makara.social/u/' + encodeURIComponent(ad); }
 
   var PLAY = 'https://play.google.com/store/apps/details?id=social.makara.app';
+  // App Store (Apple ID 6797695011; bu bag degismez). iOS yayina alininca
+  // IOS_YAYINDA = true yap; index.html'de de ayni adli bayrak var.
+  var APP_STORE = 'https://apps.apple.com/app/id6797695011';
+  var IOS_YAYINDA = false;
   function magazaDugmeleri() {
     return el('div', { sinif: 'magaza' },
       el('a', { sinif: 'dgm dolu', href: PLAY, target: '_blank', rel: 'noopener', metin: t('indir') }),
-      el('span', { sinif: 'dgm bos', metin: t('ios') }));
+      IOS_YAYINDA
+        ? el('a', { sinif: 'dgm dolu', href: APP_STORE, target: '_blank', rel: 'noopener', metin: t('ios_indir') })
+        : el('span', { sinif: 'dgm bos', metin: t('ios') }));
+  }
+  // Tek dugmelik yerler icin: iOS yayindaysa iPhone/iPad'e App Store,
+  // digerlerine Google Play.
+  function magazaLinki() {
+    return IOS_YAYINDA && /iPhone|iPad|iPod/.test(navigator.userAgent) ? APP_STORE : PLAY;
   }
 
   function ustCubuk(oturum) {
@@ -282,7 +294,7 @@
     sb: sb, t: t, el: el, dil: dil, cevir: cevir, afisGorsel: afisGorsel, afisYollari: afisYollari,
     fotoGecerli: fotoGecerli, yapimCoz: yapimCoz, kademe: kademe, profilYolu: profilYolu,
     kendiYolu: kendiYolu, girisYolu: girisYolu, paylasimLinki: paylasimLinki,
-    magazaDugmeleri: magazaDugmeleri, ustCubuk: ustCubuk, altBilgi: altBilgi, tarih: tarih,
+    magazaDugmeleri: magazaDugmeleri, magazaLinki: magazaLinki, ustCubuk: ustCubuk, altBilgi: altBilgi, tarih: tarih,
     noindex: noindex
   };
 })();
