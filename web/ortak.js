@@ -224,7 +224,7 @@
   // App Store (Apple ID 6797695011; bu bag degismez). iOS yayina alininca
   // IOS_YAYINDA = true yap; index.html'de de ayni adli bayrak var.
   var APP_STORE = 'https://apps.apple.com/app/id6797695011';
-  var IOS_YAYINDA = false;
+  var IOS_YAYINDA = true;
   function magazaDugmeleri() {
     return el('div', { sinif: 'magaza' },
       el('a', { sinif: 'dgm dolu', href: PLAY, target: '_blank', rel: 'noopener', metin: t('indir') }),
