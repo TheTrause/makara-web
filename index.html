@@ -190,6 +190,34 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:12;opa
   .acilis-ic{padding-bottom:0}
 }
 
+/* ---------------- UYGULAMADAN KARELER ----------------
+   Magaza gorselleri yatay bir seritte. Uzun bir liste (8 kare) oldugu
+   icin alt alta degil kaydirmali; ilk iki kare magazadaki gibi tek
+   parca (aralarinda bosluk yok, ic koseler duz). Kaydirma dinleyicisi
+   yok: oklar yalniz scrollBy cagiriyor, gerisi CSS scroll-snap. */
+.kareler{padding:clamp(64px,8vw,104px) 0 0}
+.kareler-ust{max-width:var(--en);margin:0 auto clamp(22px,3vw,34px);display:flex;align-items:flex-end;
+  justify-content:space-between;gap:20px;padding:0 var(--kenar);box-sizing:border-box}
+.kareler-ust .h2{max-width:14ch}
+.oklar{display:flex;gap:10px;flex:none}
+.oklar button{width:48px;height:48px;border-radius:24px;border:1.5px solid #6E6E6E;background:transparent;
+  color:var(--cream);display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:border-color .3s,background .3s}
+.oklar button:hover{border-color:var(--gold);background:rgba(201,162,75,.08)}
+.oklar svg{width:20px;height:20px}
+.serit{list-style:none;display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+  --serit-bas:max(var(--kenar),calc((100% - var(--en)) / 2 + var(--kenar)));
+  scroll-padding-inline:var(--serit-bas);padding:4px var(--serit-bas) 8px;scrollbar-width:none;
+  -webkit-overflow-scrolling:touch}
+.serit::-webkit-scrollbar{display:none}
+.serit li{flex:none;width:clamp(210px,23vw,290px);scroll-snap-align:start}
+.serit img{width:100%;height:auto;display:block;border-radius:22px;border:1px solid var(--line);background:#0B0B0B}
+.serit li.sol{margin-right:-18px}
+.serit li.sol img{border-radius:22px 0 0 22px;border-right:0}
+.serit li.sag{scroll-snap-align:none}
+.serit li.sag img{border-radius:0 22px 22px 0;border-left:0}
+@media(max-width:640px){.oklar{display:none}}
+
 /* ---------------- BENTO ---------------- */
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(12px,1.4vw,18px)}
 .kutu{position:relative;background:var(--kart);border-radius:var(--r);overflow:hidden;
@@ -373,6 +401,27 @@ footer .kucuk a{color:#B0B0B0}
     </div>
   </div>
   <div class="urun bel"><img src="img/vitrin.webp" alt="MAKARA keşfet ekranı" width="560" height="1008" fetchpriority="high"></div>
+</section>
+
+<!-- ===================== UYGULAMADAN KARELER ===================== -->
+<section class="kareler bel" aria-labelledby="kareler-baslik">
+  <div class="kareler-ust">
+    <h2 class="h2" id="kareler-baslik" data-i18n="kar.h">Uygulamaya yakından bak.</h2>
+    <div class="oklar">
+      <button type="button" id="kare-geri" aria-label="Önceki kareler" data-i18n-aria="kar.geri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button type="button" id="kare-ileri" aria-label="Sonraki kareler" data-i18n-aria="kar.ileri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </div>
+  <ul class="serit" id="serit" tabindex="0" aria-label="MAKARA uygulama ekranları">
+    <li class="sol"><img src="img/kareler/01.webp" alt="Film zevkin seni anlatır: MAKARA Keşfet ekranı" width="600" height="1300" loading="lazy" decoding="async"></li>
+    <li class="sag"><img src="img/kareler/02.webp" alt="İzle, puanla, incele: Keşfet ekranının devamı" width="600" height="1300" loading="lazy" decoding="async"></li>
+    <li><img src="img/kareler/03.webp" alt="Fragmanlar ekranı" width="600" height="1300" loading="lazy" decoding="async"></li>
+    <li><img src="img/kareler/04.webp" alt="Sinema serisi ekranı" width="600" height="1300" loading="lazy" decoding="async"></li>
+    <li><img src="img/kareler/05.webp" alt="Zevkine yakın sinemaseverler ekranı" width="600" height="1300" loading="lazy" decoding="async"></li>
+    <li><img src="img/kareler/06.webp" alt="Takip edilenlerin akışı" width="600" height="1300" loading="lazy" decoding="async"></li>
+    <li><img src="img/kareler/07.webp" alt="Sohbet ekranı" width="600" height="1300" loading="lazy" decoding="async"></li>
+    <li><img src="img/kareler/08.webp" alt="Premium kademeleri ekranı" width="600" height="1300" loading="lazy" decoding="async"></li>
+  </ul>
 </section>
 
 <!-- ===================== BENTO ===================== -->
@@ -567,6 +616,9 @@ const T = {
  "hero.play":["<small>Şimdi indir</small>Google Play","<small>Get it on</small>Google Play"],
  "hero.ios":["<small>Yakında</small>App Store","<small>Coming soon</small>App Store"],
  "hero.iosCanli":["<small>Şimdi indir</small>App Store","<small>Download on the</small>App Store"],
+ "kar.h":["Uygulamaya yakından bak.","A closer look at the app."],
+ "kar.geri":["Önceki kareler","Previous screens"],
+ "kar.ileri":["Sonraki kareler","Next screens"],
  "oz.etiket":["Özellikler","Features"],
  "oz.h":["Seyirciden fazlası.","More than an audience."],
  "oz.p":["İzlediklerin bir günlüğe, puanların bir zevk haritasına, takip ettiğin sinemaseverler bir akışa dönüşür.","What you watch becomes a diary, your ratings a map of your taste, and the film lovers you follow a feed."],
@@ -646,6 +698,10 @@ function dilUygula(dil){
     const k = T[el.dataset.i18n];
     if (k) el.innerHTML = k[s];
   });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    const k = T[el.dataset.i18nAria];
+    if (k) el.setAttribute('aria-label', k[s]);
+  });
   document.title = T['meta.title'][s];
   document.querySelectorAll('.dil button').forEach(b =>
     b.classList.toggle('acik', b.dataset.dil === dil));
@@ -699,6 +755,15 @@ if ('IntersectionObserver' in window) {
   const bar = document.getElementById('bar');
   new IntersectionObserver(([x]) => bar.classList.toggle('kaydi', !x.isIntersecting))
     .observe(document.getElementById('ust-isaret'));
+}
+
+/* Kareler seridi: oklar bir ekran genisligi kadar kaydirir (dinleyici yok,
+   kaydirmayi tarayici ve scroll-snap yapiyor). */
+const serit = document.getElementById('serit');
+if (serit) {
+  const kay = (yon) => serit.scrollBy({ left: yon * serit.clientWidth * 0.8, behavior: azHareket ? 'auto' : 'smooth' });
+  document.getElementById('kare-geri').addEventListener('click', () => kay(-1));
+  document.getElementById('kare-ileri').addEventListener('click', () => kay(1));
 }
 
 /* --- yukselerek belirme ---
