@@ -14,7 +14,7 @@
 {"@context":"https://schema.org","@graph":[
  {"@type":"Organization","@id":"https://makara.social/#org","name":"Repress Studio","url":"https://makara.social/","logo":"https://makara.social/img/icon-512.png","email":"destek@makara.social","sameAs":["https://instagram.com/socialmakara"]},
  {"@type":"WebSite","@id":"https://makara.social/#site","name":"MAKARA","alternateName":"MAKARA - Sinemaseverlerin sosyal platformu","url":"https://makara.social/","inLanguage":["tr","en"],"publisher":{"@id":"https://makara.social/#org"}},
- {"@type":"MobileApplication","name":"MAKARA","operatingSystem":"Android","applicationCategory":"SocialNetworkingApplication","description":"Sinemaseverlerin sosyal platformu: film günlüğü, incelemeler, fragmanlar, Zevk DNA'sı, Afiş Turnuvası ve takip ağı.","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"downloadUrl":"https://play.google.com/store/apps/details?id=social.makara.app","publisher":{"@id":"https://makara.social/#org"}}
+ {"@type":"MobileApplication","name":"MAKARA","operatingSystem":"Android, iOS","applicationCategory":"SocialNetworkingApplication","description":"Sinemaseverlerin sosyal platformu: film günlüğü, incelemeler, fragmanlar, Zevk DNA'sı, Afiş Turnuvası ve takip ağı.","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"downloadUrl":"https://play.google.com/store/apps/details?id=social.makara.app","publisher":{"@id":"https://makara.social/#org"}}
 ]}
 </script>
 <meta property="og:type" content="website">
@@ -397,7 +397,7 @@ footer .kucuk a{color:#B0B0B0}
     <div class="dugmeler bel">
       <a class="dgm dolu" href="https://play.google.com/store/apps/details?id=social.makara.app"
          target="_blank" rel="noopener" data-i18n="hero.play"><small>Şimdi indir</small>Google Play</a>
-      <span class="dgm bos" id="ios-dugme" data-i18n="hero.ios"><small>Yakında</small>App Store</span>
+      <a class="dgm dolu" id="ios-dugme" href="https://apps.apple.com/app/id6797695011" target="_blank" rel="noopener" data-i18n="hero.iosCanli"><small>Şimdi indir</small>App Store</a>
     </div>
   </div>
   <div class="urun bel"><img src="img/vitrin.webp" alt="MAKARA keşfet ekranı" width="560" height="1008" fetchpriority="high"></div>
@@ -577,8 +577,8 @@ footer .kucuk a{color:#B0B0B0}
       <p data-i18n="s5.a">Başrol; sinema istatistiklerini, Zevk DNA’nı, kişisel önerileri ve 128’lik dev afiş turnuvasını açar. Yönetmen, Başrol’ün her şeyine ek olarak İzleme Kâhini, Kör Nokta Radarı, Sinema Zaman Kapsülü ve Yıllık Sinema Karnesi’ni getirir.</p></details>
     <details><summary data-i18n="s3.q">Verilerim güvende mi?</summary>
       <p data-i18n="s3.a">Tüm iletişim şifreli bağlantı üzerinden yapılır ve verilerin satılmaz. Ayrıntılar için <a href="/privacy.html">Gizlilik Politikası</a> ve <a href="/kvkk.html">KVKK</a> sayfasına bakabilirsin; hesabını istediğin an tamamen silebilirsin.</p></details>
-    <details><summary data-i18n="s4.q">Ne zaman çıkıyor?</summary>
-      <p data-i18n="s4.a">Google Play’de yayında. iOS sürümü App Store incelemesinde. Gelişmeler için <a href="https://instagram.com/socialmakara" target="_blank" rel="noopener">@socialmakara</a>.</p></details>
+    <details><summary data-i18n="s4.q">Nereden indirebilirim?</summary>
+      <p data-i18n="s4.a">MAKARA <a href="https://apps.apple.com/app/id6797695011" target="_blank" rel="noopener">App Store</a> ve <a href="https://play.google.com/store/apps/details?id=social.makara.app" target="_blank" rel="noopener">Google Play</a>'de ücretsiz. Yenilikler için <a href="https://instagram.com/socialmakara" target="_blank" rel="noopener">@socialmakara</a>.</p></details>
   </div>
 </section>
 
@@ -674,8 +674,8 @@ const T = {
  "s5.a":["Başrol; sinema istatistiklerini, Zevk DNA’nı, kişisel önerileri ve 128’lik dev afiş turnuvasını açar. Yönetmen, Başrol’ün her şeyine ek olarak İzleme Kâhini, Kör Nokta Radarı, Sinema Zaman Kapsülü ve Yıllık Sinema Karnesi’ni getirir.","Başrol unlocks your film stats, your Taste DNA, personal picks and the 128-title mega poster tournament. Yönetmen includes everything in Başrol, plus the Watch Oracle, Blind Spot Radar, Cinema Time Capsule and the Yearly Cinema Report Card."],
  "s3.q":["Verilerim güvende mi?","Is my data safe?"],
  "s3.a":["Tüm iletişim şifreli bağlantı üzerinden yapılır ve verilerin satılmaz. Ayrıntılar için <a href=\"/privacy.html\">Gizlilik Politikası</a> ve <a href=\"/kvkk.html\">KVKK</a> sayfasına bakabilirsin; hesabını istediğin an tamamen silebilirsin.","All traffic runs over an encrypted connection and your data is never sold. See the <a href=\"/privacy.html\">Privacy Policy</a> and <a href=\"/kvkk.html\">KVKK</a> page; you can delete your account entirely at any time."],
- "s4.q":["Ne zaman çıkıyor?","When is it launching?"],
- "s4.a":["Google Play’de yayında. iOS sürümü App Store incelemesinde. Gelişmeler için <a href=\"https://instagram.com/socialmakara\" target=\"_blank\" rel=\"noopener\">@socialmakara</a>.","Live on Google Play. The iOS version is in App Store review. Follow <a href=\"https://instagram.com/socialmakara\" target=\"_blank\" rel=\"noopener\">@socialmakara</a> for updates."],
+ "s4.q":["Nereden indirebilirim?","Where can I download it?"],
+ "s4.a":["MAKARA <a href=\"https://apps.apple.com/app/id6797695011\" target=\"_blank\" rel=\"noopener\">App Store</a> ve <a href=\"https://play.google.com/store/apps/details?id=social.makara.app\" target=\"_blank\" rel=\"noopener\">Google Play</a>'de ücretsiz. Yenilikler için <a href=\"https://instagram.com/socialmakara\" target=\"_blank\" rel=\"noopener\">@socialmakara</a>.","MAKARA is free on the <a href=\"https://apps.apple.com/app/id6797695011\" target=\"_blank\" rel=\"noopener\">App Store</a> and <a href=\"https://play.google.com/store/apps/details?id=social.makara.app\" target=\"_blank\" rel=\"noopener\">Google Play</a>. Follow <a href=\"https://instagram.com/socialmakara\" target=\"_blank\" rel=\"noopener\">@socialmakara</a> for updates."],
  "f.privacy":["Gizlilik Politikası","Privacy Policy"],
  "f.terms":["Kullanım Koşulları","Terms of Use"],
  "f.kvkk":["KVKK Aydınlatma Metni","KVKK Notice"],
