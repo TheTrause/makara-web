@@ -109,6 +109,8 @@
     indir: ['Google Play’den indir', 'Get it on Google Play'],
     ios: ['App Store’da yakında', 'Coming soon to the App Store'],
     ios_indir: ['App Store’dan indir', 'Download on the App Store'],
+    rozet_ios: ['/img/rozet/app-store-tr.svg', '/img/rozet/app-store-en.svg'],
+    rozet_play: ['/img/rozet/google-play-tr.png', '/img/rozet/google-play-en.png'],
     bulunamadi: ['Profil bulunamadı', 'Profile not found'],
     bulunamadi_alt: ['Bu kullanıcı adıyla bir profil yok ya da görüntülenemiyor.',
       'There is no profile with this username, or it cannot be shown.'],
@@ -225,12 +227,18 @@
   // IOS_YAYINDA = true yap; index.html'de de ayni adli bayrak var.
   var APP_STORE = 'https://apps.apple.com/app/id6797695011';
   var IOS_YAYINDA = true;
+  // Resmi mağaza rozetleri (Apple ve Google'ın kendi görselleri). Dil
+  // değişince sayfa yeniden çiziliyor; görsel t()'den seçiliyor.
+  function rozet(href, src, alt) {
+    return el('a', { sinif: 'rozet-dgm', href: href, target: '_blank', rel: 'noopener' },
+      el('img', { src: src, alt: alt, height: '48' }));
+  }
   function magazaDugmeleri() {
     return el('div', { sinif: 'magaza' },
-      el('a', { sinif: 'dgm dolu', href: PLAY, target: '_blank', rel: 'noopener', metin: t('indir') }),
       IOS_YAYINDA
-        ? el('a', { sinif: 'dgm dolu', href: APP_STORE, target: '_blank', rel: 'noopener', metin: t('ios_indir') })
-        : el('span', { sinif: 'dgm bos', metin: t('ios') }));
+        ? rozet(APP_STORE, t('rozet_ios'), t('ios_indir'))
+        : el('span', { sinif: 'dgm bos', metin: t('ios') }),
+      rozet(PLAY, t('rozet_play'), t('indir')));
   }
   // Tek dugmelik yerler icin: iOS yayindaysa iPhone/iPad'e App Store,
   // digerlerine Google Play.

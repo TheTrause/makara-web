@@ -36,6 +36,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .dgm{display:inline-flex;align-items:center;justify-content:center;padding:11px 22px;border-radius:980px;
   font-size:14px;font-weight:600;border:1px solid var(--line);color:var(--muted);transition:filter .3s,transform .3s}
 .dgm.dolu:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.rozet-dgm{display:inline-flex;border-radius:9px;transition:transform .35s,filter .35s}
+.rozet-dgm:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.rozet-dgm img{height:48px;width:auto;display:block}
 .dgm.bos:hover{color:var(--cream);border-color:var(--gold-soft)}
 .magaza{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:20px}
 

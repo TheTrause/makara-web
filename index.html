@@ -104,7 +104,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:12;opa
 /* ---------------- ust cubuk: ince, ortalanmis (Apple) ------------- */
 .bar{position:fixed;top:0;left:0;right:0;z-index:20;height:50px;
   display:flex;align-items:center;padding:0 var(--kenar);
-  background:rgba(11,11,11,.72);backdrop-filter:saturate(180%) blur(20px);
+  background:rgba(11,11,11,.72);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);
   border-bottom:1px solid transparent;transition:border-color .5s}
 .bar.kaydi{border-bottom-color:rgba(42,42,42,.9)}
 .marka{display:flex;align-items:center;gap:9px;font-family:var(--serif);
@@ -118,12 +118,19 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:12;opa
 .dil{display:flex;gap:5px;font-size:11.5px;color:var(--muted)}
 .dil button{background:none;border:0;color:inherit;font:inherit;cursor:pointer;padding:2px 3px;letter-spacing:.06em;transition:color .35s}
 .dil button.acik{color:var(--gold)}
-.bar .indir{padding:6px 15px;border-radius:980px;background:var(--gold);color:#16150F;
-  font-size:12.5px;font-weight:600;letter-spacing:.01em;transition:filter .35s,transform .35s}
+.bar .indir{display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:0 18px;border-radius:980px;
+  background:var(--gold);color:#16150F;font-size:14px;font-weight:700;letter-spacing:.01em;white-space:nowrap;
+  box-shadow:0 0 0 1px rgba(201,162,75,.35),0 6px 22px rgba(201,162,75,.28);transition:filter .35s,transform .35s}
+.bar .indir svg{width:15px;height:15px;flex:none}
 .bar .indir:hover{filter:brightness(1.12);transform:translateY(-1px)}
 .bar .giris-bag{font-size:12.5px;color:rgba(243,234,217,.78);transition:color .35s}
 .bar .giris-bag:hover{color:var(--cream)}
 @media(max-width:880px){.bar nav{display:none}}
+/* Dar telefonda üst çubuk sığsın: "Giriş/Sign in" kırılmasın, aralar
+   daralsın, en darda yalnız makara simgesi kalsın (yazı adı gizli). */
+.bar .giris-bag{white-space:nowrap}
+@media(max-width:430px){.sag{gap:11px}.bar .indir{padding:0 14px}}
+@media(max-width:380px){.bar .marka{font-size:0;letter-spacing:0;gap:0}}
 
 /* Kaydirma dinleyicisi yok: tarayici destekliyorsa cizgi CSS ile
    kaydirmaya baglanir, desteklemiyorsa hic gorunmez. */
@@ -171,6 +178,13 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:12;opa
 .dgm.dolu:hover{filter:brightness(1.12);transform:translateY(-2px)}
 .dgm.bos{border:1.5px solid #6E6E6E;color:var(--cream)}
 .dgm small{font-size:12px;font-weight:500;opacity:.8}
+/* Resmi mağaza rozetleri (Apple ve Google'ın kendi görselleri; değiştirilmez,
+   yalnız boyutlandırılır). İkisi aynı görünür yükseklikte. */
+.rozet-dgm{display:inline-flex;border-radius:10px;transition:transform .35s,filter .35s}
+.rozet-dgm:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.rozet-dgm img{height:52px;width:auto;display:block}
+/* Telefonda iki rozet tek satıra sığsın (Apple: web'de en az 40 px). */
+@media(max-width:430px){.rozet-dgm img{height:44px}}
 
 /* Telefon: TEK ve BUYUK, alt kenardan kirpik - asagida devami var. */
 /* Alt kenar, cerceve ile birlikte karartiliyor: kirpilan yerde
@@ -384,7 +398,7 @@ footer .kucuk a{color:#B0B0B0}
     <div class="dil"><button data-dil="tr" class="acik">TR</button><span>·</span><button data-dil="en">EN</button></div>
     <a class="giris-bag" href="/giris.html" data-i18n="cta.login">Giriş</a>
     <a class="indir" href="https://play.google.com/store/apps/details?id=social.makara.app"
-       target="_blank" rel="noopener" data-i18n="cta.get">Uygulamayı indir</a>
+       target="_blank" rel="noopener" ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span data-i18n="cta.get">İndir</span></a>
   </div>
 </div>
 
@@ -395,9 +409,9 @@ footer .kucuk a{color:#B0B0B0}
     <h1 class="h1 bel" data-i18n="hero.h1">İzlediğin her filmi bir hikâyeye dönüştür.</h1>
     <p class="slogan bel" data-i18n="hero.lead">Sinemaseverlerin sosyal platformu. Film günlüğünü tut, fragman izle, zevkini keşfet.</p>
     <div class="dugmeler bel">
-      <a class="dgm dolu" href="https://play.google.com/store/apps/details?id=social.makara.app"
-         target="_blank" rel="noopener" data-i18n="hero.play"><small>Şimdi indir</small>Google Play</a>
-      <a class="dgm dolu" id="ios-dugme" href="https://apps.apple.com/app/id6797695011" target="_blank" rel="noopener" data-i18n="hero.iosCanli"><small>Şimdi indir</small>App Store</a>
+      <a class="rozet-dgm" href="https://apps.apple.com/app/id6797695011" id="ios-dugme" target="_blank" rel="noopener" data-i18n="hero.iosCanli"><img src="img/rozet/app-store-tr.svg" alt="App Store'dan İndirin" width="158" height="52"></a>
+      <a class="rozet-dgm" href="https://play.google.com/store/apps/details?id=social.makara.app"
+         target="_blank" rel="noopener" data-i18n="hero.play"><img src="img/rozet/google-play-tr.png" alt="Google Play'den Alın" width="175" height="52"></a>
     </div>
   </div>
   <div class="urun bel"><img src="img/vitrin.webp" alt="MAKARA keşfet ekranı" width="560" height="1008" fetchpriority="high"></div>
@@ -607,13 +621,13 @@ const T = {
  "nav.feat":["Özellikler","Features"],
  "nav.prem":["Premium","Premium"],
  "nav.faq":["SSS","FAQ"],
- "cta.get":["Uygulamayı indir","Get the app"],
+ "cta.get":["İndir","Download"],
  "cta.login":["Giriş","Sign in"],
  "hero.h1":["İzlediğin her filmi bir hikâyeye dönüştür.","Turn every film you watch into a story."],
  "hero.lead":["Sinemaseverlerin sosyal platformu. Film günlüğünü tut, fragman izle, zevkini keşfet.","The social platform for film lovers. Keep your film diary, watch trailers, discover your taste."],
- "hero.play":["<small>Şimdi indir</small>Google Play","<small>Get it on</small>Google Play"],
+ "hero.play":["<img src=\"img/rozet/google-play-tr.png\" alt=\"Google Play'den Alın\" width=\"175\" height=\"52\">","<img src=\"img/rozet/google-play-en.png\" alt=\"Get it on Google Play\" width=\"175\" height=\"52\">"],
  "hero.ios":["<small>Yakında</small>App Store","<small>Coming soon</small>App Store"],
- "hero.iosCanli":["<small>Şimdi indir</small>App Store","<small>Download on the</small>App Store"],
+ "hero.iosCanli":["<img src=\"img/rozet/app-store-tr.svg\" alt=\"App Store'dan İndirin\" width=\"158\" height=\"52\">","<img src=\"img/rozet/app-store-en.svg\" alt=\"Download on the App Store\" width=\"156\" height=\"52\">"],
  "kar.h":["Uygulamaya yakından bak.","A closer look at the app."],
  "kar.geri":["Önceki kareler","Previous screens"],
  "kar.ileri":["Sonraki kareler","Next screens"],
@@ -736,13 +750,20 @@ const IOS_YAYINDA = true;
 if (IOS_YAYINDA) {
   const eski = document.getElementById('ios-dugme');
   const a = document.createElement('a');
-  a.className = 'dgm dolu';
+  a.className = 'rozet-dgm';
   a.href = 'https://apps.apple.com/app/id6797695011';
   a.target = '_blank';
   a.rel = 'noopener';
   a.dataset.i18n = 'hero.iosCanli';
   a.innerHTML = T['hero.iosCanli'][document.documentElement.lang === 'en' ? 1 : 0];
   eski.replaceWith(a);
+}
+
+/* Ust cubuktaki tek "Indir" dugmesi: iPhone/iPad'e App Store, digerlerine
+   Google Play (web/ortak.js magazaLinki ile ayni kural). */
+if (IOS_YAYINDA && /iPhone|iPad|iPod/.test(navigator.userAgent)) {
+  const indir = document.querySelector('.bar .indir');
+  if (indir) indir.href = 'https://apps.apple.com/app/id6797695011';
 }
 
 const azHareket = matchMedia('(prefers-reduced-motion: reduce)').matches;
