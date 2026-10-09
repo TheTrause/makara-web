@@ -98,14 +98,14 @@
     var yollar = M.afisYollari(p.afis, 'w780');
     if (yollar) {
       bant.classList.add('bant-afis');
-      bant.style.backgroundImage = 'linear-gradient(180deg, rgba(5,13,11,.10) 0%, rgba(5,13,11,.55) 55%, #050D0B 100%), ' +
+      bant.style.backgroundImage = 'linear-gradient(180deg, rgba(11,11,11,.10) 0%, rgba(11,11,11,.55) 55%, #0B0B0B 100%), ' +
         'url("' + yollar[0] + '"), url("' + yollar[1] + '")';
     }
     kahraman.appendChild(bant);
 
     var avatar = M.fotoGecerli(p.foto)
       ? el('img', { sinif: 'avatar', src: p.foto, alt: p.ad || '' })
-      : el('div', { sinif: 'avatar avatar-bos', metin: (p.ad || '?').trim().charAt(0).toUpperCase() });
+      : el('div', { sinif: 'avatar avatar-bos', metin: (p.ad || '?').trim().charAt(0).toLocaleUpperCase('tr') });
 
     var rz = M.kademe(p.rozet);
     var kimlik = el('div', { sinif: 'kimlik' },
@@ -263,7 +263,7 @@
         var r = M.kademe(k.rozet);
         liste.appendChild(el('a', { sinif: 'kisi', href: M.profilYolu(k.kullanici_adi) },
           M.fotoGecerli(k.foto) ? el('img', { sinif: 'kisi-foto', src: k.foto, alt: '', loading: 'lazy' })
-            : el('span', { sinif: 'kisi-foto avatar-bos', metin: (k.ad || '?').trim().charAt(0).toUpperCase() }),
+            : el('span', { sinif: 'kisi-foto avatar-bos', metin: (k.ad || '?').trim().charAt(0).toLocaleUpperCase('tr') }),
           el('span', { sinif: 'kisi-ad' },
             el('b', { metin: k.ad || k.kullanici_adi }),
             el('small', { metin: '@' + k.kullanici_adi })),

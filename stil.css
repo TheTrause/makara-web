@@ -23,19 +23,19 @@
    =============================================================== */
 
 :root{
-  --bg:#050D0B;
-  --card:#0C1B17;
-  --card-alt:#102621;
-  --kart:#0C1B17;
-  --kart2:#102621;
-  --border:#193A33;
-  --line:#193A33;
+  --bg:#0B0B0B;
+  --card:#161616;
+  --card-alt:#1C1C1C;
+  --kart:#161616;
+  --kart2:#1C1C1C;
+  --border:#2A2A2A;
+  --line:#2A2A2A;
   --gold:#C9A24B;
-  --gold-dim:#8FA89E;
+  --gold-dim:#9A9A9A;
   --gold-soft:#8A7A4E;
-  --emerald:#2AA17E;
+  --emerald:#C9A24B;
   --cream:#F3EAD9;
-  --muted:#8FA89E;
+  --muted:#9A9A9A;
   --serif:'Cinzel',Georgia,'Times New Roman',serif;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --r:28px;
@@ -83,7 +83,7 @@ header:not(:has(.brand)):not(:has(.back)):not(:has(.langtoggle)){
 /* Don dugmesi ve dil secici — ana sayfadaki hap bicimi. */
 .back{
   display:inline-flex;align-items:center;
-  padding:6px 15px;border-radius:980px;
+  padding:6px 15px;border-radius:10px;
   border:1px solid var(--line);color:var(--muted);
   font-size:12.5px;letter-spacing:.01em;text-decoration:none;
   transition:border-color .35s,color .35s,background .35s;
@@ -159,7 +159,7 @@ a.inline{border-bottom-color:rgba(201,162,75,.3)}
 .pkg{font-weight:600;letter-spacing:-.01em}
 .badge{
   background:rgba(201,162,75,.1);color:var(--gold);
-  border:1px solid rgba(201,162,75,.24);border-radius:980px;
+  border:1px solid rgba(201,162,75,.24);border-radius:7px;
   padding:2px 10px;font-size:11.5px;letter-spacing:.04em;
 }
 .desc{color:var(--muted);font-size:14px}
@@ -170,9 +170,9 @@ p.not-ceviri,span.not-ceviri{background:none;border:0;padding:0}
 /* ---------------- alt bilgi ---------------- */
 footer{
   border-top:1px solid var(--line);margin-top:56px;padding:44px 0 8px;
-  text-align:center;color:#5C6F68;font-size:12.5px;line-height:1.9;
+  text-align:center;color:#666666;font-size:12.5px;line-height:1.9;
 }
-footer a{color:#7E9189;text-decoration:none;transition:color .35s}
+footer a{color:#888888;text-decoration:none;transition:color .35s}
 footer a:hover{color:var(--gold)}
 footer .wordmark{display:block;font-size:13px;margin-bottom:10px}
 
