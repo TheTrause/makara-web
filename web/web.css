@@ -28,7 +28,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .ust-sag{margin-left:auto;display:flex;align-items:center;gap:14px;font-size:13px}
 .ust-bag{color:rgba(243,234,217,.8)} .ust-bag:hover{color:var(--cream)}
 .dil-dgm{color:var(--muted);font-size:12px;letter-spacing:.08em;padding:4px 6px}
-.ust-dgm{padding:7px 15px;border-radius:10px;border:1px solid var(--line);color:var(--muted);font-size:12.5px}
+.ust-dgm{display:inline-flex;align-items:center;min-height:38px;padding:0 18px;border-radius:12px;border:1px solid var(--line);color:var(--muted);font-size:14px;font-weight:600;white-space:nowrap}
 .ust-dgm.dolu,.dgm.dolu{background:var(--gold);color:#16150F;border-color:var(--gold);font-weight:600}
 
 .kap{width:100%;max-width:1040px;margin:0 auto;padding:0 var(--kenar) 72px;flex:1}
